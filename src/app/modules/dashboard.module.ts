@@ -1,6 +1,9 @@
 import { NgModule } from "@angular/core";
-@NgModule({
 
+@NgModule({
+  imports : [],
+  exports : [],
+  declarations : []
 })
 export class DashboardModule {
 
