@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AssurVoyageComponent {
 
+   step1 : boolean = true;
+   step2 : boolean = false;
+
+   changeStep() {
+    if(this.step1) {
+      this.step1 = false;
+      this.step2 = true;
+    }else{
+      this.step2 = false;
+      this.step1 = true;
+    }
+   }
 }
