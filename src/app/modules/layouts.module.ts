@@ -1,13 +1,14 @@
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NgZoroModule } from './ngzoro.module';
 import { NgModule } from '@angular/core';
 import { AdminComponent } from '../layouts/admin/admin.component';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { RouterModule } from '@angular/router';
+import { AssurComponent } from '../layouts/assur/assur.component';
+import { ComponentsModule } from './components.module';
+
 
 @NgModule({
-  imports: [NzLayoutModule, NzMenuModule, RouterModule,NzIconModule],
+  declarations: [AssurComponent,AdminComponent],
+  imports: [RouterModule,ComponentsModule,NgZoroModule],
   exports: [],
-  declarations: [AdminComponent],
 })
 export class LayoutModule {}

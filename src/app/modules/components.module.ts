@@ -4,15 +4,20 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../components/shared/navbar/navbar.component';
 import { FooterComponent } from '../components/shared/footer/footer.component';
 import { SidebarComponent } from '../components/shared/sidebar/sidebar.component';
+import { NgZoroModule } from './ngzoro.module';
 
 @NgModule({
-  imports: [RouterModule],
-  exports: [],
   declarations: [
-    AdminComponent,
     NavbarComponent,
     FooterComponent,
     SidebarComponent,
   ],
+  imports: [RouterModule, NgZoroModule],
+  exports: [
+    NavbarComponent,
+    FooterComponent,
+    SidebarComponent,
+  ],
+
 })
-export class ComponentModule {}
+export class ComponentsModule {}
