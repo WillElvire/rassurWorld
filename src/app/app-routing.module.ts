@@ -12,6 +12,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/assur.module').then((m) => m.AssurModule),
   },
+  {
+    path : '',
+    redirectTo : 'assurance',
+    pathMatch : 'full'
+
+  }
 
 ];
 
