@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { AdminComponent } from '../layouts/admin/admin.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../components/shared/navbar/navbar.component';
 import { FooterComponent } from '../components/shared/footer/footer.component';
 import { SidebarComponent } from '../components/shared/sidebar/sidebar.component';
 import { NgZoroModule } from './ngzoro.module';
 import { LoaderComponent } from '../components/widgets/loader/loader.component';
+import { CountrypickerComponent } from '../components/widgets/countrypicker/countrypicker.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -13,13 +14,15 @@ import { LoaderComponent } from '../components/widgets/loader/loader.component';
     FooterComponent,
     SidebarComponent,
     LoaderComponent,
+    CountrypickerComponent,
   ],
-  imports: [RouterModule, NgZoroModule],
+  imports: [CommonModule,RouterModule, NgZoroModule],
   exports: [
     NavbarComponent,
     FooterComponent,
     SidebarComponent,
-    LoaderComponent
+    LoaderComponent,
+    CountrypickerComponent
   ],
 
 })

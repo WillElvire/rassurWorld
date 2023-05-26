@@ -1,19 +1,21 @@
 <div class="container mt-4">
-  <app-loader></app-loader>
+
   <div class="card">
     <div class="card-body">
-      <h4 class="text-center">Assurance Voyages</h4>
-      <div class="container">
+      <h4 class="text-center">{{insurance.libelle | titlecase}}</h4>
+      <app-loader *ngIf="enable"></app-loader>
+      <div class="container" *ngIf="!enable">
+        <!------------------- STEP 1  -------------------->
         <div class="grid" *ngIf="step1">
           <h5 class="text-center">1/4</h5>
           <div class="row">
             <div class="col-md-6">
               <label>Votre nom (*)</label>
-              <input class="form-control" placeholder="nom"   [(ngModel)]="userForm.firstname">
+              <input class="form-control" placeholder="renseigner votre nom"   [(ngModel)]="userForm.firstname">
             </div>
             <div class="col-md-6">
               <label>Votre prenom (*)</label>
-              <input class="form-control" placeholder="prenom" [(ngModel)]="userForm.lastname">
+              <input class="form-control" placeholder="renseigner votre prenom" [(ngModel)]="userForm.lastname">
             </div>
           </div>
           <div class="row">
@@ -22,8 +24,8 @@
               <input class="form-control" placeholder="renseigner votre email" type="email" [(ngModel)]="userForm.email">
             </div>
             <div class="col-md-6">
-              <label>Téléphone</label>
-              <input class="form-control" placeholder="date de name" type="tel" [(ngModel)]="userForm.phone">
+              <label>Téléphone (*)</label>
+              <input class="form-control" placeholder="renseigner votre numero de téléphone (Ex : +2250000000000)" type="tel" [(ngModel)]="userForm.phone">
             </div>
           </div>
 
@@ -35,60 +37,51 @@
           <br>
           <br>
         </div>
+        <!------------------- END STEP 1  -------------------->
+
+        <!--------------------- STEP 2    --------------------->
         <div class="grid" *ngIf="step2">
-          <h5 class="text-center">1/4</h5>
+          <h5 class="text-center">2/4</h5>
           <div class="row">
-            <div class="col-md-4">
-              <label>lieu de naissance (*)</label>
-              <input class="form-control" placeholder="lieu">
+            <div class="col-md-6">
+              <label>Pays de residence</label>
+              <app-countrypicker [(country)]="tripDto.country"></app-countrypicker>
             </div>
-            <div class="col-md-4">
-              <label>Addresse(*)</label>
-              <input class="form-control" placeholder="Votre addresse">
-            </div>
-            <div class="col-md-4">
-              <label>Contact (*)</label>
-              <input class="form-control" placeholder="Ex : 2250165906010" >
+            <div class="col-md-6">
+              <label>Pays de destination</label>
+              <app-countrypicker [(country)]="tripDto.destination"></app-countrypicker>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-3">
-              <label>Pays de residence</label>
-              <select class="form-control"></select>
-            </div>
-            <div class="col-md-3">
-              <label>Pays de destination</label>
-              <select class="form-control"></select>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
               <label>Jours de depart</label>
-              <input class="form-control" type="date">
+              <input class="form-control" type="date" [(ngModel)]="tripDto.dateOfLeft">
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
               <label> Jour de Retour inclus</label>
-              <input class="form-control" type="date">
+              <input class="form-control" type="date" [(ngModel)]="tripDto.dateOfBack">
             </div>
           </div>
           <div class="row">
             <div class="col-md-4">
               <label> Numero de passeport</label>
-              <input class="form-control">
+              <input class="form-control" type="text" [(ngModel)]="tripDto.passportNub">
             </div>
             <div class="col-md-4">
-              <label> du</label>
-              <input class="form-control">
+              <label> du </label>
+              <input class="form-control" type="date" [(ngModel)]="tripDto.passportDayOfCreation">
             </div>
             <div class="col-md-4">
               <label>fin validité</label>
-              <input class="form-control">
+              <input class="form-control" type="date" [(ngModel)]="tripDto.passportValidity">
             </div>
           </div>
 
           <div class="row" >
-            <button class="btn btn-light  col-md-12" (click)="changeStep()"> suivant</button>
+            <button class="btn btn-light  col-md-12" (click)="startSecondStep()"> suivant</button>
           </div>
         </div>
-        <div class="grid" *ngIf="step2">
+        <div class="grid" *ngIf="step3">
           <h5 class="text-center">2/2</h5>
           <div class="row">
             <div class="col-md-6">
@@ -101,10 +94,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6" >
+            <!--<div class="col-md-6" >
              <button class="btn btn-light col-md-12" (click)="changeStep()">Retour</button>
-            </div>
-            <div class="col-md-6">
+            </div>!-->
+            <div class="col-md-12">
               <button class="btn btn-success col-md-12">Suivant</button>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import { tripInsuranceDto } from './../../core/interfaces/dto';
 import { Component, inject } from '@angular/core';
 import { AppFacade } from 'src/app/core/facades/app.facade';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
@@ -9,40 +10,77 @@ import { UserDto, firstStepUser } from 'src/app/core/interfaces/dto';
   styleUrls: ['./assur-voyage.component.scss'],
 })
 export class AssurVoyageComponent {
+
   step1: boolean = true;
   step2: boolean = false;
   step3: boolean = false;
   step4: boolean = false;
 
-  utils = inject(UtilsFacades);
+  enable : boolean = false;
+
+  utils     = inject(UtilsFacades);
   appFacade = inject(AppFacade);
 
-  userForm: firstStepUser = {};
-  user: UserDto = {};
+  userForm  : firstStepUser = {
+    firstname: "ok",
+    lastname : "ok",
+    email : "ooo@gmail.com",
+    phone : "+2250103659060"
+  };
+  user      : UserDto = {};
+  tripDto   : tripInsuranceDto = {};
+  insurance : {id ?: string , libelle ?: string} = {};
+  country   : any ;
 
-  constructor() {}
+  constructor() {
+    this.getOffer();
+  }
+
+
+  getOffer() {
+    this.enable = true;
+    this.appFacade.getOfferByKeyword("voyage").subscribe((response : any)=>{
+      this.insurance = response.body.returnObject[0];
+      this.enable    = false;
+    },(error)=>{
+      this.enable = false;
+      this.utils.errorToastMessage("Une erreur est survenue veuillez contacter l'administrateur");
+    } );
+  }
 
   startFirstStep() {
     console.log(this.userForm);
     if (
-      !this.userForm.email ||
-      !this.userForm.firstname ||
-      !this.userForm.lastname ||
-      !this.userForm.phone
+      !this.userForm.email || !this.userForm.firstname || !this.userForm.lastname || !this.userForm.phone
     ) {
       return this.utils.errorToastMessage(
-        'veuillez renseigné tout les champs contenant le symbole (*)'
+        'veuillez renseigner tout les champs contenant le symbole (*)'
       );
     }
+
+
+    if(!this.utils.testEmail(this.userForm.email)){
+      return this.utils.errorToastMessage(
+        'veuillez renseigner une addresse email valide'
+      );
+    }
+
+    if(!this.utils.testPhoneNumber(this.userForm.phone)){
+      return this.utils.errorToastMessage(
+        'veuillez renseigner un numéro de téléphone valide'
+      );
+    }
+
+    this.enable = true;
+
     this.appFacade.firstStep({ ...this.userForm }, 'voyage').subscribe({
       next: (response: any) => {
-        if (response.body.message) {
-          this.utils.successToastMessage(response.body.message);
-        }
-        this.user = response.body.returnObject;
+        this.user   = response.body.returnObject;
+        this.enable = false;
         this.enableNewStep(2);
       },
       error: (err: any) => {
+        this.enable = false;
         this.utils.successToastMessage(err.message);
       },
     });
@@ -81,6 +119,29 @@ export class AssurVoyageComponent {
       this.step1 = false;
       return;
     }
+  }
+
+  startSecondStep() {
+    this.enable = true;
+    const fullTripDto = {
+      user : this.user.id,
+      offer : this.insurance.id,
+      trip : {...this.tripDto}
+    }
+    this.appFacade.secondStep(fullTripDto).subscribe((response)=>{
+    console.log(response);
+    this.enable = false;
+    this.enableNewStep(3);
+
+    },(error)=>{
+console.log(error);
+    })
+   console.log(this.tripDto);
+   this.enable = false;
+  }
+
+  startFinalStep() {
+
   }
 
   changeStep() {

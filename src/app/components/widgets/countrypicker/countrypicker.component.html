@@ -1,0 +1,5 @@
+<select class="form-control" (click)="selectCountry($event)">
+  <option *ngFor="let country of countries" value="{{country.name}}">
+    {{country.name}}
+  </option>
+</select>

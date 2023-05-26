@@ -18,6 +18,17 @@ export class AppFunctionService {
     return this.api.get(`statics/json/banks.json`).pipe(shareReplay(1));
   }
 
+  getCountry() {
+    this.api.setApiType("assets");
+    return this.api.get(`json/country.json`).pipe(shareReplay(1));
+  }
+
+
+  getOfferByKeyword(keyword : string){
+    this.api.setApiType("rest");
+    return this.api.get("/api/offer/find/"+keyword).pipe(shareReplay(1));
+  }
+
 
   login(data : any) {
     this.api.setApiType("rest");

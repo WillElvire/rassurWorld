@@ -38,4 +38,11 @@ export class AppFacade {
   thirdStep(data : any , type : insuranceType  = "voyage"){
     return this.appFunction.thirdStep(data,type);
   }
+
+  getCountry(){
+    return this.appFunction.getCountry();
+  }
+  getOfferByKeyword(keyword: string) {
+    return this.appFunction.getOfferByKeyword(keyword);
+  }
 }
