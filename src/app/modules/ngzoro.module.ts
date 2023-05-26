@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
-const ngZoroElements = [NzButtonModule, NzIconModule ,NzSliderModule, NzLayoutModule,NzMenuModule];
+const ngZoroElements = [NzButtonModule, NzIconModule ,NzSliderModule, NzLayoutModule,NzMenuModule,NzSpinModule];
 
 @NgModule({
   declarations: [],
