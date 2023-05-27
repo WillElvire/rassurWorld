@@ -8,6 +8,10 @@ const routes: Routes = [
       import('./modules/dashboard.module').then((m) => m.DashboardModule),
   },
   {
+    path : 'success',
+    loadComponent : ()=> import('./pages/landings/success/success.component').then((c)=>c.SuccessComponent)
+  },
+  {
     path: 'assurance',
     loadChildren: () =>
       import('./modules/assur.module').then((m) => m.AssurModule),

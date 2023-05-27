@@ -23,21 +23,19 @@ export class HttpService {
   }
 
   get<T>(endpoint : string ) {
-    return this.http.get<T>(`${this.getBaseUrl()}${endpoint}`,{headers : this.httpHeader(),observe: "response"});
+    return this.http.get<T>(`${this.getBaseUrl()}${endpoint}`,{headers : this.httpHeader(),observe: "response",reportProgress : true});
   }
 
   post<T>(parameter : Required<{endpoint : string , data : any}> ) {
-    //return this.http.post<T>(`${this.getBaseUrl()}${parameter.endpoint}`,this.returnCorrectDataFormat(parameter.data), {headers : this.httpHeader()} );
-    return this.http.post<T>(`${this.getBaseUrl()}${parameter.endpoint}`,parameter.data, {headers : this.httpHeader(),observe: "response"} );
+    return this.http.post<T>(`${this.getBaseUrl()}${parameter.endpoint}`,parameter.data, {headers : this.httpHeader(),observe: "response",reportProgress : true} );
   }
 
   put<T>(parameter : Required<{endpoint : string , data : any}>) {
-    //return this.http.put<T>(`${this.getBaseUrl()}${parameter.endpoint}`, this.returnCorrectDataFormat(parameter.data),{headers : this.httpHeader()});
-    return this.http.put<T>(`${this.getBaseUrl()}${parameter.endpoint}`, parameter.data,{headers : this.httpHeader(),observe: "response"});
+    return this.http.put<T>(`${this.getBaseUrl()}${parameter.endpoint}`, parameter.data,{headers : this.httpHeader(),observe: "response",reportProgress : true});
   }
 
   delete<T>(endpoint : string) {
-    return this.http.delete<T>(`${this.getBaseUrl()}${endpoint}`,{headers : this.httpHeader(),observe: "response"});
+    return this.http.delete<T>(`${this.getBaseUrl()}${endpoint}`,{headers : this.httpHeader(),observe: "response",reportProgress : true});
   }
 
   getHtml(endpoint: string) {
@@ -47,8 +45,18 @@ export class HttpService {
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT,DELETE',
       'Accept': 'text/html; charset=utf-8',
     },
+    observe : "response"});
+  }
+
+  postImage<T>(parameter : Required<{endpoint : string , data : any}> ) {
+    return this.http.post(`${this.getBaseUrl()}${parameter.endpoint}`, parameter.data,{headers : {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT,DELETE',
+      'Accept': 'multipart/form-data; charset=utf-8',
+    },
     responseType : "text",
     observe : "body"});
+
   }
 
   getBaseUrl() {

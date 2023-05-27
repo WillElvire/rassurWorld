@@ -45,4 +45,7 @@ export class AppFacade {
   getOfferByKeyword(keyword: string) {
     return this.appFunction.getOfferByKeyword(keyword);
   }
+  uploadPassport(data: any , type : insuranceType = "voyage"){
+    return this.appFunction.uploadPassport(data,type);
+  }
 }

@@ -6,3 +6,26 @@
   }
 }
 
+.info {
+  height: 3vh;
+  background-color: var(--button-color);
+  line-height: 3vh;
+  border-radius: 10px;
+  text-align: center;
+  h6{
+    color :white;
+    font-size: 12px;
+  }
+}
+
+.file {
+  margin-left:20% !important;
+}
+
+
+@media(min-width : 0px ) and (max-width:900px) {
+  .file {
+    margin-left:5% !important;
+    text-align: center;
+  }
+}

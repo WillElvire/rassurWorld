@@ -1,8 +1,10 @@
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { tripInsuranceDto } from './../../core/interfaces/dto';
 import { Component, inject } from '@angular/core';
 import { AppFacade } from 'src/app/core/facades/app.facade';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 import { UserDto, firstStepUser } from 'src/app/core/interfaces/dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assur-voyage',
@@ -11,26 +13,30 @@ import { UserDto, firstStepUser } from 'src/app/core/interfaces/dto';
 })
 export class AssurVoyageComponent {
 
-  step1: boolean = true;
-  step2: boolean = false;
-  step3: boolean = false;
-  step4: boolean = false;
+  step1 : boolean = true;
+  step2 : boolean = false;
+  step3 : boolean = false;
+  step4 : boolean = false;
 
-  enable : boolean = false;
-
-  utils     = inject(UtilsFacades);
-  appFacade = inject(AppFacade);
-
-  userForm  : firstStepUser = {
-    firstname: "ok",
-    lastname : "ok",
-    email : "ooo@gmail.com",
-    phone : "+2250103659060"
-  };
+  enable    : boolean = false;
   user      : UserDto = {};
   tripDto   : tripInsuranceDto = {};
   insurance : {id ?: string , libelle ?: string} = {};
   country   : any ;
+  formData  : FormData = new FormData()
+  tripBookedDetail : {detail ?: string,user ?: string} = {};
+  selectedFile !: File;
+  userForm : firstStepUser = {
+    firstname : "ok",
+    lastname  : "ok",
+    email     :"ooo@gmail.com",
+    phone     : "+2250103659060"
+  };
+
+  utils     = inject(UtilsFacades);
+  appFacade = inject(AppFacade);
+  router    = inject(Router);
+
 
   constructor() {
     this.getOffer();
@@ -73,6 +79,10 @@ export class AssurVoyageComponent {
 
     this.enable = true;
 
+    return this.callToServerStep1();
+  }
+
+  callToServerStep1() {
     this.appFacade.firstStep({ ...this.userForm }, 'voyage').subscribe({
       next: (response: any) => {
         this.user   = response.body.returnObject;
@@ -122,35 +132,50 @@ export class AssurVoyageComponent {
   }
 
   startSecondStep() {
+    if(!this.tripDto.country ||!this.tripDto.dateOfBack || !this.tripDto.dateOfLeft || !this.tripDto.destination || !this.tripDto.passportDayOfCreation || !this.tripDto.passportNub || !this.tripDto.passportValidity || !this.tripDto.passportValidity ){
+      return this.utils.errorToastMessage(
+        'veuillez renseigner tout les champs contenant le symbole (*)'
+      );
+    }
     this.enable = true;
-    const fullTripDto = {
-      user : this.user.id,
-      offer : this.insurance.id,
-      trip : {...this.tripDto}
-    }
-    this.appFacade.secondStep(fullTripDto).subscribe((response)=>{
-    console.log(response);
-    this.enable = false;
-    this.enableNewStep(3);
-
-    },(error)=>{
-console.log(error);
-    })
-   console.log(this.tripDto);
-   this.enable = false;
+    const fullTripDto = { user : this.user.id,offer : this.insurance.id,trip : {...this.tripDto}}
+    return this.callToServerStep2(fullTripDto);
   }
 
+  callToServerStep2(fullTripDto : any) {
+    this.appFacade.secondStep(fullTripDto).subscribe((response : any)=>{
+      console.log(response);
+      this.enable = false;
+      this.enableNewStep(3);
+      this.tripBookedDetail = response.body.returnObject as any;
+
+      },(error)=>{
+        console.log(error);
+        this.enable = false;
+      })
+  }
   startFinalStep() {
+    this.enable  = true;
+    this.formData.append("file",this.selectedFile);
+    this.formData.append("detail",this.tripBookedDetail.detail as string);
+    this.appFacade.uploadPassport(this.formData).subscribe({
+      next : (response)=>{
+        console.log(response);
+        this.enable = false;
+        this.utils.successToastMessage("Felicitations votre demande a bien été pris en compte . Veuillez verifier votre addresse email pour les details supplementaire");
+        this.router.navigate(["/success"]);
+      },
+      error : (err)=> {
+        console.log(err);
+        this.utils.errorToastMessage("Erreur veuillez ressayer");
+        this.enable = false;
+      }
+    })
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
 
   }
 
-  changeStep() {
-    if (this.step1) {
-      this.step1 = false;
-      this.step2 = true;
-    } else {
-      this.step2 = false;
-      this.step1 = true;
-    }
-  }
 }

@@ -11,7 +11,7 @@
           <div class="row">
             <div class="col-md-6">
               <label>Votre nom (*)</label>
-              <input class="form-control" placeholder="renseigner votre nom"   [(ngModel)]="userForm.firstname">
+              <input class="form-control" placeholder="renseigner votre nom" [(ngModel)]="userForm.firstname">
             </div>
             <div class="col-md-6">
               <label>Votre prenom (*)</label>
@@ -21,16 +21,19 @@
           <div class="row">
             <div class="col-md-6">
               <label>email (*)</label>
-              <input class="form-control" placeholder="renseigner votre email" type="email" [(ngModel)]="userForm.email">
+              <input class="form-control" placeholder="renseigner votre email" type="email"
+                [(ngModel)]="userForm.email">
             </div>
             <div class="col-md-6">
               <label>Téléphone (*)</label>
-              <input class="form-control" placeholder="renseigner votre numero de téléphone (Ex : +2250000000000)" type="tel" [(ngModel)]="userForm.phone">
+              <input class="form-control" placeholder="renseigner votre numero de téléphone (Ex : +2250000000000)"
+                type="tel" [(ngModel)]="userForm.phone">
             </div>
           </div>
 
-          <div class="row" >
-            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> suivant <i class="fa fa-arrow-right"></i></button>
+          <div class="row">
+            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> suivant <i
+                class="fa fa-arrow-right"></i></button>
           </div>
           <br>
           <br>
@@ -44,62 +47,106 @@
           <h5 class="text-center">2/4</h5>
           <div class="row">
             <div class="col-md-6">
-              <label>Pays de residence</label>
+              <label>Pays de residence (*)</label>
               <app-countrypicker [(country)]="tripDto.country"></app-countrypicker>
             </div>
             <div class="col-md-6">
-              <label>Pays de destination</label>
+              <label>Pays de destination (*)</label>
               <app-countrypicker [(country)]="tripDto.destination"></app-countrypicker>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <label>Jours de depart</label>
+              <label>Jours de depart (*)</label>
               <input class="form-control" type="date" [(ngModel)]="tripDto.dateOfLeft">
             </div>
             <div class="col-md-6">
-              <label> Jour de Retour inclus</label>
+              <label> Jour de Retour inclus (*)</label>
               <input class="form-control" type="date" [(ngModel)]="tripDto.dateOfBack">
             </div>
           </div>
           <div class="row">
             <div class="col-md-4">
-              <label> Numero de passeport</label>
+              <label> Numero de passeport (*)</label>
               <input class="form-control" type="text" [(ngModel)]="tripDto.passportNub">
             </div>
             <div class="col-md-4">
-              <label> du </label>
+              <label> du (*)</label>
               <input class="form-control" type="date" [(ngModel)]="tripDto.passportDayOfCreation">
             </div>
             <div class="col-md-4">
-              <label>fin validité</label>
+              <label>fin validité (*)</label>
               <input class="form-control" type="date" [(ngModel)]="tripDto.passportValidity">
             </div>
           </div>
 
-          <div class="row" >
+          <div class="row">
             <button class="btn btn-light  col-md-12" (click)="startSecondStep()"> suivant</button>
           </div>
         </div>
-        <div class="grid" *ngIf="step3">
-          <h5 class="text-center">2/2</h5>
-          <div class="row">
-            <div class="col-md-6">
-              <label>Votre nom (*)</label>
-              <input class="form-control" placeholder="noms">
-            </div>
-            <div class="col-md-6">
-              <label>Votre nom (*)</label>
-              <input class="form-control" placeholder="noms">
-            </div>
+        <div *ngIf="step3">
+          <h5 class="text-center">3/4</h5>
+          <div class="info">
+            <h6>Information du client</h6>
           </div>
-          <div class="row">
-            <!--<div class="col-md-6" >
-             <button class="btn btn-light col-md-12" (click)="changeStep()">Retour</button>
-            </div>!-->
-            <div class="col-md-12">
-              <button class="btn btn-success col-md-12">Suivant</button>
-            </div>
+
+          <h6>Information du client</h6>
+          <p>
+            Firstname : {{user.firstname}}
+          </p>
+          <p>
+            Lastname : {{user.lastname}}
+          </p>
+          <p>
+            Email : {{user.email}}
+          </p>
+          <p>
+            Phone : {{user.phone}}
+          </p>
+          <div class="info">
+            <h6>Information sur le service choisi</h6>
+          </div>
+          <p>
+            Date de depart: {{tripDto.dateOfLeft}}
+          </p>
+          <p>
+            Date de retour: {{tripDto.dateOfBack}}
+          </p>
+
+          <p>
+            Pays d'origine: {{tripDto.country}}
+          </p>
+
+          <p>
+            Pays de destination: {{tripDto.destination}}
+          </p>
+
+          <p>
+            Numero de passport: {{tripDto.passportNub}}
+          </p>
+
+          <p>
+            Date de creation : {{tripDto.passportDayOfCreation}}
+          </p>
+
+          <p>
+            Date de validité: {{tripDto.passportDayOfCreation}}
+          </p>
+
+          <div class="col-md-12">
+            <button class="btn btn-success col-md-12" (click)="enableNewStep(4)">Suivant</button>
+          </div>
+        </div>
+        <div class="grid" *ngIf="step4">
+          <h5 class="text-center">4/4</h5>
+          <div class="file">
+            <p>Veuillez téléverser votre passeport</p>
+            <input type="file" class="form-control" id="file" (change)="onFileSelected($event)">
+          </div>
+          <br>
+          <br>
+          <div class="col-md-12">
+            <button class="btn btn-success col-md-12" (click)="startFinalStep()">Soumettre</button>
           </div>
         </div>
       </div>

@@ -5,8 +5,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
-const ngZoroElements = [NzButtonModule, NzIconModule ,NzSliderModule, NzLayoutModule,NzMenuModule,NzSpinModule];
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzResultModule } from 'ng-zorro-antd/result';
+const ngZoroElements = [NzResultModule,NzUploadModule,NzButtonModule, NzIconModule ,NzSliderModule, NzLayoutModule,NzMenuModule,NzSpinModule];
 
 @NgModule({
   declarations: [],
