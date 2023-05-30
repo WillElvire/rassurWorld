@@ -27,10 +27,10 @@ export class AssurVoyageComponent {
   tripBookedDetail : {detail ?: string,user ?: string} = {};
   selectedFile !: File;
   userForm : firstStepUser = {
-    firstname : "ok",
-    lastname  : "ok",
-    email     :"ooo@gmail.com",
-    phone     : "+2250103659060"
+    firstname : "",
+    lastname  : "",
+    email     :"",
+    phone     : ""
   };
 
   utils     = inject(UtilsFacades);
@@ -155,6 +155,10 @@ export class AssurVoyageComponent {
       })
   }
   startFinalStep() {
+
+    if(!this.selectedFile){
+      return this.utils.errorToastMessage("La photo de votre passeport est requis");
+    }
     this.enable  = true;
     this.formData.append("file",this.selectedFile);
     this.formData.append("detail",this.tripBookedDetail.detail as string);

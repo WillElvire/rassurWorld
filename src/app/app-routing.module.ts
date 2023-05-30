@@ -12,6 +12,10 @@ const routes: Routes = [
     loadComponent : ()=> import('./pages/landings/success/success.component').then((c)=>c.SuccessComponent)
   },
   {
+    path : 'auth/login',
+    loadComponent : ()=> import('./pages/auth/login/login.component').then((c)=>c.LoginComponent)
+  },
+  {
     path: 'assurance',
     loadChildren: () =>
       import('./modules/assur.module').then((m) => m.AssurModule),
