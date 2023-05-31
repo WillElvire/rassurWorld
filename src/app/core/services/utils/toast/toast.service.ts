@@ -8,8 +8,8 @@ export class ToastService {
   private message: string = '';
   private alertType?: string;
   private autoClose: boolean = true;
-  private duration: number = 3000;
-  private position : string = "center";
+  private duration: number   = 3000;
+  private position : string  = "center";
 
  // private readonly toast   = Swal;
 

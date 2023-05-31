@@ -1,0 +1,20 @@
+.guaranty {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.tiers {
+  &:hover{
+    background: var(--button-color) !important;
+    cursor: pointer;
+  }
+
+}
+
+.active {
+  background: var(--button-color) !important;
+}
+
+.inactive{
+  background-color: white !important;
+}

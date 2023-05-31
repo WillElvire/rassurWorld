@@ -1,5 +1,4 @@
 <div class="container mt-4">
-
   <div class="card">
     <div class="card-body">
       <h4 class="text-center">{{insurance.libelle | titlecase}}</h4>
@@ -84,6 +83,9 @@
             <button class="btn btn-light  col-md-12" (click)="startSecondStep()"> suivant</button>
           </div>
         </div>
+        <!--------------------- END STEP 2 --------------------->
+
+        <!--------------------- STEP 3    --------------------->
         <div *ngIf="step3">
           <h5 class="text-center">3/4</h5>
           <div class="info">
@@ -137,6 +139,9 @@
             <button class="btn btn-success col-md-12" (click)="enableNewStep(4)">Suivant</button>
           </div>
         </div>
+        <!--------------------- END STEP 3 --------------------->
+
+         <!--------------------- STEP 4   --------------------->
         <div class="grid" *ngIf="step4">
           <h5 class="text-center">4/4</h5>
           <div class="file">
@@ -149,6 +154,7 @@
             <button class="btn btn-success col-md-12" (click)="startFinalStep()">Soumettre</button>
           </div>
         </div>
+         <!--------------------- END STEP 4 --------------------->
       </div>
     </div>
   </div>

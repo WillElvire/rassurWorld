@@ -1,18 +1,59 @@
 <div class="container mt-4">
   <div class="card">
     <div class="card-body">
-      <h4 class="text-center">Assurance Auto</h4>
-      <div class="container">
-        <div class="grid">
+      <h4 class="text-center">{{insurance?.libelle | titlecase}}</h4>
+      <app-loader *ngIf="enable"></app-loader>
+      <div class="container" *ngIf="!enable">
+        <!------------------- STEP 1  -------------------->
+        <div class="grid" *ngIf="step1">
+          <h5 class="text-center">1/4</h5>
           <div class="row">
             <div class="col-md-6">
-              <label>Nom et prenom (*)</label>
-              <input class="form-control" placeholder="nom et prenom">
+              <label>Votre nom (*)</label>
+              <input class="form-control" placeholder="renseigner votre nom" [(ngModel)]="userForm.firstname">
             </div>
             <div class="col-md-6">
-              <label>Date d'effet (*)</label>
-              <input class="form-control" placeholder="date d'effet">
+              <label>Votre prenom (*)</label>
+              <input class="form-control" placeholder="renseigner votre prenom" [(ngModel)]="userForm.lastname">
             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>email (*)</label>
+              <input class="form-control" placeholder="renseigner votre email" type="email"
+                [(ngModel)]="userForm.email">
+            </div>
+            <div class="col-md-6">
+              <label>Téléphone (*)</label>
+              <input class="form-control" placeholder="renseigner votre numero de téléphone (Ex : +2250000000000)"
+                type="tel" [(ngModel)]="userForm.phone">
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> suivant <i
+                class="fa fa-arrow-right"></i></button>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <!------------------- END STEP 1  -------------------->
+        <div>
+          <app-type-tiers></app-type-tiers>
+        </div>
+
+        <!------------------- STEP 2  -------------------->
+
+
+        <!------------------- END STEP 2  -------------------->
+
+
+        <!--<div class="grid">
+          <h5 class="text-center">1/4</h5>
+          <div class="row">
+
           </div>
           <div class="row">
             <div class="col-md-4">
@@ -45,9 +86,9 @@
 
           <div class="row">
             <button class="btn btn-success  col-md-12"> Souscrire</button>
-          </div>
-        </div>
+          </div> !-->
       </div>
+
     </div>
   </div>
 

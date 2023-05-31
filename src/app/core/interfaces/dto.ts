@@ -32,3 +32,11 @@ export interface tripInsuranceDto {
   destination ?: string,
   relationship ?: string
 }
+
+
+export interface  ItypeTiers {
+  name ?: string,
+  guaranty ?:  [ {name ?: string ,description ?: string,active ?: boolean}],
+  active ?:boolean,
+  index ?: number,
+}

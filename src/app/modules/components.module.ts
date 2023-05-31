@@ -7,6 +7,8 @@ import { NgZoroModule } from './ngzoro.module';
 import { LoaderComponent } from '../components/widgets/loader/loader.component';
 import { CountrypickerComponent } from '../components/widgets/countrypicker/countrypicker.component';
 import { CommonModule } from '@angular/common';
+import { TypeTiersComponent } from '../components/widgets/type-tiers/type-tiers.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,14 +17,16 @@ import { CommonModule } from '@angular/common';
     SidebarComponent,
     LoaderComponent,
     CountrypickerComponent,
+    TypeTiersComponent,
   ],
-  imports: [CommonModule,RouterModule, NgZoroModule],
+  imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
   exports: [
     NavbarComponent,
     FooterComponent,
     SidebarComponent,
     LoaderComponent,
-    CountrypickerComponent
+    CountrypickerComponent,
+    TypeTiersComponent
   ],
 
 })
