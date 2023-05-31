@@ -22,7 +22,7 @@
                 <p>{{guaranty.description}}</p>
               </div>
               <div class="checkbox">
-                <input type="checkbox" [(ngModel)]="checkbox[i].value" (change)="fieldsChange(checkbox[i].index,$event)" [disabled]="!checkbox[i].value && !checkbox[i].active  " >
+                <input type="checkbox" [checked]="checkbox[i].value" [(ngModel)]="checkbox[i].value" (change)="fieldsChange(checkbox[i].index,$event)" [disabled]="!checkbox[i].value && !checkbox[i].active  " >
               </div>
             </div>
             <hr *ngIf="i+1 != listGuaranty.length">

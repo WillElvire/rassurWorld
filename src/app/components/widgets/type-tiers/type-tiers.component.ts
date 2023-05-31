@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { typeTiers } from 'src/app/core/__moock__/tiers';
 import { ItypeTiers } from 'src/app/core/interfaces/dto';
 
@@ -9,11 +9,11 @@ import { ItypeTiers } from 'src/app/core/interfaces/dto';
 })
 export class TypeTiersComponent {
 
+  @Output() userChoice : EventEmitter<string> = new EventEmitter<string>();
   tiers : ItypeTiers[] = typeTiers as ItypeTiers[];
   tiersFilter ?: any = this.tiers.filter((item)=> {return item.active == true});
   checkbox : {value : any , index : number ,active : boolean,checked : boolean  }[] = [];
 
-  choice ?: string;
   constructor(){
     this.generateCheckBoxArray();
   }
@@ -24,19 +24,10 @@ export class TypeTiersComponent {
     this.generateCheckBoxArray();
   }
 
-  desactiveAll(){
-
-  }
-
   generateCheckBoxArray(){
     this.checkbox = [];
     this.tiersFilter[0]?.guaranty.forEach((element : any,index : number)=>{
-      this.checkbox.push({
-        value :"",
-        active : true,
-        index,
-        checked : false
-      })
+      this.checkbox.push({value :"",active : true,index,checked : false})
     });
 
   }
@@ -46,7 +37,8 @@ export class TypeTiersComponent {
       if(element.index == index)
       {
         element.active = true;
-      }else
+      }
+      else
       {
         element.active = false;
       }
@@ -63,8 +55,7 @@ export class TypeTiersComponent {
         element.value   = true;
       }
     })
-    this.choice = this.tiersFilter[0].guaranty[index].name;
-    console.log(this.choice);
+    this.userChoice.emit(this.tiersFilter[0].guaranty[index].name)
   }
 
 }

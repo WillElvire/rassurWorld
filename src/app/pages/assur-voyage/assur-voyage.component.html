@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="card">
     <div class="card-body">
-      <h4 class="text-center">{{insurance.libelle | titlecase}}</h4>
+      <h4 class="text-center">{{insurance?.libelle | titlecase}}</h4>
       <app-loader *ngIf="enable"></app-loader>
       <div class="container" *ngIf="!enable">
         <!------------------- STEP 1  -------------------->

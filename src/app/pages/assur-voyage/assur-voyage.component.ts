@@ -21,15 +21,19 @@ export class AssurVoyageComponent {
   enable    : boolean = false;
   user      : UserDto = {};
   tripDto   : tripInsuranceDto = {};
-  insurance : {id ?: string , libelle ?: string} = {};
   country   : any ;
   formData  : FormData = new FormData()
+
+
+  insurance : {id ?: string , libelle ?: string} = {};
   tripBookedDetail : {detail ?: string,user ?: string} = {};
+
   selectedFile !: File;
+
   userForm : firstStepUser = {
     firstname : "",
     lastname  : "",
-    email     :"",
+    email     : "",
     phone     : ""
   };
 

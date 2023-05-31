@@ -19,23 +19,29 @@ export class AssurAutoComponent {
   appFacade = inject(AppFacade);
   router    = inject(Router);
 
-  step1 : boolean = true;
-  step2 : boolean = false;
-  step3 : boolean = false;
-  step4 : boolean = false;
-
-
+  step1     : boolean = true;
+  step2     : boolean = false;
+  step3     : boolean = false;
+  step4     : boolean = false;
+  months    : number[] = Array.from(Array(12).keys());
   user      : UserDto = {};
   insurance : {id ?: string , libelle ?: string} = {};
   country   : any ;
   formData  : FormData = new FormData();
-
-  userForm : firstStepUser = {
+  userForm  : firstStepUser = {
     firstname : "",
     lastname  : "",
-    email     :"",
+    email     : "",
     phone     : ""
   };
+
+  autoInsurance : any = {
+    date_a_effet : "",
+    periodicity  : 0,
+    value        : 0,
+    price        : 0,
+    typeOfTiers  : "",
+  }
 
   constructor() {
     this.getOffer();
@@ -91,7 +97,7 @@ export class AssurAutoComponent {
 
 
   startFirstStep() {
-    console.log(this.userForm);
+
     if (
       !this.userForm.email || !this.userForm.firstname || !this.userForm.lastname || !this.userForm.phone
     ) {
@@ -114,7 +120,6 @@ export class AssurAutoComponent {
     }
 
     this.enable = true;
-
     return this.callToServerStep1();
   }
 
@@ -131,6 +136,10 @@ export class AssurAutoComponent {
         this.utils.successToastMessage(err.message);
       },
     });
+  }
+
+  getUserChoice(event : string) {
+    console.log(event);
   }
 
 }
