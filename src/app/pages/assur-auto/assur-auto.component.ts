@@ -28,6 +28,7 @@ export class AssurAutoComponent {
   insurance : {id ?: string , libelle ?: string} = {};
   country   : any ;
   formData  : FormData = new FormData();
+  selectedFile  : any;
   userForm  : firstStepUser = {
     firstname : "",
     lastname  : "",
@@ -38,10 +39,14 @@ export class AssurAutoComponent {
   autoInsurance : any = {
     date_a_effet : "",
     periodicity  : 0,
-    value        : 0,
+    valeur_a_neuf: 0,
     price        : 0,
-    typeOfTiers  : "",
+    typeTiers  : "",
+
   }
+
+  autoInsuranceDetail : any;
+
 
   constructor() {
     this.getOffer();
@@ -82,6 +87,14 @@ export class AssurAutoComponent {
     }
   }
 
+  startSecondStep() {
+    if(!this.autoInsurance.date_a_effet || !this.autoInsurance.periodicity || !this.autoInsurance.valeur_a_neuf || !this.autoInsurance.price) {
+      this.utils.errorToastMessage("Veuillez renseigner tous les champs requis");
+      return;
+    }
+    console.log(this.autoInsurance);
+    this.enableNewStep(3);
+  }
 
   getOffer() {
     this.enable = true;
@@ -95,6 +108,24 @@ export class AssurAutoComponent {
   }
 
 
+  startThirdStep(){
+
+    if(!this.autoInsurance.typeTiers){
+      this.utils.errorToastMessage("Veuillez choisir votre offre");
+      return;
+    }
+
+    this.enable = true;
+    const fullAutoInsurance = {
+      user : this.user.id,
+      offer : this.insurance.id,
+      trip  : {
+        ...this.autoInsurance
+      }
+    }
+    this.callToServerStep2(fullAutoInsurance);
+
+  }
 
   startFirstStep() {
 
@@ -102,7 +133,7 @@ export class AssurAutoComponent {
       !this.userForm.email || !this.userForm.firstname || !this.userForm.lastname || !this.userForm.phone
     ) {
       return this.utils.errorToastMessage(
-        'veuillez renseigner tout les champs contenant le symbole (*)'
+        'veuillez renseigner tous les champs contenant le symbole (*)'
       );
     }
 
@@ -124,6 +155,19 @@ export class AssurAutoComponent {
   }
 
 
+  callToServerStep2(fullTripDto : any) {
+    this.appFacade.secondStep(fullTripDto,"auto").subscribe((response : any)=>{
+      console.log(response);
+      this.enable = false;
+      this.enableNewStep(4);
+      console.log(response.body.returnObject as any);
+      this.autoInsuranceDetail = response.body.returnObject as any;
+      },(error)=>{
+        console.log(error);
+        this.enable = false;
+      })
+  }
+
   callToServerStep1() {
     this.appFacade.firstStep({ ...this.userForm }, 'voyage').subscribe({
       next: (response: any) => {
@@ -139,7 +183,35 @@ export class AssurAutoComponent {
   }
 
   getUserChoice(event : string) {
-    console.log(event);
+    this.autoInsurance.typeTiers = event;
+
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+
+  }
+
+  startFinalStep() {
+    if(!this.selectedFile){
+      return this.utils.errorToastMessage("La photo de votre carte grise est requis");
+    }
+    this.enable  = true;
+    this.formData.append("file",this.selectedFile);
+    this.formData.append("detail",this.autoInsuranceDetail.detail as string);
+    this.appFacade.uploadPassport(this.formData).subscribe({
+      next : (response)=>{
+        console.log(response);
+        this.enable = false;
+        this.utils.successToastMessage("Felicitations votre demande a bien été pris en compte . Veuillez verifier votre addresse email pour les details supplementaire");
+        this.router.navigate(["/success"]);
+      },
+      error : (err)=> {
+        console.log(err);
+        this.utils.errorToastMessage("Erreur veuillez ressayer");
+        this.enable = false;
+      }
+    })
   }
 
 }

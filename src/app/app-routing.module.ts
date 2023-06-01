@@ -25,6 +25,12 @@ const routes: Routes = [
     redirectTo : 'assurance',
     pathMatch : 'full'
 
+  },
+  {
+    path : '**',
+    redirectTo : 'assurance',
+    pathMatch : 'full'
+
   }
 
 ];
