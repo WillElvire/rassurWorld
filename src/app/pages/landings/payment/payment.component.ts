@@ -3,6 +3,7 @@ import { OnInit, inject } from '@angular/core';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AppFacade } from 'src/app/core/facades/app.facade';
+import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 import { defaultModule } from 'src/app/core/helpers/api.loader';
 
 @Component({
@@ -14,9 +15,9 @@ import { defaultModule } from 'src/app/core/helpers/api.loader';
 })
 export class PaymentComponent implements OnInit {
 
-  private readonly appFacade = inject(AppFacade);
-  private readonly activated = inject(ActivatedRoute);
-
+  private readonly appFacade   = inject(AppFacade);
+  private readonly activated   = inject(ActivatedRoute);
+  private readonly utilsFacade = inject(UtilsFacades);
   insuranceId !: string ;
   insurance : any;
   enable : boolean = false;
@@ -32,6 +33,10 @@ export class PaymentComponent implements OnInit {
         this.enable = false;
         console.log(response.body)
         this.insurance = response.body.returnObject;
+        if(!this.insurance){
+          this.utilsFacade.errorToastMessage("Ce bon de paiement est invalide");
+          return;
+        }
       },
       error : (error)=>{
         console.log(error)

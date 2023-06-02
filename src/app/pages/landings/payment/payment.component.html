@@ -3,7 +3,8 @@
     <img src="/assets/logo.svg" class="img-fluid" width="200" height="200">
   </a>
   <app-loader *ngIf="enable"></app-loader>
-  <div class="grid" *ngIf="!enable">
+
+  <div class="grid" *ngIf="!enable" style="margin-top: 5%;">
     <div class="row">
       <div class="col-md-8">
         <div class="card">
@@ -15,6 +16,9 @@
             <p>Status : <span *ngIf="insurance.isPayed" style="color: green;">Payé</span>
               <span *ngIf="!insurance.isPayed" style="color:red">en attente de paiement</span>
             </p>
+            <p>Demandeur : {{insurance?.user?.firstname}} {{insurance?.user?.lastname}}</p>
+            <p>email : {{insurance?.user?.email}}</p>
+            <p>Téléphone : {{insurance?.user?.phone}}</p>
             <p *ngIf="!!insurance?.offer?.libelle">Type d'assurance : {{insurance?.offer?.libelle | titlecase}}</p>
             <p *ngIf="!!insurance?.detail?.country">Pays : {{insurance?.detail?.country}}</p>
             <p *ngIf="!!insurance?.detail?.dateOfLeft">date de depart : {{insurance?.detail?.dateOfLeft | date}}</p>
@@ -34,6 +38,11 @@
       <div class="col-md-4">
         <br>
         <br>
+        <h4>Total : 40000 XOF</h4>
+        <div class="alert alert-info">
+          Cher client vous etes prier de bien vouloir verifier les informations relatifs a votre demande avant de proceder au paiement
+        </div>
+
         <button class="btn btn-success col-md-12">Payer</button>
       </div>
     </div>
