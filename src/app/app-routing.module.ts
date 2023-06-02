@@ -16,6 +16,10 @@ const routes: Routes = [
     loadComponent : ()=> import('./pages/auth/login/login.component').then((c)=>c.LoginComponent)
   },
   {
+    path : 'payment/:id',
+    loadComponent : ()=> import('./pages/landings/payment/payment.component').then((c)=>c.PaymentComponent)
+  },
+  {
     path: 'assurance',
     loadChildren: () =>
       import('./modules/assur.module').then((m) => m.AssurModule),

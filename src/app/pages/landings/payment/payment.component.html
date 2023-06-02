@@ -1,0 +1,41 @@
+<div class="container">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/logo.svg" class="img-fluid" width="200" height="200">
+  </a>
+  <app-loader *ngIf="enable"></app-loader>
+  <div class="grid" *ngIf="!enable">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h6>Recapitulatif de votre demande</h6>
+          </div>
+          <div class="card-body">
+            <p>Date de demande : {{insurance?.createdAt | date}}</p>
+            <p>Status : <span *ngIf="insurance.isPayed" style="color: green;">Payé</span>
+              <span *ngIf="!insurance.isPayed" style="color:red">en attente de paiement</span>
+            </p>
+            <p *ngIf="!!insurance?.offer?.libelle">Type d'assurance : {{insurance?.offer?.libelle | titlecase}}</p>
+            <p *ngIf="!!insurance?.detail?.country">Pays : {{insurance?.detail?.country}}</p>
+            <p *ngIf="!!insurance?.detail?.dateOfLeft">date de depart : {{insurance?.detail?.dateOfLeft | date}}</p>
+            <p *ngIf="!!insurance?.detail?.dateOfBack">date de retour : {{insurance?.detail?.dateOfBack | date}}</p>
+            <p *ngIf="!!insurance?.detail?.destination">destination : {{insurance?.detail?.country}} </p>
+            <p *ngIf="!!insurance?.detail?.passportDayOfCreation">date d'optention de passeport : {{insurance?.detail?.passportDayOfCreation | date}} </p>
+            <p *ngIf="!!insurance?.detail?.passportNub">Numero du passport : {{insurance?.detail?.passportNub}} </p>
+            <p *ngIf="!!insurance?.detail?.passportValidity">Periode de validité : {{insurance?.detail?.passportValidity}} </p>
+            <p *ngIf="!!insurance?.detail?.periodicity">péridicité : {{insurance?.detail?.periodicity}} </p>
+            <p *ngIf="!!insurance?.detail?.price">Prix du biens : {{insurance?.detail?.price}} </p>
+            <p *ngIf="!!insurance?.detail?.typeTiers">Type tiers : {{insurance?.detail?.typeTiers}} </p>
+            <p *ngIf="!!insurance?.detail?.valeur_a_neuf">valeur a neuf : {{insurance?.detail?.valeur_a_neuf}} </p>
+            <p *ngIf="!!insurance?.detail?.date_a_effet">date a effet : {{insurance?.detail?.date_a_effet | date}} </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <br>
+        <br>
+        <button class="btn btn-success col-md-12">Payer</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -48,4 +48,7 @@ export class AppFacade {
   uploadPassport(data: any , type : insuranceType = "voyage"){
     return this.appFunction.uploadPassport(data,type);
   }
+  getInsurance(assurId : string) {
+    return this.appFunction.getInsurance(assurId)
+  }
 }
