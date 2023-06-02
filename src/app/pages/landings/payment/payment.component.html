@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div class="text-center" *ngIf="!insurance">
+  <div class="text-center" *ngIf="!enable && !insurance">
     <nz-result nzStatus="error" nzTitle="Votre bon de paiement est invalide"
     nzSubTitle="Cher client le bon de paiement est invalide nous vous prions de contacter les administrateurs">
     <div nz-result-extra>
