@@ -4,7 +4,7 @@
   </a>
   <app-loader *ngIf="enable"></app-loader>
 
-  <div class="grid" *ngIf="!enable" style="margin-top: 5%;">
+  <div class="grid" *ngIf="!enable && !!insurance" style="margin-top: 5%;">
     <div class="row">
       <div class="col-md-8">
         <div class="card">
@@ -21,17 +21,17 @@
             <p>Téléphone : {{insurance?.user?.phone}}</p>
             <p *ngIf="!!insurance?.offer?.libelle">Type d'assurance : {{insurance?.offer?.libelle | titlecase}}</p>
             <p *ngIf="!!insurance?.detail?.country">Pays : {{insurance?.detail?.country}}</p>
-            <p *ngIf="!!insurance?.detail?.dateOfLeft">date de depart : {{insurance?.detail?.dateOfLeft | date}}</p>
-            <p *ngIf="!!insurance?.detail?.dateOfBack">date de retour : {{insurance?.detail?.dateOfBack | date}}</p>
-            <p *ngIf="!!insurance?.detail?.destination">destination : {{insurance?.detail?.country}} </p>
-            <p *ngIf="!!insurance?.detail?.passportDayOfCreation">date d'optention de passeport : {{insurance?.detail?.passportDayOfCreation | date}} </p>
+            <p *ngIf="!!insurance?.detail?.dateOfLeft">Date de depart : {{insurance?.detail?.dateOfLeft | date}}</p>
+            <p *ngIf="!!insurance?.detail?.dateOfBack">Date de retour : {{insurance?.detail?.dateOfBack | date}}</p>
+            <p *ngIf="!!insurance?.detail?.destination">Destination : {{insurance?.detail?.country}} </p>
+            <p *ngIf="!!insurance?.detail?.passportDayOfCreation">Date d'optention de passeport : {{insurance?.detail?.passportDayOfCreation | date}} </p>
             <p *ngIf="!!insurance?.detail?.passportNub">Numero du passport : {{insurance?.detail?.passportNub}} </p>
             <p *ngIf="!!insurance?.detail?.passportValidity">Periode de validité : {{insurance?.detail?.passportValidity}} </p>
-            <p *ngIf="!!insurance?.detail?.periodicity">péridicité : {{insurance?.detail?.periodicity}} </p>
+            <p *ngIf="!!insurance?.detail?.periodicity">Péridicité : {{insurance?.detail?.periodicity}} </p>
             <p *ngIf="!!insurance?.detail?.price">Prix du biens : {{insurance?.detail?.price}} </p>
             <p *ngIf="!!insurance?.detail?.typeTiers">Type tiers : {{insurance?.detail?.typeTiers}} </p>
-            <p *ngIf="!!insurance?.detail?.valeur_a_neuf">valeur a neuf : {{insurance?.detail?.valeur_a_neuf}} </p>
-            <p *ngIf="!!insurance?.detail?.date_a_effet">date a effet : {{insurance?.detail?.date_a_effet | date}} </p>
+            <p *ngIf="!!insurance?.detail?.valeur_a_neuf">Valeur a neuf : {{insurance?.detail?.valeur_a_neuf}} </p>
+            <p *ngIf="!!insurance?.detail?.date_a_effet">Date a effet : {{insurance?.detail?.date_a_effet | date}} </p>
           </div>
         </div>
       </div>
@@ -43,8 +43,16 @@
           Cher client vous etes prier de bien vouloir verifier les informations relatifs a votre demande avant de proceder au paiement
         </div>
 
-        <button class="btn btn-success col-md-12">Payer</button>
+        <button class="btn btn-success col-md-12" [disabled]="!insurance">Payer</button>
       </div>
     </div>
+  </div>
+  <div class="text-center" *ngIf="!insurance">
+    <nz-result nzStatus="error" nzTitle="Votre bon de paiement est invalide"
+    nzSubTitle="Cher client le bon de paiement est invalide nous vous prions de contacter les administrateurs">
+    <div nz-result-extra>
+      <button nz-button >Retour</button>
+    </div>
+  </nz-result>
   </div>
 </div>

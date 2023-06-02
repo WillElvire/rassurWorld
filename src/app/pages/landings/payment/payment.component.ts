@@ -5,13 +5,14 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AppFacade } from 'src/app/core/facades/app.facade';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 import { defaultModule } from 'src/app/core/helpers/api.loader';
+import { NgZoroModule } from 'src/app/modules/ngzoro.module';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss'],
   standalone : true,
-  imports : [CommonModule, RouterModule,defaultModule]
+  imports : [CommonModule, RouterModule,defaultModule,NgZoroModule]
 })
 export class PaymentComponent implements OnInit {
 
