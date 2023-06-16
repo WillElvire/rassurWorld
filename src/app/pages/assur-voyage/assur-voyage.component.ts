@@ -136,13 +136,13 @@ export class AssurVoyageComponent {
   }
 
   startSecondStep() {
-    if(!this.tripDto.country ||!this.tripDto.dateOfBack || !this.tripDto.dateOfLeft || !this.tripDto.destination || !this.tripDto.passportDayOfCreation || !this.tripDto.passportNub || !this.tripDto.passportValidity || !this.tripDto.passportValidity ){
+    if(!this.tripDto.country || !this.tripDto.dateOfBack || !this.tripDto.dateOfLeft || !this.tripDto.destination  ){
       return this.utils.errorToastMessage(
         'veuillez renseigner tout les champs contenant le symbole (*)'
       );
     }
     this.enable = true;
-    const fullTripDto = { user : this.user.id,offer : this.insurance.id,trip : {...this.tripDto}}
+    const fullTripDto = { user : this.user?.id,offer : this.insurance?.id,trip : {...this.tripDto}}
     return this.callToServerStep2(fullTripDto);
   }
 

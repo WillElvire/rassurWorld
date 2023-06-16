@@ -64,7 +64,7 @@
               <input class="form-control" type="date" [(ngModel)]="tripDto.dateOfBack">
             </div>
           </div>
-          <div class="row">
+          <!--<div class="row">
             <div class="col-md-4">
               <label> Numero de passeport (*)</label>
               <input class="form-control" type="text" [(ngModel)]="tripDto.passportNub">
@@ -77,7 +77,7 @@
               <label>fin validité (*)</label>
               <input class="form-control" type="date" [(ngModel)]="tripDto.passportValidity">
             </div>
-          </div>
+          </div>!-->
 
           <div class="row">
             <button class="btn btn-light  col-md-12" (click)="startSecondStep()"> suivant</button>
@@ -123,7 +123,7 @@
             Pays de destination: {{tripDto.destination}}
           </p>
 
-          <p>
+          <!--<p>
             Numero de passport: {{tripDto.passportNub}}
           </p>
 
@@ -133,7 +133,7 @@
 
           <p>
             Date de validité: {{tripDto.passportDayOfCreation}}
-          </p>
+          </p>!-->
 
           <div class="col-md-12">
             <button class="btn btn-success col-md-12" (click)="enableNewStep(4)">Suivant</button>

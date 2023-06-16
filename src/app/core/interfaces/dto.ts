@@ -24,9 +24,9 @@ export interface firstStepUser {
 export interface tripInsuranceDto {
   dateOfLeft ?: string,
   dateOfBack ?: string,
-  passportNub?: string,
+  /*passportNub?: string,
   passportValidity ?: string,
-  passportDayOfCreation ?:string,
+  passportDayOfCreation ?:string,*/
   country ?: string,
   tripMotif?: string,
   destination ?: string,
