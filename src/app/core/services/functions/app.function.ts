@@ -33,12 +33,12 @@ export class AppFunctionService {
   login(data : any) {
     this.api.setApiType("rest");
     this.api.setEncrypted(true);
-    return this.api.post({endpoint : "/api/auth/login", data }).pipe(shareReplay(1));
+    return this.api.post({endpoint : "/api/login", data }).pipe(shareReplay(1));
   }
 
   register(data : any) {
     this.api.setApiType("rest");
-    return this.api.post({endpoint : "/api/auth/register",data}).pipe(shareReplay(1));
+    return this.api.post({endpoint : "/api/register",data}).pipe(shareReplay(1));
   }
 
   firstStep(data : any , insuranceController : insuranceType = "voyage") {

@@ -40,3 +40,5 @@ export interface  ItypeTiers {
   active ?:boolean,
   index ?: number,
 }
+
+export interface LoginDto {email : string , password : string}
