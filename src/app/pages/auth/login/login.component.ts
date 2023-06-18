@@ -1,3 +1,5 @@
+import { UserDto, UserStateDto } from './../../../core/interfaces/dto';
+import { StatesFacades } from './../../../core/facades/state.facade';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +23,7 @@ export class LoginComponent {
   utils     = inject(UtilsFacades);
   appFacade = inject(AppFacade);
   router    = inject(Router);
+  state     = inject(StatesFacades);
 
   loaded : boolean = false;
 
@@ -40,9 +43,10 @@ export class LoginComponent {
   callToServer() {
     this.loaded = true;
     this.appFacade.login(this.login).subscribe( {
-      next :  (response)=>{
+      next :  (response: any)=>{
         this.loaded = false;
-        console.log(response)
+        this.state.dispatchUser(response.body["returnObject"] as UserStateDto)
+        console.log(response.body["returnObject"])
       },
       error : (err)=>{
         this.loaded = false;

@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { UserDto } from './../../interfaces/dto';
 import { Injectable } from '@angular/core';
 import { StorageManagerService } from './storage.manager';
@@ -7,12 +8,11 @@ import { StorageManagerService } from './storage.manager';
 export class UserStorage {
 
   private user !: Partial<UserDto> | null | any ;
-  private key   : string = "rassur_user";
   private token !: string | any ;
   private id    !: string | any;
 
   constructor(private storage : StorageManagerService) {
-    const [user,token] =  [this.storage.get(this.key),this.storage.get("token")];
+    const [user,token] =  [this.storage.get(environment.STORAGE_USER_KEY),this.storage.get(environment.STORAGE_USER_TOKEN)];
     this.user = user;
     this.token = token;
   }
@@ -34,12 +34,12 @@ export class UserStorage {
   }
 
   addUser(user : any ) {
-    this.storage.set(this.key, user.user);
-    this.storage.set("token",user.token);
+    this.storage.set(environment.STORAGE_USER_KEY, user.user);
+    this.storage.set(environment.STORAGE_USER_TOKEN,user.token);
   }
 
 async removeUser(){
-    await this.storage.remove(this.key);
-    await this.storage.remove("token");
+    await this.storage.remove(environment.STORAGE_USER_KEY);
+    await this.storage.remove(environment.STORAGE_USER_TOKEN);
   }
 }

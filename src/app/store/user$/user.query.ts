@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserState } from './user.state';
 import { Query, applyTransaction } from '@datorama/akita';
 import { UserStore} from './user.store';
-import { UserDto } from 'src/app/core/interfaces/dto';
+import { UserDto, UserStateDto } from 'src/app/core/interfaces/dto';
 
 
 
@@ -31,7 +31,7 @@ export class UserQuery extends Query<UserState> {
     return this.getValue()["user"];
   }
 
-  update(user : UserDto) {
+  update(user : UserStateDto) {
     return applyTransaction(()=>{
       this.store.update(user);
       this.store.setLoading(true);

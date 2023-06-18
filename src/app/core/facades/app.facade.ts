@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { AppFunctionService } from '../services/functions/app.function';
 import { insuranceType } from '../type/system.type';
+import { StorageManagerService } from '../services/storage/storage.manager';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ import { insuranceType } from '../type/system.type';
 export class AppFacade {
 
   private appFunction = inject(AppFunctionService);
+  private storageService = inject(StorageManagerService);
 
 
   getReceiptFile() {
@@ -51,4 +53,19 @@ export class AppFacade {
   getInsurance(assurId : string) {
     return this.appFunction.getInsurance(assurId)
   }
+
+
+
+  /*--------------------------------*/
+
+  setStorage(data  : {key : string ,value : any}) {
+    return this.storageService.set(data.key,data.value);
+  }
+  getStorage(key : string) {
+    return this.storageService.get(key);
+  }
+  deleteStorage(key : string) {
+    return this.storageService.remove(key);
+  }
+  /*--------------------------------*/
 }

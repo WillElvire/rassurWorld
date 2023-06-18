@@ -11,6 +11,8 @@ import { OnBoardResolver } from '../core/services/resolvers/onboard.resolver';
 import { FormBuilderService } from '../core/services/data/formBuilder.service';
 import { StorageManagerService } from '../core/services/storage/storage.manager';
 import { UserStorage } from '../core/services/storage/user.storage';
+import { StatesFacades } from '../core/facades/state.facade';
+import { UserQuery } from '../store/user$/user.query';
 
 @NgModule({
   declarations: [],
@@ -26,7 +28,9 @@ import { UserStorage } from '../core/services/storage/user.storage';
     FormBuilderService,
     StorageManagerService,
     UserStorage,
-    Storage
+    Storage,
+    StatesFacades,
+    UserQuery
 
   ],
   exports: [HttpClientModule],

@@ -5,7 +5,7 @@ import { Injectable, inject } from '@angular/core';
 })
 export class StorageManagerService {
 
-  storage = localStorage;
+  storage : Storage = localStorage;
   constructor(){
 
   }
