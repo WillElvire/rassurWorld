@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AppFacade } from 'src/app/core/facades/app.facade';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 import { LoginDto } from 'src/app/core/interfaces/dto';
@@ -20,6 +20,7 @@ export class LoginComponent {
 
   utils     = inject(UtilsFacades);
   appFacade = inject(AppFacade);
+  router    = inject(Router);
 
   loaded : boolean = false;
 

@@ -9,8 +9,14 @@ export interface UserDto {
   lastname?: string;
   password?: string;
   phone?: string;
-  role?: string;
+  role?: RoleDto | string;
   tryCount?: number;
+}
+
+
+export interface UserStateDto{
+  user : UserDto ;
+  token :string
 }
 
 export interface firstStepUser {
@@ -42,3 +48,13 @@ export interface  ItypeTiers {
 }
 
 export interface LoginDto {email : string , password : string}
+
+export interface RoleDto
+{
+    id?: string,
+    libelle?: string,
+    flag?: number,
+    createdAt?: string
+}
+
+
