@@ -58,3 +58,7 @@ export interface RoleDto
 }
 
 
+
+export interface InsuranceRequestDto {
+
+}
