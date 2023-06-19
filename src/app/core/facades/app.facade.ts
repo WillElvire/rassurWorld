@@ -55,6 +55,10 @@ export class AppFacade {
   }
 
 
+  getInsuranceRequest(data: any){
+    return this.appFunction.getInsuranceRequest(data)
+  }
+
 
   /*--------------------------------*/
 
@@ -65,7 +69,7 @@ export class AppFacade {
     return this.storageService.get(key);
   }
   deleteStorage(key : string) {
-    return this.storageService.remove(key);
+    return this.storageService.delete(key);
   }
   /*--------------------------------*/
 }

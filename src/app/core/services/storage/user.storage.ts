@@ -5,58 +5,43 @@ import { StorageManagerService } from './storage.manager';
 @Injectable({
   providedIn : 'root'
 })
-export class UserStorage implements OnInit {
+export class UserStorage  {
 
-  private user !: Partial<UserDto> | null | any ;
-  private token !: string | any ;
+  private user  ?: Partial<UserDto> | null | any ;
+  private token ?: string | any ;
   private id    !: string | any;
 
+
   constructor(private storage : StorageManagerService) {
-    const [user,token] = [
-      this.storage.get(environment.STORAGE_USER_KEY),
-      this.storage.get(environment.STORAGE_USER_TOKEN)
-    ];
-
-    this.token = token;
-
-    try
-    {
-      this.user = {user : JSON.parse(user as any) , token};
-    }
-    catch(Exception)
-    {
-      this.user = {user, token}
-    }
+    this.loadUserData()
   }
 
-
-  ngOnInit(): void {
-    //this.loadUserData()
-  }
 
   private async loadUserData() {
 
     const [user,token] = [
-      await this.storage.get(environment.STORAGE_USER_KEY),
-      await this.storage.get(environment.STORAGE_USER_TOKEN)
+       this.storage.get(environment.STORAGE_USER_KEY),
+       this.storage.get(environment.STORAGE_USER_TOKEN)
     ];
 
     this.token = token;
+    this.user  = user;
+    console.log(this.user,this.token)
+  }
 
+
+  User(){
     try
     {
-      this.user = {user : JSON.parse(user as string) , token};
+      this.user  = {user : JSON.parse(this.user as any) , token : this.token};
     }
     catch(Exception)
     {
-      this.user = {user, token}
+      this.user =  {user : this.user, token : this.token}
     }
 
-  }
-
-  get User(){
-    console.log("user", this.user)
-   return  this.user;
+    console.log("user ======>",this.user);
+    return this.user;
   }
 
   get UserId() {
@@ -77,7 +62,7 @@ export class UserStorage implements OnInit {
   }
 
 async removeUser(){
-    await this.storage.remove(environment.STORAGE_USER_KEY);
-    await this.storage.remove(environment.STORAGE_USER_TOKEN);
+    await this.storage.delete(environment.STORAGE_USER_KEY);
+    await this.storage.delete(environment.STORAGE_USER_TOKEN);
   }
 }

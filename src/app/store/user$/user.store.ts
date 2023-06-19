@@ -41,7 +41,7 @@ class defaultUserService {
   }
 
   getUser() {
-    console.log("this.userService.User",this.userService.User)
-    return (!!this.userService.User ) ? this.userService.User : createInitialState();
+    console.log("this.userService.User",this.userService.User())
+    return (!!this.userService.User() ) ? this.userService.User() : createInitialState();
   }
 }

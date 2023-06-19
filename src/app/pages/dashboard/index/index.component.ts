@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AppFacade } from 'src/app/core/facades/app.facade';
 
 @Component({
   selector: 'app-index',
@@ -7,4 +8,23 @@ import { Component } from '@angular/core';
 })
 export class IndexComponent {
 
+
+  private readonly appFacades = inject(AppFacade);
+  insuranceRequest : any[] = [];
+
+  constructor(){
+    this.loadInsuranceRequest()
+  }
+
+  loadInsuranceRequest() {
+    this.appFacades.getInsuranceRequest({
+      active : "active",
+      payed : "unpaid",
+      limit : 1
+    }).subscribe((response : any)=>{
+      console.log(response);
+      this.insuranceRequest = response.body.returnObject;
+
+    })
+  }
 }

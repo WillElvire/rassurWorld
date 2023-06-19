@@ -9,15 +9,18 @@ export class StorageManagerService {
   constructor(){
 
   }
-  public set(key  : any ,value : any){
-    return this.storage.setItem(key,value);
+  set(key :string ,value : any) {
+    localStorage.setItem(key,JSON.stringify(value));
   }
-  public async get(key : any ){
-    return await this.storage.getItem(key);
+
+  get(key :string) {
+    return localStorage.getItem(key) as any
   }
-  public async remove(key : any ){
-    return await this.storage.removeItem(key);
+
+  delete(key : string) {
+    return localStorage.removeItem(key);
   }
+
   public clear() {
     this.storage.clear()
   }

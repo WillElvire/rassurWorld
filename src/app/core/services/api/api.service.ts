@@ -14,7 +14,7 @@ export class HttpService {
   constructor(private http : HttpClient,@Self()private userQuery : UserQuery) {
     this.userQuery.token$.subscribe((token)=>{
       console.log(token);
-      this.token = token;
+      this.token = !!token ? JSON.parse(token) : token;
     })
   }
 
@@ -48,7 +48,7 @@ export class HttpService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT,DELETE',
       'Accept': 'text/html; charset=utf-8',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${this.token?.toString()}`
     },
     observe : "response"});
   }
@@ -58,7 +58,7 @@ export class HttpService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT,DELETE',
       'Accept': 'multipart/form-data; charset=utf-8',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${this.token?.toString()}`
     },
     responseType : "text",
     observe : "body"});
@@ -83,7 +83,7 @@ export class HttpService {
   httpHeader() {
 
     return  new HttpHeaderBuilder()
-    .addHeader({key : "Authorization", value :`Bearer ${this.token}`})
+    .addHeader({key : "Authorization", value :`Bearer ${this.token?.toString()}`})
     .build();
    ;
   }
