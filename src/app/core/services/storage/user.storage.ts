@@ -12,9 +12,30 @@ export class UserStorage {
   private id    !: string | any;
 
   constructor(private storage : StorageManagerService) {
-    const [user,token] =  [this.storage.get(environment.STORAGE_USER_KEY),this.storage.get(environment.STORAGE_USER_TOKEN)];
+     this.loadUserData()
+  }
+
+
+  async loadUserData() {
+
+    const [user,token] = [
+      await this.storage.get(environment.STORAGE_USER_KEY),
+      await this.storage.get(environment.STORAGE_USER_TOKEN)
+    ];
+
     this.user = user;
     this.token = token;
+
+    try
+    {
+      this.user = {user :   JSON.parse(user as string) , token};
+    }
+    catch(Exception)
+    {
+      this.user = {user, token}
+    }
+
+    console.log(this.user);
   }
 
   get User(){

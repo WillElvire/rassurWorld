@@ -45,7 +45,7 @@ export class LoginComponent {
     this.appFacade.login(this.login).subscribe( {
       next :  (response: any)=>{
         this.loaded = false;
-        this.state.dispatchUser(response.body["returnObject"] as UserStateDto)
+        this.state.updateUser(response.body["returnObject"] as UserStateDto)
         console.log(response.body["returnObject"])
       },
       error : (err)=>{

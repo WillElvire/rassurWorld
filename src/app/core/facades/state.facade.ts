@@ -20,6 +20,9 @@ export class StatesFacades {
   }
 
 
+  get token() {
+    return this.UserQuery.token$;
+  }
 
   get isLoggedIn() {
     return this.UserQuery.isLoggedIn;

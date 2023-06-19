@@ -1,6 +1,7 @@
+import { UserQuery } from 'src/app/store/user$/user.query';
 import { environment } from './../../../../environments/environment.prod';
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, Self } from "@angular/core";
 import { HttpHeaderBuilder } from '../../classes/header.builder';
 
 
@@ -9,9 +10,12 @@ export class HttpService {
 
   apiType : string = "rest";
   isEnc   : boolean = false;
-
-  constructor(private http : HttpClient) {
-
+  token   ?: string;
+  constructor(private http : HttpClient,@Self()private userQuery : UserQuery) {
+    this.userQuery.token$.subscribe((token)=>{
+      console.log(token);
+      this.token = token;
+    })
   }
 
   setApiType(apiType : string){
@@ -44,6 +48,7 @@ export class HttpService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT,DELETE',
       'Accept': 'text/html; charset=utf-8',
+      'Authorization': `Bearer ${this.token}`
     },
     observe : "response"});
   }
@@ -53,6 +58,7 @@ export class HttpService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT,DELETE',
       'Accept': 'multipart/form-data; charset=utf-8',
+      'Authorization': `Bearer ${this.token}`
     },
     responseType : "text",
     observe : "body"});
@@ -75,7 +81,9 @@ export class HttpService {
 
 
   httpHeader() {
+
     return  new HttpHeaderBuilder()
+    .addHeader({key : "Authorization", value :`Bearer ${this.token}`})
     .build();
    ;
   }

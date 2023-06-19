@@ -6,11 +6,13 @@ import { AssuranceComponent } from "../pages/dashboard/assurance/assurance.compo
 import { OffreComponent } from "../pages/dashboard/offre/offre.component";
 import { RoleComponent } from "../pages/dashboard/role/role.component";
 import { TransactionComponent } from "../pages/dashboard/transaction/transaction.component";
+import { AdminGuard } from "../core/guard/admin.guard";
 
 const routes : Routes = [
  {
   path : '',
   component : AdminComponent,
+  canActivate : [AdminGuard],
   children : [
    {
      path :"index",

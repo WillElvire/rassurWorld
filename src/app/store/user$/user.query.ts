@@ -16,6 +16,7 @@ export class UserQuery extends Query<UserState> {
   isLoading$  = this.selectLoading();
   selectId$   = this.select(['id']);
   error$      = this.selectError();
+  token$       = this.select("token");
 
 
   constructor(protected override store: UserStore) {
