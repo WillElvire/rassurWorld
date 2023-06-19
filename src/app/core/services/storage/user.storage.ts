@@ -1,44 +1,61 @@
 import { environment } from './../../../../environments/environment';
 import { UserDto } from './../../interfaces/dto';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { StorageManagerService } from './storage.manager';
 @Injectable({
   providedIn : 'root'
 })
-export class UserStorage {
+export class UserStorage implements OnInit {
 
   private user !: Partial<UserDto> | null | any ;
   private token !: string | any ;
   private id    !: string | any;
 
   constructor(private storage : StorageManagerService) {
-     this.loadUserData()
+    const [user,token] = [
+      this.storage.get(environment.STORAGE_USER_KEY),
+      this.storage.get(environment.STORAGE_USER_TOKEN)
+    ];
+
+    this.token = token;
+
+    try
+    {
+      this.user = {user : JSON.parse(user as any) , token};
+    }
+    catch(Exception)
+    {
+      this.user = {user, token}
+    }
   }
 
 
-  async loadUserData() {
+  ngOnInit(): void {
+    //this.loadUserData()
+  }
+
+  private async loadUserData() {
 
     const [user,token] = [
       await this.storage.get(environment.STORAGE_USER_KEY),
       await this.storage.get(environment.STORAGE_USER_TOKEN)
     ];
 
-    this.user = user;
     this.token = token;
 
     try
     {
-      this.user = {user :   JSON.parse(user as string) , token};
+      this.user = {user : JSON.parse(user as string) , token};
     }
     catch(Exception)
     {
       this.user = {user, token}
     }
 
-    console.log(this.user);
   }
 
   get User(){
+    console.log("user", this.user)
    return  this.user;
   }
 

@@ -2,7 +2,7 @@
 import { EntityStore,StoreConfig } from '@datorama/akita';
 import { UserState, createInitialState } from './user.state';
 import { Injectable } from '@angular/core';
-import { UserDto } from 'src/app/core/interfaces/dto';
+import { UserDto, UserStateDto } from 'src/app/core/interfaces/dto';
 import { UserStorage } from 'src/app/core/services/storage/user.storage';
 import { StorageManagerService } from 'src/app/core/services/storage/storage.manager';
 
@@ -18,13 +18,13 @@ export class UserStore extends EntityStore<UserState> {
 
 }
 
-export class userStateAdapter   {
-  user$ !: UserDto;
-  constructor(private user : UserDto) {
+/*export class userStateAdapter   {
+  user$ !: UserStateDto;
+  constructor(private user : UserStateDto) {
     this.user = user;
   }
 
-}
+}*/
 
 @Injectable()
 class defaultUserService {
@@ -41,6 +41,7 @@ class defaultUserService {
   }
 
   getUser() {
-    return (!!this.userService.User ) ? new userStateAdapter(this.userService.User) : createInitialState();
+    console.log("this.userService.User",this.userService.User)
+    return (!!this.userService.User ) ? this.userService.User : createInitialState();
   }
 }
