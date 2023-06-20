@@ -70,4 +70,14 @@ export class AppFunctionService {
     this.api.setApiType("rest");
     return this.api.post({endpoint : `/api/admin/get-from-status`,data}).pipe(shareReplay(1));
   }
+
+  getOffer(){
+    this.api.setApiType("rest");
+    return this.api.get("/api/offer").pipe(shareReplay(1));
+  }
+
+  getRoles() {
+    this.api.setApiType("rest");
+    return this.api.get("/api/role").pipe(shareReplay(1));
+  }
 }

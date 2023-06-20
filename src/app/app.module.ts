@@ -17,7 +17,6 @@ import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
 import { UserQuery } from './store/user$/user.query';
 
-
 registerLocaleData(fr);
 
 @NgModule({
@@ -31,6 +30,7 @@ registerLocaleData(fr);
     HttpClientModule,
     BrowserAnimationsModule,
     IconsProviderModule,
+
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule,
 

@@ -47,7 +47,7 @@ export class LoginComponent {
         this.loaded = false;
         this.state.updateUser(response.body["returnObject"] as UserStateDto)
         this.utils.successToastMessage("Bienvenue sur le portail Rassur");
-        this.router.navigate(["/admin/index"]);
+        location.href = "/admin/index";
         return ;
       },
       error : (err)=>{

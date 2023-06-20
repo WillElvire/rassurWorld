@@ -7,6 +7,7 @@ import { OffreComponent } from "../pages/dashboard/offre/offre.component";
 import { RoleComponent } from "../pages/dashboard/role/role.component";
 import { TransactionComponent } from "../pages/dashboard/transaction/transaction.component";
 import { AdminGuard } from "../core/guard/admin.guard";
+import { DetailComponent } from "../pages/dashboard/detail/detail.component";
 
 const routes : Routes = [
  {
@@ -21,6 +22,10 @@ const routes : Routes = [
    {
      path : "assurance/:type",
      component : AssuranceComponent
+   },
+   {
+    path : "detail/:id",
+    component : DetailComponent
    },
    {
      path : "offre",

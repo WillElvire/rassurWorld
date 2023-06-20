@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="alert alert-info">
+    Toutes actions ménees dans cette partie sont irreversibles
+  </div>
+  <div class="grid text-center">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h6>Information client</h6>
+          </div>
+          <div class="card-body">
+            <p>Nom  : {{insuranceDto?.user?.firstname}}</p>
+            <p>Prenoms  : {{insuranceDto?.user?.lastname}}</p>
+            <p>Email  : {{insuranceDto?.user?.email}}</p>
+            <p>Téléphone  : {{insuranceDto?.user?.phone}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+         <div class="card">
+          <div class="card-header">
+            <h6>Information sur l'offre</h6>
+          </div>
+          <div class="card-body">
+            <p *ngIf="!!insuranceDto?.createdAt">Date de demande : {{insuranceDto?.createdAt | date}}</p>
+            <p *ngIf="!!insuranceDto?.isPayed">Status : <span *ngIf="insuranceDto?.isPayed" style="color: green;">Payé</span>
+              <span *ngIf="!insuranceDto?.isPayed" style="color:red">en attente de paiement</span>
+            </p>
+            <p *ngIf="!!insuranceDto?.offer?.libelle">Type d'assurance : <b class="badge badge-success">{{insuranceDto?.offer?.libelle | titlecase}}</b></p>
+            <p *ngIf="!!insuranceDto?.detail?.country">Pays : {{insuranceDto?.detail?.country}}</p>
+            <p *ngIf="!!insuranceDto?.detail?.destination">Destination : {{insuranceDto?.detail?.country}} </p>
+            <p *ngIf="!!insuranceDto?.detail?.dateOfLeft">Date de depart : {{insuranceDto?.detail?.dateOfLeft | date}}</p>
+            <p *ngIf="!!insuranceDto?.detail?.dateOfBack">Date de retour : {{insuranceDto?.detail?.dateOfBack | date}}</p>
+            <p *ngIf="!!insuranceDto?.detail?.passportDayOfCreation">Date d'optention de passeport : {{insuranceDto?.detail?.passportDayOfCreation | date}} </p>
+            <p *ngIf="!!insuranceDto?.detail?.passportNub">Numero du passport : {{insuranceDto?.detail?.passportNub}} </p>
+            <p *ngIf="!!insuranceDto?.detail?.passportValidity">Periode de validité : {{insuranceDto?.detail?.passportValidity}} </p>
+            <p *ngIf="!!insuranceDto?.detail?.periodicity">Péridicité : {{insuranceDto?.detail?.periodicity}} </p>
+            <p *ngIf="!!insuranceDto?.detail?.price">Prix du biens : {{insuranceDto?.detail?.price}} </p>
+            <p *ngIf="!!insuranceDto?.detail?.typeTiers">Type tiers : {{insuranceDto?.detail?.typeTiers}} </p>
+            <p *ngIf="!!insuranceDto?.detail?.valeur_a_neuf">Valeur a neuf : {{insuranceDto?.detail?.valeur_a_neuf}} </p>
+            <p *ngIf="!!insuranceDto?.detail?.date_a_effet">Date a effet : {{insuranceDto?.detail?.date_a_effet | date}} </p>
+            <hr>
+            http://localhost:3002/public/{{insuranceDto?.detail?.passportPhoto}}
+            <button class="btn btn-outline-success">
+
+              {{insuranceDto?.detail?.cartePhoto}}
+             Télécharger le fichier <span class="fa fa-file"> </span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-2">
+        <div class="card">
+          <div class="card-body">
+            <button class="col-md-12 btn btn-dark">
+              <span class="fa fa-wallet"></span>
+            </button>
+            <button class="col-md-12 btn btn-success mt-2">
+              <span class="fa fa-check"></span>
+            </button>
+            <button class="col-md-12 btn btn-danger mt-2">
+              <span class="fa fa-trash"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

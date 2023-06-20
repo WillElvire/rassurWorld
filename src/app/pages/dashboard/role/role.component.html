@@ -1,1 +1,30 @@
-<p>role works!</p>
+<div class="container">
+  <button class="btn btn-outline-success"> Ajouter un role</button>
+  <div class="table-responsive mt-5">
+    <table class="table">
+      <thead class="thead" style="background-color: forestgreen !important;color :white !important">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Flag</th>
+          <th scope="col">Libelle</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of roles | paginate: { itemsPerPage: 5, currentPage: p }">
+          <td>{{role?.id}}</td>
+          <td>
+            <b>{{role?.flag}}</b>
+          </td>
+          <td>{{role?.libelle | titlecase}}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-danger">supprimer</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

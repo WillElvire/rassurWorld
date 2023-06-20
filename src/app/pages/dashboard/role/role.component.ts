@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppFacade } from 'src/app/core/facades/app.facade';
+import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 
 @Component({
   selector: 'app-role',
@@ -6,5 +9,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./role.component.scss']
 })
 export class RoleComponent {
+  p: number = 1;
+  private readonly appFacades = inject(AppFacade);
+  private readonly router      = inject(Router);
+  private readonly utilsFacade = inject(UtilsFacades);
 
+  roles : any[] = [];
+  constructor(){
+   this.loadRoles();
+  }
+
+  loadRoles(){
+    this.appFacades.getRoles().subscribe({
+      next : (response : any)=> {
+        this.roles = response.body.returnObject;
+        console.log(response);
+      },
+      error : (err)=> {
+        if(err.status === 401) {
+          this.utilsFacade.errorToastMessage("Veuillez vous reconnecter");
+          this.router.navigate(["/auth/login"])
+        }
+      }
+    })
+  }
 }

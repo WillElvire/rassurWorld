@@ -59,6 +59,14 @@ export class AppFacade {
     return this.appFunction.getInsuranceRequest(data)
   }
 
+  getOffer() {
+    return this.appFunction.getOffer();
+  }
+
+  getRoles() {
+    return this.appFunction.getRoles();
+  }
+
 
   /*--------------------------------*/
 
