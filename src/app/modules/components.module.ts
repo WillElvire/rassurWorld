@@ -28,7 +28,8 @@ import { CotationComponent } from '../components/modal/cotation/cotation.compone
     SidebarComponent,
     LoaderComponent,
     CountrypickerComponent,
-    TypeTiersComponent
+    TypeTiersComponent,
+    CotationComponent
   ],
 
 })

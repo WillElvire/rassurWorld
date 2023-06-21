@@ -24,7 +24,7 @@ export class IndexComponent {
     this.appFacades.getInsuranceRequest({
       active : "active",
       payed : "unpaid",
-      limit : 3
+      limit : 2
     }).subscribe((response : any)=>{
       console.log(response);
       this.insuranceRequest = response.body.returnObject;
