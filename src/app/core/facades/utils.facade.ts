@@ -1,4 +1,5 @@
 
+import { ModalAppService } from '../services/utils/modal/modal.service';
 import { ToastService } from './../services/utils/toast/toast.service';
 import { Injectable, inject } from '@angular/core';
 
@@ -11,6 +12,7 @@ export class UtilsFacades {
   public toastService   = inject(ToastService);
   private emailRegex    = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   private phoneRegex    = /^\+?[1-9][0-9]{7,14}$/;
+  public  modal         = inject(ModalAppService);
 
 
   errorToastMessage(message  : string) {

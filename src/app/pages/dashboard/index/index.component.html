@@ -45,13 +45,17 @@
         <tr *ngFor="let insurance of insuranceRequest">
           <th scope="row">{{insurance.id}}</th>
           <td>{{insurance.offer.libelle}}</td>
-          <td>{{insurance.user.firstname}}{{insurance.user.lastname}}</td>
+          <td>{{insurance.user.firstname}}  {{insurance.user.lastname}}</td>
           <td>{{insurance.user.email}}</td>
           <td>{{insurance.user.phone}}</td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-outline-success" routerLink="/admin/detail/{{insurance.id}}">  Voir les details</button>
-              <button class="btn btn-outline-danger"> Supprimer</button>
+              <button class="btn btn-success" routerLink="/admin/detail/{{insurance.id}}">
+                <span class="fa fa-eye"></span>
+              </button>
+              <button class="btn btn-danger">
+                <span class="fa fa-trash"></span>
+              </button>
             </div>
           </td>
         </tr>

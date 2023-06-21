@@ -9,6 +9,7 @@ import { CountrypickerComponent } from '../components/widgets/countrypicker/coun
 import { CommonModule } from '@angular/common';
 import { TypeTiersComponent } from '../components/widgets/type-tiers/type-tiers.component';
 import { FormsModule } from '@angular/forms';
+import { CotationComponent } from '../components/modal/cotation/cotation.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     LoaderComponent,
     CountrypickerComponent,
     TypeTiersComponent,
+    CotationComponent,
   ],
   imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
   exports: [

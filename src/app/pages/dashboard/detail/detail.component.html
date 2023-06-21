@@ -1,7 +1,11 @@
 <div class="container">
-  <div class="alert alert-info">
+  <button class="btn btn-outline-success" (click)="goBack()">
+    <span class="fa fa-arrow-left"></span> Retour
+  </button>
+  <div class="alert alert-info mt-2">
     Toutes actions ménees dans cette partie sont irreversibles
   </div>
+
   <div class="grid text-center">
     <div class="row">
       <div class="col-md-4">
@@ -54,7 +58,7 @@
       <div class="col-md-2">
         <div class="card">
           <div class="card-body">
-            <button class="col-md-12 btn btn-dark">
+            <button class="col-md-12 btn btn-dark" (click)="addCotation()">
               <span class="fa fa-wallet"></span>
             </button>
             <button class="col-md-12 btn btn-success mt-2">

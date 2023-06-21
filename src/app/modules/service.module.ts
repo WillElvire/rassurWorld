@@ -13,6 +13,8 @@ import { StorageManagerService } from '../core/services/storage/storage.manager'
 import { UserStorage } from '../core/services/storage/user.storage';
 import { StatesFacades } from '../core/facades/state.facade';
 import { UserQuery } from '../store/user$/user.query';
+import { ModalAppService } from '../core/services/utils/modal/modal.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @NgModule({
   declarations: [],
@@ -30,7 +32,9 @@ import { UserQuery } from '../store/user$/user.query';
     UserStorage,
     Storage,
     StatesFacades,
-    UserQuery
+    UserQuery,
+    ModalAppService,
+    NzModalService
 
   ],
   exports: [HttpClientModule],

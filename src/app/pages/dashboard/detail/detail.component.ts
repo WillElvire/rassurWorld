@@ -1,6 +1,9 @@
 import { AppFacade } from 'src/app/core/facades/app.facade';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { UtilsFacades } from 'src/app/core/facades/utils.facade';
+import { CotationComponent } from 'src/app/components/modal/cotation/cotation.component';
 
 @Component({
   selector: 'app-detail',
@@ -11,6 +14,8 @@ export class DetailComponent {
 
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly appFacade      = inject(AppFacade);
+  private readonly utilsFacade    = inject(UtilsFacades);
+  private readonly location       = inject(Location);
   id ?: string ;
   insuranceDto : any;
 
@@ -20,6 +25,9 @@ export class DetailComponent {
     })
   }
 
+  goBack() {
+   this.location.back();
+  }
 
   loadRequestDetail(id : string) {
      this.appFacade.getInsurance(id as string).subscribe({
@@ -31,6 +39,12 @@ export class DetailComponent {
          console.log(err)
       }
      })
+  }
+
+  addCotation(){
+   this.utilsFacade.modal.defineComponent(CotationComponent)
+   .defineTitle("Ajouter une cotation")
+   .display();
   }
 
 }
