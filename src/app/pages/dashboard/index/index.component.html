@@ -4,7 +4,7 @@
       <div class="col-md-4">
        <div class="card">
         <div class="card-body text-center">
-          <h1 class="_text">10</h1>
+          <h1 class="_text">{{stats?.activatedRequest}}</h1>
           <p>Demande souscriptions </p>
         </div>
        </div>
@@ -12,7 +12,7 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-body text-center">
-            <h1 class="_text">10</h1>
+            <h1 class="_text">{{stats?.waitingPayment}}</h1>
             <p> Souscriptions en attente de paiement </p>
           </div>
          </div>
@@ -20,7 +20,7 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-body text-center">
-            <h1 class="_text">10</h1>
+            <h1 class="_text">{{stats?.approvedPayment}}</h1>
             <p>Souscriptions validées</p>
           </div>
          </div>
@@ -35,9 +35,9 @@
         <tr>
           <th scope="col">Id</th>
           <th scope="col">Offre</th>
-          <th scope="col">Nom et Prenom</th>
+          <th scope="col">Nom et Prénom</th>
           <th scope="col">Email</th>
-          <th scope="col">Telephone</th>
+          <th scope="col">Téléphone</th>
           <th scope="col">Action</th>
         </tr>
       </thead>

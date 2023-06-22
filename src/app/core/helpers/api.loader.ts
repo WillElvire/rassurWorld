@@ -1,3 +1,4 @@
+import { NgZoroModule } from 'src/app/modules/ngzoro.module';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,5 +15,6 @@ export const defaultModule = [
   HttpClientModule,
   FormsModule,
   ServiceModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  NgZoroModule
 ]

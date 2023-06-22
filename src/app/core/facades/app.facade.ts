@@ -54,7 +54,9 @@ export class AppFacade {
     return this.appFunction.getInsurance(assurId)
   }
 
-
+  updateTransaction(transactionDetail : any) {
+    return this.appFunction.updateTransaction(transactionDetail);
+  }
   getInsuranceRequest(data: any){
     return this.appFunction.getInsuranceRequest(data)
   }
@@ -67,6 +69,9 @@ export class AppFacade {
     return this.appFunction.getRoles();
   }
 
+  getStatistics() {
+    return this.appFunction.getStatistics();
+  }
 
   /*--------------------------------*/
 

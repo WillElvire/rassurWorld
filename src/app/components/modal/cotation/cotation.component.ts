@@ -1,5 +1,5 @@
 import {NzModalService } from 'ng-zorro-antd/modal';
-import { Component,inject } from '@angular/core';
+import { Component,EventEmitter,Input,Output,inject } from '@angular/core';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 
 @Component({
@@ -10,6 +10,8 @@ import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 })
 export class CotationComponent {
 
+  @Output() cotation  = new EventEmitter();
+
   amount : number = 0;
   private utils = inject(UtilsFacades);
 
@@ -18,11 +20,11 @@ export class CotationComponent {
   }
 
   addCotation(){
-
     if(!this.amount){
       return this.utils.errorToastMessage("Veuillez renseigner la cotation");
     }
-
+    this.cotation.emit(this.amount);
+    return;
   }
 
 }

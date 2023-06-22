@@ -8,43 +8,66 @@ import { CotationComponent } from 'src/app/components/modal/cotation/cotation.co
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent {
-
   private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly appFacade      = inject(AppFacade);
-  private readonly utilsFacade    = inject(UtilsFacades);
-  private readonly location       = inject(Location);
-  id ?: string ;
-  insuranceDto : any;
+  private readonly appFacade = inject(AppFacade);
+  private readonly utilsFacade = inject(UtilsFacades);
+  private readonly location = inject(Location);
+  id?: string;
+  insuranceDto: any;
+  isVisible: boolean = false;
+  isMailVisible: boolean = false;
 
-  constructor(){
-    this.activatedRoute.params.subscribe((params : any)=>{
+  constructor() {
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.id = params.id;
       this.loadRequestDetail(params.id);
-    })
+    });
   }
 
   goBack() {
-   this.location.back();
+    this.location.back();
   }
 
-  loadRequestDetail(id : string) {
-     this.appFacade.getInsurance(id as string).subscribe({
-      next : (response :any)=>{
-       console.log(response)
-       this.insuranceDto = response.body.returnObject;
+  loadRequestDetail(id: string) {
+    this.appFacade.getInsurance(id as string).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.insuranceDto = response.body.returnObject;
       },
-      error : (err)=> {
-         console.log(err)
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  addCotation(event: any) {
+    this.isVisible = false;
+    return this.postCotation(event);
+  }
+
+  postCotation(cotation: string) {
+    const id = this.insuranceDto.transaction.id;
+    this.appFacade.updateTransaction({ id, total: cotation }).subscribe(
+      (response) => {
+        console.log(response);
+        this.loadRequestDetail(this.id as string);
+      },
+      (error) => {
+        console.log(error);
       }
-     })
+    );
   }
 
-  addCotation(){
-   this.utilsFacade.modal.defineComponent(CotationComponent)
-   .defineTitle("Ajouter une cotation")
-   .display();
+  handleOk(): void {
+    this.isVisible = false;
+    this.isMailVisible = false;
   }
 
+  handleCancel(): void {
+    this.isVisible = false;
+    this.isMailVisible = false;
+  }
 }

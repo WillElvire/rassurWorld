@@ -15,23 +15,38 @@ export class IndexComponent {
   private readonly router      = inject(Router);
   private readonly utilsFacade = inject(UtilsFacades);
   insuranceRequest : any[] = [];
+  stats :any;
 
   constructor(){
-    this.loadInsuranceRequest()
+    this.loadStatistics();
+
   }
 
   loadInsuranceRequest() {
-    this.appFacades.getInsuranceRequest({
-      active : "active",
-      payed : "unpaid",
-      limit : 2
-    }).subscribe((response : any)=>{
+    const params = {active : "active",payed : "unpaid",limit : 2}
+    this.appFacades.getInsuranceRequest(params).subscribe((response : any)=>{
       console.log(response);
       this.insuranceRequest = response.body.returnObject;
     },(error)=> {
       if(error.status === 401) {
         this.utilsFacade.errorToastMessage("Veuillez vous reconnecter");
         this.router.navigate(["/auth/login"])
+      }
+    })
+  }
+
+  loadStatistics() {
+    this.appFacades.getStatistics().subscribe({
+      next : (response : any)=>{
+        this.stats = response.body.returnObject;
+        console.log(this.stats);
+        this.loadInsuranceRequest();
+      },
+      error : (err)=>{
+        if(err.status === 401) {
+          this.utilsFacade.errorToastMessage("Veuillez vous reconnecter");
+          this.router.navigate(["/auth/login"])
+        }
       }
     })
   }

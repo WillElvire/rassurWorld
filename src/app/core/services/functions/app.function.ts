@@ -80,4 +80,14 @@ export class AppFunctionService {
     this.api.setApiType("rest");
     return this.api.get("/api/role").pipe(shareReplay(1));
   }
+
+  getStatistics() {
+    this.api.setApiType("rest");
+    return this.api.get("/api/admin/statistics").pipe(shareReplay(1));
+  }
+
+  updateTransaction(data : any) {
+    this.api.setApiType("rest");
+    return this.api.put({endpoint : "/api/admin/transaction",data}).pipe(shareReplay(1));
+  }
 }

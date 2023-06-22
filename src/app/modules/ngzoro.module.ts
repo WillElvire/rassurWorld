@@ -7,7 +7,7 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzResultModule } from 'ng-zorro-antd/result';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 
 const ngZoroElements = [
   NzResultModule,
@@ -18,6 +18,7 @@ const ngZoroElements = [
   NzLayoutModule,
   NzMenuModule,
   NzSpinModule,
+  NzModalModule
 ];
 
 @NgModule({
