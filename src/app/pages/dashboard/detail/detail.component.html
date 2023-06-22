@@ -70,7 +70,7 @@
             <button class="col-md-12 btn btn-dark" (click)="isVisible = true" *ngIf="!insuranceDto?.transaction?.total">
               <span class="fa fa-wallet"></span>
             </button>
-            <button class="col-md-12 btn btn-primary mt-2" (click)="isMailVisible = true" *ngIf="insuranceDto?.transaction?.total">
+            <button class="col-md-12 btn btn-primary mt-2" (click)="isMailVisible = true" >
               <span class="fa fa-envelope"></span>
             </button>
             <button class="col-md-12 btn btn-success mt-2">
@@ -98,9 +98,9 @@
     <div class="container">
         <h4 class="text-center">Envoyer un mail</h4>
         <hr>
-        <button class="col-md-12 btn btn-success">Lien de paiement <span class="fa fa-envelope"></span></button>
-        <button class="col-md-12 btn btn-warning mt-2">Relance <span class="fa fa-envelope"></span></button>
-        <button class="col-md-12 btn btn-info mt-2">Bienvenue <span class="fa fa-envelope"></span></button>
+        <button class="col-md-12 btn btn-success" (click)="sendPayment()">Lien de paiement <span class="fa fa-envelope"></span></button>
+        <button class="col-md-12 btn btn-warning mt-2" (click)="sendRelance()">Relance <span class="fa fa-envelope"></span></button>
+        <button class="col-md-12 btn btn-info mt-2" (click)="sendWelcome()">Bienvenue <span class="fa fa-envelope"></span></button>
 
     </div>
   </ng-container>

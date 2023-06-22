@@ -70,4 +70,46 @@ export class DetailComponent {
     this.isVisible = false;
     this.isMailVisible = false;
   }
+
+  sendRelance() {
+    this.appFacade.relance({firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname , phone : this.insuranceDto?.user?.phone})
+    .subscribe((response : any)=>{
+      console.log(response);
+      const resp = response.body;
+      if(resp.code == 200) return this.utilsFacade.successToastMessage("Mail envoyé avec success");
+      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
+    },
+    (error)=>{
+      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
+    }
+    )
+  }
+
+  sendWelcome() {
+    this.appFacade.welcome({firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname  , phone : this.insuranceDto?.user?.phone})
+    .subscribe((response : any)=>{
+      console.log(response);
+      const resp = response.body;
+      if(resp.code == 200) return this.utilsFacade.successToastMessage("Mail envoyé avec success");
+      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
+    },
+    (error)=>{
+      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
+    }
+    )
+  }
+
+  sendPayment() {
+    this.appFacade.payment({id : this.insuranceDto.id , phone : this.insuranceDto?.user?.phone})
+    .subscribe((response : any)=>{
+      console.log(response);
+      const resp = response.body;
+      if(resp.code == 200) return this.utilsFacade.successToastMessage("Mail envoyé avec success");
+      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
+    },
+    (error)=>{
+      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
+    }
+    )
+  }
 }

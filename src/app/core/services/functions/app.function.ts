@@ -90,4 +90,20 @@ export class AppFunctionService {
     this.api.setApiType("rest");
     return this.api.put({endpoint : "/api/admin/transaction",data}).pipe(shareReplay(1));
   }
+
+  sendMailRelance(data:any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/mail/relance",data}).pipe(shareReplay(1));
+  }
+
+  sendMailPayment(data:any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/mail/payment",data}).pipe(shareReplay(1));
+  }
+
+  sendMailWelcome(data:any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/mail/welcome",data}).pipe(shareReplay(1));
+  }
+
 }

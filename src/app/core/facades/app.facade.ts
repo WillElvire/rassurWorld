@@ -73,6 +73,18 @@ export class AppFacade {
     return this.appFunction.getStatistics();
   }
 
+  relance(data:any){
+    return this.appFunction.sendMailRelance(data);
+  }
+
+  welcome(data: any) {
+    return this.appFunction.sendMailWelcome(data);
+  }
+
+  payment(data :any) {
+    return this.appFunction.sendMailPayment(data);
+  }
+
   /*--------------------------------*/
 
   setStorage(data  : {key : string ,value : any}) {
