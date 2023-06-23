@@ -27,6 +27,10 @@ export class PaymentComponent implements OnInit {
     this.activated.params.subscribe((params)=> this.insuranceId = params["id"]);
     this.getInsurance();
   }
+
+  parseInt(number : string) {
+    return Number.parseInt(number);
+  }
   getInsurance(){
     this.enable = true;
     this.appFacade.getInsurance(this.insuranceId).subscribe({

@@ -1,5 +1,5 @@
 <div class="container">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" routerLink="/">
     <img src="/assets/logo.svg" class="img-fluid" width="200" height="200">
   </a>
   <app-loader *ngIf="enable"></app-loader>
@@ -38,7 +38,7 @@
       <div class="col-md-4">
         <br>
         <br>
-        <h4>Total : {{insurance?.transaction?.total ? insurance?.transaction?.total : '0' }} XOF</h4>
+        <h4>Total : {{insurance?.transaction?.total ? parseInt(insurance?.transaction?.total) : 0  }} FCFA </h4>
         <div class="alert alert-info">
           Cher client vous etes prier de bien vouloir verifier les informations relatifs a votre demande avant de proceder au paiement
         </div>
