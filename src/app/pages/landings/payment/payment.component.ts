@@ -22,6 +22,7 @@ export class PaymentComponent implements OnInit {
   insuranceId !: string ;
   insurance : any;
   enable : boolean = false;
+  isAccepted : boolean = false;
 
   ngOnInit(): void {
     this.activated.params.subscribe((params)=> this.insuranceId = params["id"]);
@@ -31,23 +32,45 @@ export class PaymentComponent implements OnInit {
   parseInt(number : string) {
     return Number.parseInt(number);
   }
+
+  constructor(){
+
+  }
   getInsurance(){
     this.enable = true;
     this.appFacade.getInsurance(this.insuranceId).subscribe({
       next : (response : any)=>{
+
         this.enable = false;
         console.log(response.body)
         this.insurance = response.body.returnObject;
+
         if(!this.insurance){
           this.utilsFacade.errorToastMessage("Ce bon de paiement est invalide");
           return;
         }
+
+        if(!this.insurance.isAcepted) {
+          this.utilsFacade.confirmation("Demande de Cotation", `
+          Cher client la cotation de votre requete s'eleve a
+          <b>${this.insurance?.transaction?.total } FCFA </b>
+          <br> Etes vous d'accord avec cette cotation ?
+          `,[this.hello] );
+        }else{
+          this.isAccepted = true;
+        }
+
       },
       error : (error)=>{
         console.log(error)
         this.enable = false;
       }
     });
+  }
+
+
+  hello() {
+    alert("heh")
   }
 
 }

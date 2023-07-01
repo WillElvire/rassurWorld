@@ -4,7 +4,7 @@
   </a>
   <app-loader *ngIf="enable"></app-loader>
 
-  <div class="grid" *ngIf="!enable && !!insurance" style="margin-top: 5%;">
+  <div class="grid" *ngIf="!enable && !!insurance && isAccepted" style="margin-top: 5%;">
     <div class="row">
       <div class="col-md-8">
         <div class="card">
