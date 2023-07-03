@@ -57,6 +57,11 @@ export class AppFacade {
   updateTransaction(transactionDetail : any) {
     return this.appFunction.updateTransaction(transactionDetail);
   }
+
+  addOffer(data : any) {
+    return this.appFunction.addOffer(data);
+  }
+
   getInsuranceRequest(data: any){
     return this.appFunction.getInsuranceRequest(data)
   }
@@ -79,6 +84,11 @@ export class AppFacade {
 
   welcome(data: any) {
     return this.appFunction.sendMailWelcome(data);
+  }
+
+
+  cotation(data: any) {
+    return this.appFunction.sendMailCotation(data);
   }
 
   payment(data :any) {

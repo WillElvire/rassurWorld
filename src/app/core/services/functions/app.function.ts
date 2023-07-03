@@ -76,6 +76,11 @@ export class AppFunctionService {
     return this.api.get("/api/offer").pipe(shareReplay(1));
   }
 
+  addOffer(data : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/offer" , data}).pipe(shareReplay(1))
+  }
+
   getRoles() {
     this.api.setApiType("rest");
     return this.api.get("/api/role").pipe(shareReplay(1));
@@ -94,6 +99,11 @@ export class AppFunctionService {
   sendMailRelance(data:any) {
     this.api.setApiType("rest");
     return this.api.post({endpoint : "/api/mail/relance",data}).pipe(shareReplay(1));
+  }
+
+  sendMailCotation(data:any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/mail/cotation",data}).pipe(shareReplay(1));
   }
 
   sendMailPayment(data:any) {

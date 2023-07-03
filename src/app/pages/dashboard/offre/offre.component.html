@@ -1,5 +1,5 @@
 <div class="container">
-  <button class="btn btn-outline-success"> Ajouter un offre</button>
+  <button class="btn btn-outline-success" (click)="isVisible = true" > Ajouter un offre</button>
   <div class="table-responsive mt-5">
     <table class="table">
       <thead class="thead" style="background-color: forestgreen !important;color :white !important">
@@ -30,3 +30,9 @@
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
+
+<nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <app-offer (offer)="addOffer($event)"></app-offer>
+  </ng-container>
+</nz-modal>

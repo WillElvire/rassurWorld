@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { TypeTiersComponent } from '../components/widgets/type-tiers/type-tiers.component';
 import { FormsModule } from '@angular/forms';
 import { CotationComponent } from '../components/modal/cotation/cotation.component';
+import { RoleComponent } from '../components/modal/role/role.component';
+import { OfferComponent } from '../components/modal/offer/offer.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { CotationComponent } from '../components/modal/cotation/cotation.compone
     CountrypickerComponent,
     TypeTiersComponent,
     CotationComponent,
+    RoleComponent,
+    OfferComponent,
   ],
   imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
   exports: [
@@ -29,7 +33,9 @@ import { CotationComponent } from '../components/modal/cotation/cotation.compone
     LoaderComponent,
     CountrypickerComponent,
     TypeTiersComponent,
-    CotationComponent
+    CotationComponent,
+    RoleComponent,
+    OfferComponent,
   ],
 
 })

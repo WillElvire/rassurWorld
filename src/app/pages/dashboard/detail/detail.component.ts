@@ -54,6 +54,7 @@ export class DetailComponent {
       (response) => {
         console.log(response);
         this.loadRequestDetail(this.id as string);
+        this.sendMailCotation(cotation);
       },
       (error) => {
         console.log(error);
@@ -87,6 +88,21 @@ export class DetailComponent {
 
   sendWelcome() {
     this.appFacade.welcome({firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname  , phone : this.insuranceDto?.user?.phone})
+    .subscribe((response : any)=>{
+      console.log(response);
+      const resp = response.body;
+      if(resp.code == 200) return this.utilsFacade.successToastMessage("Mail envoyé avec success");
+      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
+    },
+    (error)=>{
+      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
+    }
+    )
+  }
+
+
+  sendMailCotation(amount : string){
+    this.appFacade.cotation({id : this.insuranceDto.id , phone : this.insuranceDto?.user?.phone , lastname : this.insuranceDto?.user?.lastname ,firstname : this.insuranceDto?.user?.firstname,cotation : amount })
     .subscribe((response : any)=>{
       console.log(response);
       const resp = response.body;

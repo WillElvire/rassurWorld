@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AppFacade } from 'src/app/core/facades/app.facade';
+import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 
 @Component({
   selector: 'app-offre',
@@ -9,8 +10,11 @@ import { AppFacade } from 'src/app/core/facades/app.facade';
 export class OffreComponent {
 
   p: number = 1;
-  private readonly appFacades = inject(AppFacade);
+  private readonly appFacades   = inject(AppFacade);
+  private readonly utilsFacades = inject(UtilsFacades);
+
   offers : any[] = [];
+  isVisible: boolean = false;
   constructor(){
    this.loadOffers();
   }
@@ -26,4 +30,28 @@ export class OffreComponent {
       }
     })
   }
+
+
+  addOffer(event : any) {
+    this.appFacades.addOffer(event).subscribe({
+      next : (response : any)=> {
+        this.utilsFacades.successToastMessage(response.body.message);
+        this.loadOffers();
+      },
+      error : (err)=> {
+        console.log(err)
+      }
+    })
+  }
+
+
+  handleOk(): void {
+    this.isVisible = false;
+
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+
 }
