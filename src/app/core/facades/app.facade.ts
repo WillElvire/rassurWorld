@@ -86,6 +86,9 @@ export class AppFacade {
     return this.appFunction.sendMailWelcome(data);
   }
 
+  fileReceiptAndMail(data :any){
+    return this.appFunction.sendFileReceiptAndMail(data)
+  }
 
   cotation(data: any) {
     return this.appFunction.sendMailCotation(data);
@@ -93,6 +96,11 @@ export class AppFacade {
 
   payment(data :any) {
     return this.appFunction.sendMailPayment(data);
+  }
+
+
+  deleteOffer(id : string){
+    return this.appFunction.deleteOffer(id);
   }
 
   /*--------------------------------*/
