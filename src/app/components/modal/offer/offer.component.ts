@@ -16,8 +16,8 @@ export class OfferComponent {
   }
 
   addRole() {
-    if(!this.offerDetail){
-      return this.utils.errorToastMessage("Veuillez renseigner le libelle");
+    if(!this.offerDetail.libelle || !this.offerDetail.description){
+      return this.utils.errorToastMessage("Veuillez renseigner les champs");
     }
     this.offer.emit(this.offerDetail);
     return;

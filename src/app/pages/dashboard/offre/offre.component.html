@@ -21,7 +21,7 @@
           <td>{{offer?.libelle}}</td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-danger"><span class="fa fa-trash"></span></button>
+              <button class="btn btn-danger" (click)="deleteOffer(offer.id)"><span class="fa fa-trash"></span></button>
             </div>
           </td>
         </tr>

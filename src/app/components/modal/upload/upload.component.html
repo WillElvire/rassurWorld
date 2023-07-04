@@ -1,0 +1,11 @@
+<div class="grid" >
+  <div class="file mt-4">
+    <p>Veuiller televerser votre fichier</p>
+    <input type="file" class="form-control" id="file" (change)="onFileSelected($event)">
+  </div>
+  <br>
+  <br>
+  <div class="col-md-12">
+    <button class="btn btn-success col-md-12" (click)="sendFile()">Ajouter</button>
+  </div>
+</div>

@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { CotationComponent } from '../components/modal/cotation/cotation.component';
 import { RoleComponent } from '../components/modal/role/role.component';
 import { OfferComponent } from '../components/modal/offer/offer.component';
+import { UploadComponent } from '../components/modal/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { OfferComponent } from '../components/modal/offer/offer.component';
     CotationComponent,
     RoleComponent,
     OfferComponent,
+    UploadComponent,
   ],
   imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
   exports: [
@@ -36,6 +38,7 @@ import { OfferComponent } from '../components/modal/offer/offer.component';
     CotationComponent,
     RoleComponent,
     OfferComponent,
+    UploadComponent
   ],
 
 })

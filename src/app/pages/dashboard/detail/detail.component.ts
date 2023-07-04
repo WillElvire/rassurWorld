@@ -19,6 +19,7 @@ export class DetailComponent {
   insuranceDto: any;
   isVisible: boolean = false;
   isMailVisible: boolean = false;
+  isUploadVisible : boolean = false;
 
   constructor() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -65,11 +66,27 @@ export class DetailComponent {
   handleOk(): void {
     this.isVisible = false;
     this.isMailVisible = false;
+    this.isUploadVisible  = false;
   }
 
   handleCancel(): void {
     this.isVisible = false;
     this.isMailVisible = false;
+    this.isUploadVisible = false;
+  }
+
+  sendFile(event : any) {
+    const id   = this.insuranceDto.transaction.id;
+    const data = { id, file : event, firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname,phone : this.insuranceDto?.user?.phone };
+
+    this.appFacade.fileReceiptAndMail(data).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   sendRelance() {

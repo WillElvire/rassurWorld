@@ -26,6 +26,7 @@ export class OffreComponent {
         console.log(response);
       },
       error : (err)=> {
+        this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
       }
     })
@@ -39,6 +40,21 @@ export class OffreComponent {
         this.loadOffers();
       },
       error : (err)=> {
+        this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
+        console.log(err)
+      }
+    })
+  }
+
+
+  deleteOffer(id : string){
+    this.appFacades.deleteOffer(id).subscribe({
+      next : (response : any)=> {
+        this.utilsFacades.successToastMessage(response.body.message);
+        this.loadOffers();
+      },
+      error : (err)=> {
+        this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
       }
     })

@@ -116,4 +116,14 @@ export class AppFunctionService {
     return this.api.post({endpoint : "/api/mail/welcome",data}).pipe(shareReplay(1));
   }
 
+  sendFileReceiptAndMail(data :any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/mail/document",data}).pipe(shareReplay(1));
+  }
+
+  deleteOffer(id : string) {
+    this.api.setApiType("rest");
+    return this.api.delete("/api/offer/"+id).pipe(shareReplay(1));
+  }
+
 }
