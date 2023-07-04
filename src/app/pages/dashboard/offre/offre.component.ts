@@ -38,10 +38,12 @@ export class OffreComponent {
       next : (response : any)=> {
         this.utilsFacades.successToastMessage(response.body.message);
         this.loadOffers();
+        this.isVisible = false;
       },
       error : (err)=> {
         this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
+        this.isVisible = false;
       }
     })
   }
