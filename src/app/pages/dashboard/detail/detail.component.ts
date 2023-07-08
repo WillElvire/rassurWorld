@@ -20,6 +20,8 @@ export class DetailComponent {
   isVisible: boolean = false;
   isMailVisible: boolean = false;
   isUploadVisible : boolean = false;
+  file ?:File;
+  formData  : FormData = new FormData();
 
   constructor() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -76,15 +78,30 @@ export class DetailComponent {
   }
 
   sendFile(event : any) {
-    const id   = this.insuranceDto.transaction.id;
-    const data = { id, file : event, firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname,phone : this.insuranceDto?.user?.phone };
 
-    this.appFacade.fileReceiptAndMail(data).subscribe(
+    const id   = this.insuranceDto.transaction.id;
+    this.file = event;
+
+    //const data = { id, file : event, firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname,phone : this.insuranceDto?.user?.phone };
+    return this.postToServer(id)
+  }
+
+  postToServer(id : any) {
+
+
+    this.formData.append("file",this.file as any);
+    this.formData.append("firstname",this.insuranceDto?.user?.firstname);
+    this.formData.append("lastname",this.insuranceDto?.user?.lastname);
+    this.formData.append("phone",this.insuranceDto?.user?.phone);
+    this.formData.append("id",id);
+
+    this.appFacade.fileReceiptAndMail(this.formData).subscribe(
       (response) => {
         console.log(response);
       },
       (error) => {
         console.log(error);
+        this.utilsFacade.errorToastMessage(error.message)
       }
     );
   }
