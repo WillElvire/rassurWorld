@@ -87,8 +87,6 @@ export class DetailComponent {
   }
 
   postToServer(id : any) {
-
-
     this.formData.append("file",this.file as any);
     this.formData.append("firstname",this.insuranceDto?.user?.firstname);
     this.formData.append("lastname",this.insuranceDto?.user?.lastname);

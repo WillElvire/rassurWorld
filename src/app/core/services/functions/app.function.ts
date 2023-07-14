@@ -118,7 +118,7 @@ export class AppFunctionService {
 
   sendFileReceiptAndMail(data :any) {
     this.api.setApiType("rest");
-    return this.api.postImage({endpoint : "/api/mail/document/upload",data : data}).pipe(shareReplay(1));
+    return this.api.postImage({endpoint : "/api/receipt/upload",data : data}).pipe(shareReplay(1));
   }
 
   deleteOffer(id : string) {
