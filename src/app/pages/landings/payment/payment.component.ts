@@ -51,11 +51,7 @@ export class PaymentComponent implements OnInit {
         }
 
         if(!this.insurance.isAcepted) {
-          this.utilsFacade.confirmation("Demande de Cotation", `
-          Cher client la cotation de votre requete s'eleve a
-          <b>${this.insurance?.transaction?.total } FCFA </b>
-          <br> Etes vous d'accord avec cette cotation ?
-          `,[this.hello] );
+          this.isAccepted = false;
         }else{
           this.isAccepted = true;
         }
@@ -69,8 +65,26 @@ export class PaymentComponent implements OnInit {
   }
 
 
-  hello() {
-    alert("heh")
+  close() {
+    this.enable = false;
+  }
+
+  updateCotation() {
+    this.enable = true;
+   this.appFacade.validateCotation(this.insuranceId).subscribe({
+    next : (response : any)=>{
+      this.enable = false;
+      console.log(response)
+      this.utilsFacade.successToastMessage("Cotation validé");
+      this.insurance = response.body.returnObject;
+      this.getInsurance();
+    },
+    error : (error)=>{
+      console.log(error)
+      this.utilsFacade.errorToastMessage(error);
+      this.enable = false;
+    }
+   })
   }
 
 }

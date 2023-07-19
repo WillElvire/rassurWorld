@@ -54,6 +54,10 @@ export class AppFacade {
     return this.appFunction.getInsurance(assurId)
   }
 
+  validateCotation(assurId : string) {
+    return this.appFunction.validateCotation(assurId);
+  }
+
   updateTransaction(transactionDetail : any) {
     return this.appFunction.updateTransaction(transactionDetail);
   }

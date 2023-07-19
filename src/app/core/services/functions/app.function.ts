@@ -61,6 +61,11 @@ export class AppFunctionService {
     return this.api.get("/api/assur/get/"+assurId).pipe(shareReplay(1));
   }
 
+  validateCotation(assurId : string) {
+    this.api.setApiType("rest");
+    return this.api.get("/api/assur/validate/"+assurId).pipe(shareReplay(1));
+  }
+
   uploadPassport(data : any, insuranceController : insuranceType = "voyage"){
     this.api.setApiType("rest");
     return this.api.postImage({endpoint : `/api/assur/${insuranceController}/upload`,data}).pipe(shareReplay(1));
