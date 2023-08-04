@@ -64,6 +64,13 @@
               <input class="form-control" type="date" [(ngModel)]="tripDto.dateOfBack">
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <label>Motif de voyage(*)</label>
+              <textarea class="form-control" type="date" [(ngModel)]="tripDto.tripMotif"></textarea>
+            </div>
+          </div>
           <!--<div class="row">
             <div class="col-md-4">
               <label> Numero de passeport (*)</label>
@@ -121,6 +128,10 @@
 
           <p>
             Pays de destination: {{tripDto.destination}}
+          </p>
+
+          <p>
+            Motif de voyage : {{tripDto.tripMotif}}
           </p>
 
           <!--<p>

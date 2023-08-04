@@ -1,6 +1,6 @@
 import { UserDto, UserStateDto } from './../../../core/interfaces/dto';
 import { StatesFacades } from './../../../core/facades/state.facade';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -24,6 +24,7 @@ export class LoginComponent {
   appFacade = inject(AppFacade);
   router    = inject(Router);
   state     = inject(StatesFacades);
+  location  = inject(Location);
 
   loaded : boolean = false;
 
@@ -62,6 +63,10 @@ export class LoginComponent {
 
   Verification() {
    return !!this.login.email  && !! this.login.password
+  }
+
+  back(){
+    this.location.back();
   }
 
 }

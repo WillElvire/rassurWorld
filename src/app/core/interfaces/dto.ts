@@ -24,6 +24,7 @@ export interface firstStepUser {
   lastname?: string;
   email?: string;
   phone?: string;
+  password ?: string;
 }
 
 
