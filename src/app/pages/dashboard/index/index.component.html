@@ -33,7 +33,7 @@
     <table class="table">
       <thead class="thead" style="background-color: forestgreen !important;color :white !important">
         <tr>
-          <th scope="col">Id</th>
+          <th scope="col">Identifiant</th>
           <th scope="col">Offre</th>
           <th scope="col">Nom et Prénom</th>
           <th scope="col">Email</th>
@@ -44,7 +44,7 @@
       <tbody>
         <tr *ngFor="let insurance of insuranceRequest">
           <th scope="row">{{insurance.id}}</th>
-          <td>{{insurance.offer.libelle}}</td>
+          <td><b class="badge badge-success">{{insurance.offer.libelle}}</b></td>
           <td>{{insurance.user.firstname}}  {{insurance.user.lastname}}</td>
           <td>{{insurance.user.email}}</td>
           <td>{{insurance.user.phone}}</td>

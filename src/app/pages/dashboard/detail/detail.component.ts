@@ -3,7 +3,6 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
-import { CotationComponent } from 'src/app/components/modal/cotation/cotation.component';
 
 @Component({
   selector: 'app-detail',

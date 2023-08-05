@@ -1,81 +1,97 @@
-<nz-layout class="app-layout" >
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null" nzTheme="light">
-    <div class="sidebar-logo">
-      <a routerLink="/" >
-        <img src="/assets/logo.svg" alt="logo">
-        <h1>Rassur World</h1>
-      </a>
-    </div>
-    <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-
-      <li nz-menu-item routerLink="/admin/index" routerLinkActive="active">
-        <span nz-icon nzType="home" nzTheme="fill"></span>
-        <span>Dashboard</span>
-      </li>
-
-      <li nz-menu-item routerLink="/admin/assurance/auto" routerLinkActive="active">
-        <span nz-icon nzType="schedule" nzTheme="outline"></span>
-        <span>Assurance Auto</span>
-      </li>
-
-      <li nz-menu-item routerLink="/admin/assurance/voyage" routerLinkActive="active">
-        <span nz-icon nzType="schedule" nzTheme="outline"></span>
-        <span>Assurance Voyage</span>
-      </li>
-
-      <li nz-menu-item routerLink="/admin/assurance/divers" routerLinkActive="active">
-        <span nz-icon nzType="schedule" nzTheme="outline"></span>
-        <span>Assurance Divers</span>
-      </li>
-
-      <li nz-menu-item routerLink="/admin/role" routerLinkActive="active">
-        <span nz-icon nzType="user" nzTheme="outline"></span>
-        <span>Role</span>
-      </li>
-
-      <li nz-menu-item routerLink="/admin/transaction" routerLinkActive="active">
-        <span nz-icon nzType="pay-circle" nzTheme="outline"></span>
-        <span>Transaction</span>
-      </li>
-
-      <li nz-menu-item routerLink="/admin/offre" routerLinkActive="active">
-        <span nz-icon nzType="pie-chart" nzTheme="fill"></span>
-        <span>Offres</span>
-      </li>
-
-      <li nz-menu-item routerLink="/admin/user" routerLinkActive="active">
-        <span nz-icon nzType="user" nzTheme="outline"></span>
-        <span>Utilisateurs</span>
-      </li>
-
-      <li nz-menu-item routerLink="/auth/login" routerLinkActive="active">
-        <span nz-icon nzType="logout" nzTheme="outline"></span>
-        <span>Logout</span>
-      </li>
-
-
-    </ul>
-  </nz-sider>
-  <nz-layout>
-    <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <span class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></span>
-        </span>
+  <nz-layout class="app-layout" >
+    <nz-sider class="menu-sidebar"
+              nzCollapsible
+              nzWidth="256px"
+              nzBreakpoint="md"
+              [(nzCollapsed)]="isCollapsed"
+              [nzTrigger]="null" nzTheme="light">
+      <div class="sidebar-logo">
+        <a routerLink="/" >
+          <img src="/assets/logo.svg" alt="logo">
+          <h1>Rassur World</h1>
+        </a>
       </div>
-    </nz-header>
-    <nz-content>
-      <div class="inner-content">
-        <router-outlet></router-outlet>
-      </div>
-    </nz-content>
+      <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+
+        <li nz-menu-item routerLink="/admin/index" routerLinkActive="active">
+          <span nz-icon nzType="home" nzTheme="fill"></span>
+          <span>Dashboard</span>
+        </li>
+
+        <li nz-menu-item routerLink="/admin/assurance/pending" routerLinkActive="active">
+          <span nz-icon nzType="schedule" nzTheme="outline"></span>
+          <span>Demande d'assurance</span>
+        </li>
+
+        <li nz-menu-item routerLink="/admin/assurance/payment" routerLinkActive="active">
+          <span nz-icon nzType="schedule" nzTheme="outline"></span>
+          <span>Assurance en cours </span>
+        </li>
+
+        <li nz-menu-item routerLink="/admin/assurance/done" routerLinkActive="active">
+          <span nz-icon nzType="schedule" nzTheme="outline"></span>
+          <span>Assurance traité</span>
+        </li>
+
+        <!--<li nz-menu-item routerLink="/admin/assurance/voyage" routerLinkActive="active">
+          <span nz-icon nzType="schedule" nzTheme="outline"></span>
+          <span>Assurance Voyage</span>
+        </li>
+
+        <li nz-menu-item routerLink="/admin/assurance/divers" routerLinkActive="active">
+          <span nz-icon nzType="schedule" nzTheme="outline"></span>
+          <span>Assurance Divers</span>
+        </li>!-->
+
+        <li nz-menu-item routerLink="/admin/assurance/divers" routerLinkActive="active">
+          <span nz-icon nzType="link" nzTheme="outline"></span>
+          <span>Lien de parrainages</span>
+        </li>
+
+
+        <li nz-menu-item routerLink="/admin/role" routerLinkActive="active">
+          <span nz-icon nzType="user" nzTheme="outline"></span>
+          <span>Role</span>
+        </li>
+
+        <li nz-menu-item routerLink="/admin/transaction" routerLinkActive="active">
+          <span nz-icon nzType="pay-circle" nzTheme="outline"></span>
+          <span>Transaction</span>
+        </li>
+
+        <li nz-menu-item routerLink="/admin/offre" routerLinkActive="active">
+          <span nz-icon nzType="pie-chart" nzTheme="fill"></span>
+          <span>Offres</span>
+        </li>
+
+        <li nz-menu-item routerLink="/admin/utilisateur" routerLinkActive="active">
+          <span nz-icon nzType="user" nzTheme="outline"></span>
+          <span>Utilisateurs</span>
+        </li>
+
+        <li nz-menu-item routerLink="/auth/login" routerLinkActive="active">
+          <span nz-icon nzType="logout" nzTheme="outline"></span>
+          <span>Logout</span>
+        </li>
+
+
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-header>
+        <div class="app-header">
+          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+              <span class="trigger"
+                nz-icon
+                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+              ></span>
+          </span>
+        </div>
+      </nz-header>
+      <nz-content>
+        <div class="inner-content">
+          <router-outlet></router-outlet>
+        </div>
+      </nz-content>
+    </nz-layout>
   </nz-layout>
-</nz-layout>

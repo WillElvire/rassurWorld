@@ -1,26 +1,27 @@
 <div class="container">
-  <div>
-    <input type="search" class="form-control">
-  </div>
+
   <div class="table-responsive mt-5">
     <table class="table">
       <thead class="thead" style="background-color: forestgreen !important;color :white !important">
         <tr>
-          <th scope="col">Id</th>
+          <th scope="col">Numero de demande</th>
           <th scope="col">Offre</th>
           <th scope="col">Nom et Prénom</th>
           <th scope="col">Email</th>
           <th scope="col">Téléphone</th>
+          <th scope="col">Date </th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let insurance of insuranceRequest | paginate: { itemsPerPage: 4, currentPage: p }">
           <th scope="row">{{insurance.id}}</th>
-          <td>{{insurance.offer.libelle}}</td>
+          <td><b class="badge badge-success">{{insurance.offer.libelle}}</b></td>
           <td>{{insurance.user.firstname}}  {{insurance.user.lastname}}</td>
           <td>{{insurance.user.email}}</td>
           <td>{{insurance.user.phone}}</td>
+          <td>{{insurance.detail.createdAt | date}}</td>
+
           <td>
             <div class="btn-group">
               <button class="btn btn-success" routerLink="/admin/detail/{{insurance.id}}">
