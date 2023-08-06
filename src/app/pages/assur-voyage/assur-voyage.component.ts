@@ -1,4 +1,3 @@
-import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { tripInsuranceDto } from './../../core/interfaces/dto';
 import { Component, inject } from '@angular/core';
 import { AppFacade } from 'src/app/core/facades/app.facade';
@@ -34,7 +33,8 @@ export class AssurVoyageComponent {
     firstname : "",
     lastname  : "",
     email     : "",
-    phone     : ""
+    phone     : "",
+    useWhatsapp : false
   };
 
   utils     = inject(UtilsFacades);
@@ -83,6 +83,7 @@ export class AssurVoyageComponent {
 
     this.enable = true;
 
+
     return this.callToServerStep1();
   }
 
@@ -91,6 +92,7 @@ export class AssurVoyageComponent {
       next: (response: any) => {
         this.user   = response.body.returnObject;
         this.enable = false;
+        console.log(response);
         this.enableNewStep(2);
       },
       error: (err: any) => {

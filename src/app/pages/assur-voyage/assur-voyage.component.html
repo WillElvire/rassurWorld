@@ -30,6 +30,17 @@
             </div>
           </div>
 
+          <div class="alert alert-info mt-4">
+            <span class="fa fa-info"></span>
+            Si vous utilisez whatsapp toute les notificatios vous serons envoyé par ce canal
+          </div>
+
+
+          <div class="row">
+            <label class="ml-3">Voulez vous utiliser whatsapp</label>
+            <input type="checkbox" class="ml-3" [(ngModel)]="userForm.useWhatsapp">
+          </div>
+
           <div class="row">
             <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> suivant <i
                 class="fa fa-arrow-right"></i></button>

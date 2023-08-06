@@ -25,6 +25,7 @@ export interface firstStepUser {
   email?: string;
   phone?: string;
   password ?: string;
+  useWhatsapp ?: boolean;
 }
 
 

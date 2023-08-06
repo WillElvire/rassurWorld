@@ -33,7 +33,8 @@ export class AssurAutoComponent {
     firstname : "",
     lastname  : "",
     email     : "",
-    phone     : ""
+    phone     : "",
+    useWhatsapp : false
   };
 
   autoInsurance : any = {

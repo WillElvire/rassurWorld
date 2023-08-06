@@ -30,6 +30,16 @@
             </div>
           </div>
 
+          <div class="alert alert-info mt-4">
+           <span class="fa fa-info"></span>
+           Si vous utilisez whatsapp toute les notificatios vous serons envoyé par ce canal
+          </div>
+
+          <div class="row">
+            <label class="ml-3">Voulez vous utiliser whatsapp</label>
+            <input type="checkbox" class="ml-3" [(ngModel)]="userForm.useWhatsapp">
+          </div>
+
           <div class="row">
             <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> suivant <i
                 class="fa fa-arrow-right"></i></button>
@@ -53,7 +63,7 @@
             </div>
             <div class="col-md-6">
               <label>Périodicité (*)</label>
-              <select  class="form-control" [(ngModel)]="autoInsurance.periodicity">
+              <select class="form-control" [(ngModel)]="autoInsurance.periodicity">
                 <option></option>
                 <option value="{{month}}" *ngFor="let month of months" value="{{month+ 1}}">{{month+ 1}} mois</option>
               </select>
@@ -83,7 +93,7 @@
 
 
         <!------------------- STEP 3  -------------------->
-        <div class="container"  *ngIf="step3">
+        <div class="container" *ngIf="step3">
           <br>
           <button class="btn btn-success" (click)="enableNewStep(2)">Retour</button>
           <h5 class="text-center">3/4</h5>
