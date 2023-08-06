@@ -19,6 +19,7 @@
             <p>Prenoms  : {{insuranceDto?.user?.lastname}}</p>
             <p>Email  : {{insuranceDto?.user?.email}}</p>
             <p>Téléphone  : {{insuranceDto?.user?.phone}}</p>
+            <p>Moyen de reception de mail   : <b class="badge badge-info">{{insuranceDto?.user?.useWhatsapp ? 'whatsapp'  : 'email' }}</b></p>
           </div>
         </div>
       </div>

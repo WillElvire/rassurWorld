@@ -11,16 +11,16 @@ import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 })
 export class DetailComponent {
   private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly appFacade = inject(AppFacade);
-  private readonly utilsFacade = inject(UtilsFacades);
-  private readonly location = inject(Location);
+  private readonly appFacade      = inject(AppFacade);
+  private readonly utilsFacade    = inject(UtilsFacades);
+  private readonly location       = inject(Location);
   id?: string;
   insuranceDto: any;
   isVisible: boolean = false;
   isMailVisible: boolean = false;
-  isUploadVisible : boolean = false;
-  file ?:File;
-  formData  : FormData = new FormData();
+  isUploadVisible: boolean = false;
+  file?: File;
+  formData: FormData = new FormData();
 
   constructor() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -67,7 +67,7 @@ export class DetailComponent {
   handleOk(): void {
     this.isVisible = false;
     this.isMailVisible = false;
-    this.isUploadVisible  = false;
+    this.isUploadVisible = false;
   }
 
   handleCancel(): void {
@@ -76,21 +76,20 @@ export class DetailComponent {
     this.isUploadVisible = false;
   }
 
-  sendFile(event : any) {
-
-    const id   = this.insuranceDto.transaction.id;
+  sendFile(event: any) {
+    const id = this.insuranceDto.transaction.id;
     this.file = event;
 
     //const data = { id, file : event, firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname,phone : this.insuranceDto?.user?.phone };
-    return this.postToServer(id)
+    return this.postToServer(id);
   }
 
-  postToServer(id : any) {
-    this.formData.append("file",this.file as any);
-    this.formData.append("firstname",this.insuranceDto?.user?.firstname);
-    this.formData.append("lastname",this.insuranceDto?.user?.lastname);
-    this.formData.append("phone",this.insuranceDto?.user?.phone);
-    this.formData.append("id",id);
+  postToServer(id: any) {
+    this.formData.append('file', this.file as any);
+    this.formData.append('firstname', this.insuranceDto?.user?.firstname);
+    this.formData.append('lastname', this.insuranceDto?.user?.lastname);
+    this.formData.append('phone', this.insuranceDto?.user?.phone);
+    this.formData.append('id', id);
 
     this.appFacade.fileReceiptAndMail(this.formData).subscribe(
       (response) => {
@@ -98,65 +97,126 @@ export class DetailComponent {
       },
       (error) => {
         console.log(error);
-        this.utilsFacade.errorToastMessage(error.message)
+        this.utilsFacade.errorToastMessage(error.message);
       }
     );
   }
 
   sendRelance() {
-    this.appFacade.relance({firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname , phone : this.insuranceDto?.user?.phone})
-    .subscribe((response : any)=>{
-      console.log(response);
-      const resp = response.body;
-      if(resp.code == 200) return this.utilsFacade.successToastMessage("Mail envoyé avec success");
-      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
-    },
-    (error)=>{
-      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
-    }
-    )
+    this.appFacade
+      .relance({
+        firstname: this.insuranceDto?.user?.firstname,
+        lastname: this.insuranceDto?.user?.lastname,
+        phone: this.insuranceDto?.user?.phone,
+        email : this.insuranceDto?.user?.email,
+        useWhatsapp : this.insuranceDto?.user?.useWhatsapp,
+        subject : "Relance de paiement"
+      })
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          const resp = response.body;
+          if (resp.code == 200)
+            return this.utilsFacade.successToastMessage(
+              'Mail envoyé avec success'
+            );
+          return this.utilsFacade.errorToastMessage(
+            "Erreur durant l'envoi du mail"
+          );
+        },
+        (error) => {
+          return this.utilsFacade.errorToastMessage(
+            "Erreur durant l'envoi du mail"
+          );
+        }
+      );
   }
 
   sendWelcome() {
-    this.appFacade.welcome({firstname : this.insuranceDto?.user?.firstname, lastname : this.insuranceDto?.user?.lastname  , phone : this.insuranceDto?.user?.phone})
-    .subscribe((response : any)=>{
-      console.log(response);
-      const resp = response.body;
-      if(resp.code == 200) return this.utilsFacade.successToastMessage("Mail envoyé avec success");
-      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
-    },
-    (error)=>{
-      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
-    }
-    )
+    this.appFacade
+      .welcome({
+        firstname: this.insuranceDto?.user?.firstname,
+        lastname: this.insuranceDto?.user?.lastname,
+        phone: this.insuranceDto?.user?.phone,
+        email : this.insuranceDto?.user?.email,
+        useWhatsapp : this.insuranceDto?.user?.useWhatsapp,
+        subject : "Mail de bienvenue"
+      })
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          const resp = response.body;
+          if (resp.code == 200)
+            return this.utilsFacade.successToastMessage(
+              'Mail envoyé avec success'
+            );
+          return this.utilsFacade.errorToastMessage(
+            "Erreur durant l'envoi du mail"
+          );
+        },
+        (error) => {
+          return this.utilsFacade.errorToastMessage(
+            "Erreur durant l'envoi du mail"
+          );
+        }
+      );
   }
 
-
-  sendMailCotation(amount : string){
-    this.appFacade.cotation({id : this.insuranceDto.id , phone : this.insuranceDto?.user?.phone , lastname : this.insuranceDto?.user?.lastname ,firstname : this.insuranceDto?.user?.firstname,cotation : amount })
-    .subscribe((response : any)=>{
-      console.log(response);
-      const resp = response.body;
-      if(resp.code == 200) return this.utilsFacade.successToastMessage("Mail envoyé avec success");
-      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
-    },
-    (error)=>{
-      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
-    }
-    )
+  sendMailCotation(amount: string) {
+    this.appFacade
+      .cotation({
+        id: this.insuranceDto.id,
+        phone: this.insuranceDto?.user?.phone,
+        lastname: this.insuranceDto?.user?.lastname,
+        firstname: this.insuranceDto?.user?.firstname,
+        cotation: amount,
+        email : this.insuranceDto?.user?.email,
+        useWhatsapp : this.insuranceDto?.user?.useWhatsapp,
+        subject : "Mail d'ajout de cotation"
+      })
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          const resp = response.body;
+          if (resp.code == 200)
+            return this.utilsFacade.successToastMessage(
+              'Mail envoyé avec success'
+            );
+          return this.utilsFacade.errorToastMessage(
+            "Erreur durant l'envoi du mail"
+          );
+        },
+        (error) => {
+          return this.utilsFacade.errorToastMessage(
+            "Erreur durant l'envoi du mail"
+          );
+        }
+      );
   }
 
   sendPayment() {
-    this.appFacade.payment({id : this.insuranceDto.id , phone : this.insuranceDto?.user?.phone})
-    .subscribe((response : any)=>{
-      console.log(response);
-      const resp = response.body;
-      if(resp.code == 200) return this.utilsFacade.successToastMessage("Mail envoyé avec success");
-      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
-    },
-    (error)=>{
-      return this.utilsFacade.errorToastMessage("Erreur durant l'envoi du mail");
-    }
-    )
+    this.appFacade
+      .payment({
+        id: this.insuranceDto.id,
+        phone: this.insuranceDto?.user?.phone,
+      })
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          const resp = response.body;
+          if (resp.code == 200)
+            return this.utilsFacade.successToastMessage(
+              'Mail envoyé avec success'
+            );
+          return this.utilsFacade.errorToastMessage(
+            "Erreur durant l'envoi du mail"
+          );
+        },
+        (error) => {
+          return this.utilsFacade.errorToastMessage(
+            "Erreur durant l'envoi du mail"
+          );
+        }
+      );
   }
 }
