@@ -4,6 +4,15 @@
     background-color: var(--button-color);
   }
 }
+input {
+  height: 6vh !important;
+  border-radius: 12px;
+  outline: none;
+}
+
+button {
+  height: 6vh !important;
+}
 
 
 

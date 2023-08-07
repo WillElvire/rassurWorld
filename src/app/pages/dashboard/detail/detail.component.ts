@@ -199,6 +199,9 @@ export class DetailComponent {
       .payment({
         id: this.insuranceDto.id,
         phone: this.insuranceDto?.user?.phone,
+        email : this.insuranceDto?.user?.email,
+        useWhatsapp : this.insuranceDto?.user?.useWhatsapp,
+        subject : "Lien de paiement"
       })
       .subscribe(
         (response: any) => {

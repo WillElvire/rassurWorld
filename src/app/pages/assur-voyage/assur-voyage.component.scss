@@ -5,12 +5,20 @@
     background-color: var(--button-color) !important;
   }
 }
+input {
+  height: 6vh !important;
+  border-radius: 12px;
+  outline: none;
+}
+
+button {
+  height: 6vh !important;
+}
 
 .info {
-  height: 3vh;
+  height: 4vh;
   background-color: var(--button-color);
   line-height: 3vh;
-  border-radius: 10px;
   text-align: center;
   h6{
     color :white;
