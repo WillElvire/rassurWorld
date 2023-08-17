@@ -31,6 +31,11 @@ export class AppFacade {
     return this.appFunction.register(data);
   }
 
+
+  businessRegistration(data :any) {
+    return this.appFunction.businessRegistration(data);
+  }
+
   firstStep(data : any , type : insuranceType = "voyage") {
     return this.appFunction.firstStep(data,type);
   }

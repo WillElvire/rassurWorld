@@ -40,7 +40,7 @@ export class RegisterComponent {
 
   callToServer() {
     this.loaded = true;
-    /*this.appFacade.login(this.login"").subscribe( {
+    this.appFacade.businessRegistration(this.register).subscribe( {
       next :  (response: any)=>{
         this.loaded = false;
         this.utils.successToastMessage("Votre compte a été crée avec success");
@@ -54,7 +54,7 @@ export class RegisterComponent {
         }
       }
     }
-   )*/
+   )
   }
 
   Verification() {

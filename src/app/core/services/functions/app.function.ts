@@ -41,6 +41,11 @@ export class AppFunctionService {
     return this.api.post({endpoint : "/api/register",data}).pipe(shareReplay(1));
   }
 
+  businessRegistration(data : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/business/registration",data}).pipe(shareReplay(1));
+  }
+
   firstStep(data : any , insuranceController : insuranceType = "voyage") {
     this.api.setApiType("rest");
     return this.api.post({endpoint : `/api/assur/${insuranceController}/first-user-step`,data}).pipe(shareReplay(1));
