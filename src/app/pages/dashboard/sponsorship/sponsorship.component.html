@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="alert alert-danger" *ngIf="user?.isCollaborateur && !user?.isActive">
+    <i class="fa fa-warning"></i> Votre compte est restreint
+  </div>
+
+  <div class="card text-center">
+    <div class="card-body">
+      <h1>{{user?.code}}<button class="btn btn-outline-success ml-2"><i class="fa fa-clipboard"
+            aria-hidden="true"></i></button></h1>
+      <p>Code de parrainage </p>
+    </div>
+  </div>
+
+  <h5 class="mt-5">Mes activités</h5>
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead" style="background-color: forestgreen !important;color :white !important">
+        <tr>
+          <th scope="col">Nom et Prénom</th>
+          <th scope="col">Offre</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+</div>

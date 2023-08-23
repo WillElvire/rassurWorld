@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="user?.role?.libelle?.includes('admin')">
   <div class="grid">
     <div class="row">
       <div class="col-md-4">
@@ -65,5 +65,32 @@
 
   <a routerLink="/admin/assurance/auto">Voir plus </a>
 
+</div>
+
+
+<div class="container" *ngIf="user?.role?.libelle?.includes('apporteur')">
+  <div class="alert alert-danger" *ngIf="user?.isCollaborateur && !user?.isActive">
+   <i class="fa fa-warning"></i> Votre  compte est restreint
+  </div>
+  <div class="grid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <h1 class="_text">0</h1>
+            <p> Mes affaires traitées </p>
+          </div>
+         </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <h1 class="_text">0 <span style="font-size: 17px;">XOF</span></h1>
+            <p>Ma commission</p>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
 </div>
 

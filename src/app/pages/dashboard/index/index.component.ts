@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppFacade } from 'src/app/core/facades/app.facade';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
+import { UserDto } from 'src/app/core/interfaces/dto';
+import { UserQuery } from 'src/app/store/user$/user.query';
 
 @Component({
   selector: 'app-index',
@@ -14,12 +16,16 @@ export class IndexComponent {
   private readonly appFacades  = inject(AppFacade);
   private readonly router      = inject(Router);
   private readonly utilsFacade = inject(UtilsFacades);
+  private readonly userQuery   = inject(UserQuery);
+
   insuranceRequest : any[] = [];
   stats :any;
+  user ?: UserDto ;
 
   constructor(){
     this.loadStatistics();
-
+    this.user = this.userQuery.fullUser;
+    console.log(this.user)
   }
 
   loadInsuranceRequest() {

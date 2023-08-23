@@ -9,8 +9,10 @@ export interface UserDto {
   lastname?: string;
   password?: string;
   phone?: string;
-  role?: RoleDto | string;
+  role?: RoleDto | any;
   tryCount?: number;
+  isCollaborateur?:boolean;
+  code ?: boolean;
 
 }
 
