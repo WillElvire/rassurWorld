@@ -27,7 +27,10 @@ export class RegisterComponent {
     password  : "",
     firstname : "",
     lastname  : "",
-    phone     : ""
+    phone     : "",
+    isCollaborateur : true,
+    country : "CI"
+
   }
 
 

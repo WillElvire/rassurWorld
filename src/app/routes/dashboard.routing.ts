@@ -9,6 +9,7 @@ import { TransactionComponent } from "../pages/dashboard/transaction/transaction
 import { AdminGuard } from "../core/guard/admin.guard";
 import { DetailComponent } from "../pages/dashboard/detail/detail.component";
 import { UtilisateurComponent } from "../pages/dashboard/utilisateur/utilisateur.component";
+import { RoleGuard } from "../core/guard/role.guard";
 
 const routes : Routes = [
  {
@@ -18,7 +19,7 @@ const routes : Routes = [
   children : [
    {
      path :"index",
-     component : IndexComponent
+     component : IndexComponent,
    },
    {
      path : "assurance/:type",

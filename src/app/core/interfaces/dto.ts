@@ -11,6 +11,7 @@ export interface UserDto {
   phone?: string;
   role?: RoleDto | string;
   tryCount?: number;
+
 }
 
 
@@ -26,6 +27,8 @@ export interface firstStepUser {
   phone?: string;
   password ?: string;
   useWhatsapp ?: boolean;
+  isCollaborateur?: boolean;
+  country ?: string;
 }
 
 
