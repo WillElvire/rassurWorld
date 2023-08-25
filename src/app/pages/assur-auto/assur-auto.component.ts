@@ -36,14 +36,13 @@ export class AssurAutoComponent {
     phone     : "",
     useWhatsapp : false
   };
-
+  parrainCode ?: string;
   autoInsurance : any = {
     date_a_effet : "",
     periodicity  : 0,
     valeur_a_neuf: 0,
     price        : 0,
     typeTiers  : "",
-
   }
 
   autoInsuranceDetail : any;
@@ -120,6 +119,7 @@ export class AssurAutoComponent {
     const fullAutoInsurance = {
       user : this.user.id,
       offer : this.insurance.id,
+      parrainCode : this.parrainCode,
       trip  : {
         ...this.autoInsurance
       }
@@ -164,7 +164,8 @@ export class AssurAutoComponent {
       console.log(response.body.returnObject as any);
       this.autoInsuranceDetail = response.body.returnObject as any;
       },(error)=>{
-        console.log(error);
+        console.log(error.message);
+        this.utils.errorToastMessage(error.message)
         this.enable = false;
       })
   }
@@ -178,7 +179,7 @@ export class AssurAutoComponent {
       },
       error: (err: any) => {
         this.enable = false;
-        this.utils.successToastMessage(err.message);
+        this.utils.errorToastMessage(err.message);
       },
     });
   }

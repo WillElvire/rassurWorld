@@ -43,7 +43,8 @@ export interface tripInsuranceDto {
   country ?: string,
   tripMotif?: string,
   destination ?: string,
-  relationship ?: string
+  relationship ?: string,
+  parrainCode ?: string
 }
 
 

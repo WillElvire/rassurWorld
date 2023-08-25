@@ -32,7 +32,7 @@
 
           <div class="alert alert-info mt-4">
            <span class="fa fa-info"></span>
-           Si vous utilisez whatsapp toute les notificatios vous serons envoyé par ce canal
+           Si vous utilisez whatsapp toute les notifications vous serons envoyé par ce canal
           </div>
 
           <div class="row">
@@ -77,6 +77,12 @@
             <div class="col-md-6">
               <label>Prix estimé a la vente FCFA (*)</label>
               <input type="number" class="form-control" [(ngModel)]="autoInsurance.price">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label>Code de l'apporteur d'affaire</label>
+              <input type="text" class="form-control" [(ngModel)]="parrainCode" placeholder="Code apporteur">
             </div>
           </div>
           <div class="row">

@@ -23,7 +23,7 @@ export class AssurVoyageComponent {
   country   : any ;
   formData  : FormData = new FormData()
 
-
+  parrainCode ?: string;
   insurance : {id ?: string , libelle ?: string} = {};
   tripBookedDetail : {detail ?: string,user ?: string} = {};
 
@@ -144,7 +144,7 @@ export class AssurVoyageComponent {
       );
     }
     this.enable = true;
-    const fullTripDto = { user : this.user?.id,offer : this.insurance?.id,trip : {...this.tripDto}}
+    const fullTripDto = { user : this.user?.id,offer : this.insurance?.id,trip : {...this.tripDto} ,  parrainCode : this.parrainCode }
     return this.callToServerStep2(fullTripDto);
   }
 
