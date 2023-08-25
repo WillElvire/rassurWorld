@@ -44,14 +44,19 @@
               <span>Offres</span>
             </li>
 
+            <li nz-menu-item routerLink="/admin/business" routerLinkActive="active">
+              <span nz-icon nzType="user" nzTheme="outline"></span>
+              <span>Apporteurs</span>
+            </li>
+
             <li nz-menu-item routerLink="/admin/utilisateur" routerLinkActive="active">
               <span nz-icon nzType="user" nzTheme="outline"></span>
-              <span>Utilisateurs</span>
+              <span>Equipe</span>
             </li>
 
             <li nz-menu-item routerLink="/admin/role" routerLinkActive="active">
               <span nz-icon nzType="user" nzTheme="outline"></span>
-              <span>Role</span>
+              <span>Roles</span>
             </li>
           </div>
         </ng-container >
@@ -83,7 +88,7 @@
 
 
 
-        <li nz-menu-item routerLink="/auth/login" routerLinkActive="active">
+        <li nz-menu-item (click)="logout()">
           <span nz-icon nzType="logout" nzTheme="outline"></span>
           <span>Deconnexion</span>
         </li>

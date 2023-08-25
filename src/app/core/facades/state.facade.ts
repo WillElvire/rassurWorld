@@ -28,7 +28,9 @@ export class StatesFacades {
     return this.UserQuery.isLoggedIn;
   }
 
-  get logout() {
+  logout() {
+    this.AppFacades.deleteStorage(environment.STORAGE_USER_KEY);
+    this.AppFacades.deleteStorage(environment.STORAGE_USER_TOKEN);
     return this.UserQuery.logout();
   }
 
@@ -53,6 +55,8 @@ export class StatesFacades {
     this.AppFacades.setStorage({key : environment.STORAGE_USER_KEY, value : JSON.stringify(user.user)});
     return this.updateUserState(user);
   }
+
+
 
 
 }

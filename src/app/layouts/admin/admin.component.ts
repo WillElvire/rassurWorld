@@ -30,4 +30,10 @@ export class AdminComponent implements OnInit {
       this.userRole = user.role as RoleDto;
     })
   }
+
+  logout() {
+    this.state.logout();
+    location.href = "/auth/login";
+    return;
+  }
 }

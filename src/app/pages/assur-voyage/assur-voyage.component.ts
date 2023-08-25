@@ -157,6 +157,7 @@ export class AssurVoyageComponent {
 
       },(error)=>{
         console.log(error);
+        this.utils.errorToastMessage(!!error.error.message ? error.error.message : error.message);
         this.enable = false;
       })
   }
