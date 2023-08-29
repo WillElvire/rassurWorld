@@ -12,7 +12,7 @@ export interface UserDto {
   role?: RoleDto | any;
   tryCount?: number;
   isCollaborateur?:boolean;
-  code ?: boolean;
+  code ?: string;
 
 }
 

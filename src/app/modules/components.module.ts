@@ -42,7 +42,8 @@ import { UserComponent } from '../components/modal/user/user.component';
     CotationComponent,
     RoleComponent,
     OfferComponent,
-    UploadComponent
+    UploadComponent,
+    UserComponent
   ],
 
 })

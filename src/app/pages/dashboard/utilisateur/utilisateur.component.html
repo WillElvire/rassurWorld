@@ -1,5 +1,5 @@
 <div class="container">
-  <button class="btn btn-outline-success"  > Ajouter un utilisateur
+  <button class="btn btn-outline-success"  (click)="isVisible = true"> Ajouter un utilisateur
     <span class="fa fa-user"></span>
   </button>
   <div class="table-responsive mt-5">
@@ -15,21 +15,30 @@
         </tr>
       </thead>
       <tbody>
-        <!--<tr *ngFor="let offer of offers | paginate: { itemsPerPage: 5, currentPage: p }">
-          <td >{{offer?.id}}</td>
-          <td>{{offer?.description | titlecase}}</td>
+        <tr *ngFor="let user of teams | paginate: { itemsPerPage: 4, currentPage: p }">
+          <td >{{user?.id}}</td>
+          <td>{{user?.firstname | titlecase}}</td>
           <td>
-            <b>{{offer?.flag}}</b>
+            <b>{{user?.lastname}}</b>
           </td>
-          <td>{{offer?.libelle}}</td>
+          <td>{{user?.email}}</td>
+          <td>{{user?.phone}}</td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-danger" (click)="deleteOffer(offer.id)"><span class="fa fa-trash"></span></button>
+              <button class="btn btn-outline-danger" (click)="deleteMember(user.id)"><span class="fa fa-trash"></span></button>
+              <button class="btn btn-outline-success" ><span class="fa fa-check"></span></button>
             </div>
           </td>
-        </tr>!-->
+        </tr>
       </tbody>
     </table>
-    <!--<pagination-controls (pageChange)="p = $event"></pagination-controls>!-->
+
+    <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+      <ng-container *nzModalContent>
+        <app-user (userToCreate)="onBoardUser($event)"></app-user>
+      </ng-container>
+    </nz-modal>
+
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>

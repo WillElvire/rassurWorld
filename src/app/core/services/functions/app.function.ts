@@ -101,6 +101,13 @@ export class AppFunctionService {
     return this.api.get("/api/admin/statistics").pipe(shareReplay(1));
   }
 
+
+  getBusinessAccount() {
+    this.api.setApiType("rest");
+    return this.api.get("/api/user/apporteur").pipe(shareReplay(1));
+  }
+
+
   updateTransaction(data : any) {
     this.api.setApiType("rest");
     return this.api.put({endpoint : "/api/admin/transaction",data}).pipe(shareReplay(1));
@@ -134,6 +141,29 @@ export class AppFunctionService {
   deleteOffer(id : string) {
     this.api.setApiType("rest");
     return this.api.delete("/api/offer/"+id).pipe(shareReplay(1));
+  }
+
+  fetchBusinessSponsorship(id : string) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/assur/sponsorship" , data : {parrainId : id}}).pipe(shareReplay(1));
+  }
+
+
+  fetchTeamAccounts(){
+    this.api.setApiType('rest');
+    return this.api.get('/api/user/team').pipe(shareReplay(1));
+  }
+
+
+  activeUserAccount(id : string , status : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/user/active", data : {userId : id, prevStatus : status} })
+  }
+
+
+  deleteTeamMember(id: string) {
+    this.api.setApiType("rest");
+    return this.api.delete("/api/user/team/"+id).pipe(shareReplay(1));
   }
 
 }

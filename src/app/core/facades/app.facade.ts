@@ -10,7 +10,7 @@ import { StorageManagerService } from '../services/storage/storage.manager';
 })
 export class AppFacade {
 
-  private appFunction = inject(AppFunctionService);
+  private appFunction    = inject(AppFunctionService);
   private storageService = inject(StorageManagerService);
 
 
@@ -31,6 +31,14 @@ export class AppFacade {
     return this.appFunction.register(data);
   }
 
+
+  fetchBusinessAccount() {
+    return this.appFunction.getBusinessAccount();
+  }
+
+  fetchBusinessSponsorship(parrainCode : string){
+    return this.appFunction.fetchBusinessSponsorship(parrainCode);
+  }
 
   businessRegistration(data :any) {
     return this.appFunction.businessRegistration(data);
@@ -107,9 +115,20 @@ export class AppFacade {
     return this.appFunction.sendMailPayment(data);
   }
 
+  activeUserAccount(id : string | undefined, status : any) {
+    return this.appFunction.activeUserAccount(id as string , status);
+  }
 
   deleteOffer(id : string){
     return this.appFunction.deleteOffer(id);
+  }
+
+  fetchTeamAccounts() {
+    return this.appFunction.fetchTeamAccounts();
+  }
+
+  deleteTeamMember(id : string) {
+    return this.appFunction.deleteTeamMember(id);
   }
 
   /*--------------------------------*/
