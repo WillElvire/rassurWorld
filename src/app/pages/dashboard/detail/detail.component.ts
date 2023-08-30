@@ -11,9 +11,9 @@ import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 })
 export class DetailComponent {
   private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly appFacade      = inject(AppFacade);
-  private readonly utilsFacade    = inject(UtilsFacades);
-  private readonly location       = inject(Location);
+  private readonly appFacade = inject(AppFacade);
+  private readonly utilsFacade = inject(UtilsFacades);
+  private readonly location = inject(Location);
   id?: string;
   insuranceDto: any;
   isVisible: boolean = false;
@@ -41,6 +41,21 @@ export class DetailComponent {
       },
       error: (err) => {
         console.log(err);
+      },
+    });
+  }
+
+  confirmInsurance() {
+    this.appFacade.confirmInsurance(this.id as string).subscribe({
+      next: (response: any) => {
+        const resp = response.body;
+        console.log(resp)
+        this.utilsFacade.successToastMessage(resp.message);
+        this.loadRequestDetail(this.id as string);
+      },
+      error: (err) => {
+        console.log(err)
+        this.utilsFacade.errorToastMessage(!!err.error.message ? err.error.message : err.message);
       },
     });
   }
@@ -108,9 +123,9 @@ export class DetailComponent {
         firstname: this.insuranceDto?.user?.firstname,
         lastname: this.insuranceDto?.user?.lastname,
         phone: this.insuranceDto?.user?.phone,
-        email : this.insuranceDto?.user?.email,
-        useWhatsapp : this.insuranceDto?.user?.useWhatsapp,
-        subject : "Relance de paiement"
+        email: this.insuranceDto?.user?.email,
+        useWhatsapp: this.insuranceDto?.user?.useWhatsapp,
+        subject: 'Relance de paiement',
       })
       .subscribe(
         (response: any) => {
@@ -138,9 +153,9 @@ export class DetailComponent {
         firstname: this.insuranceDto?.user?.firstname,
         lastname: this.insuranceDto?.user?.lastname,
         phone: this.insuranceDto?.user?.phone,
-        email : this.insuranceDto?.user?.email,
-        useWhatsapp : this.insuranceDto?.user?.useWhatsapp,
-        subject : "Mail de bienvenue"
+        email: this.insuranceDto?.user?.email,
+        useWhatsapp: this.insuranceDto?.user?.useWhatsapp,
+        subject: 'Mail de bienvenue',
       })
       .subscribe(
         (response: any) => {
@@ -170,9 +185,9 @@ export class DetailComponent {
         lastname: this.insuranceDto?.user?.lastname,
         firstname: this.insuranceDto?.user?.firstname,
         cotation: amount,
-        email : this.insuranceDto?.user?.email,
-        useWhatsapp : this.insuranceDto?.user?.useWhatsapp,
-        subject : "Mail d'ajout de cotation"
+        email: this.insuranceDto?.user?.email,
+        useWhatsapp: this.insuranceDto?.user?.useWhatsapp,
+        subject: "Mail d'ajout de cotation",
       })
       .subscribe(
         (response: any) => {
@@ -199,9 +214,9 @@ export class DetailComponent {
       .payment({
         id: this.insuranceDto.id,
         phone: this.insuranceDto?.user?.phone,
-        email : this.insuranceDto?.user?.email,
-        useWhatsapp : this.insuranceDto?.user?.useWhatsapp,
-        subject : "Lien de paiement"
+        email: this.insuranceDto?.user?.email,
+        useWhatsapp: this.insuranceDto?.user?.useWhatsapp,
+        subject: 'Lien de paiement',
       })
       .subscribe(
         (response: any) => {

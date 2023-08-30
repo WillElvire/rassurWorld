@@ -131,6 +131,10 @@ export class AppFacade {
     return this.appFunction.deleteTeamMember(id);
   }
 
+  confirmInsurance(id : string) {
+    return this.appFunction.confirmInsurance(id);
+  }
+
   /*--------------------------------*/
 
   setStorage(data  : {key : string ,value : any}) {

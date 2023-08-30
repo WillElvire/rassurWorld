@@ -31,7 +31,7 @@
   <h5 class="mt-5">Activités récentes</h5>
   <div class="table-responsive">
     <table class="table">
-      <thead class="thead" style="background-color: forestgreen !important;color :white !important">
+      <thead class="thead" style="background-color: white !important;color :forestgreen !important">
         <tr>
           <th scope="col">Identifiant</th>
           <th scope="col">Offre</th>
@@ -50,10 +50,10 @@
           <td>{{insurance.user.phone}}</td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-success" routerLink="/admin/detail/{{insurance.id}}">
+              <button class="btn btn-outline-success" routerLink="/admin/detail/{{insurance.id}}">
                 <span class="fa fa-eye"></span>
               </button>
-              <button class="btn btn-danger">
+              <button class="btn btn-outline-danger">
                 <span class="fa fa-trash"></span>
               </button>
             </div>

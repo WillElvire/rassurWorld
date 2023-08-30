@@ -157,7 +157,7 @@ export class AppFunctionService {
 
   activeUserAccount(id : string , status : any) {
     this.api.setApiType("rest");
-    return this.api.post({endpoint : "/api/user/active", data : {userId : id, prevStatus : status} })
+    return this.api.post({endpoint : "/api/user/active", data : {userId : id, prevStatus : status} }).pipe(shareReplay(1));
   }
 
 
@@ -165,5 +165,14 @@ export class AppFunctionService {
     this.api.setApiType("rest");
     return this.api.delete("/api/user/team/"+id).pipe(shareReplay(1));
   }
+
+
+
+  confirmInsurance(id : string) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint: "/api/admin/insurance/confirm",data : {insuranceId : id}}).pipe(shareReplay(1));
+  }
+
+
 
 }
