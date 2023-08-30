@@ -35,7 +35,7 @@
                 <span class="fa fa-check" *ngIf="!user.isActive"></span>
                 <span class="fa fa-close" *ngIf="user.isActive"></span>
               </button>
-              <button class="btn btn-outline-info" ><span class="fa fa-eye"></span></button>
+              <button class="btn btn-outline-info"  (click)="viewBusinessDetail(user?.code)"><span class="fa fa-eye"></span></button>
             </div>
           </td>
         </tr>
@@ -44,3 +44,11 @@
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
+
+<nz-modal [nzWidth]="1000" [(nzVisible)]="isVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <app-business [userCode]="code" ></app-business>
+  </ng-container>
+</nz-modal>
+
+

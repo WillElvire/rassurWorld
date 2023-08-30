@@ -14,6 +14,8 @@ export class ApporteurComponent implements OnInit {
   private readonly utilsFacades = inject(UtilsFacades);
   users : UserDto[] = [];
   p : number = 1;
+  isVisible : boolean = false;
+  code ?: string;
   constructor(){
 
   }
@@ -46,5 +48,19 @@ export class ApporteurComponent implements OnInit {
       }
     }
    )
+  }
+
+  handleOk(): void {
+    this.isVisible = false;
+
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+
+  viewBusinessDetail(businessCode : any) {
+    this.isVisible  = true;
+    this.code = businessCode;
   }
 }

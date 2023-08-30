@@ -1,21 +1,26 @@
 <div class="container">
-  <div class="alert alert-danger" *ngIf="user?.isCollaborateur && !user?.isActive">
-    <i class="fa fa-warning"></i> Votre compte est restreint
-  </div>
+  <br>
+  <br>
+  <div class="grid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>{{0 | currency : 'FCFA'}}</h3>
+            <p>Commission total</p>
+          </div>
+        </div>
 
-  <div class="card text-center">
-    <div class="card-body">
-      <h1>{{user?.code}}<button class="btn btn-outline-success ml-2" (click)="copy()"><i class="fa fa-clipboard"
-            aria-hidden="true"></i></button></h1>
-      <p>Code de parrainage </p>
+      </div>
+      <div class="col-md-6">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>{{sponsorship.length}}</h3>
+            <p>Affaire affiliées</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-
-  <h5 class="mt-5">Mes activités <span class="badge badge-success">{{sponsorship.length}}</span></h5>
-  <div class="btn-group">
-    <button class="btn btn-outline-success"><i class="fa fa-file-csv"></i></button>
-    <button class="btn btn-outline-primary"><i class="fa fa-file-pdf"></i></button>
   </div>
   <br>
   <br>
@@ -28,10 +33,11 @@
           <th scope="col">Date</th>
           <th scope="col">Status</th>
           <th scope="col">Commission</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let sponsor of sponsorship | paginate: { itemsPerPage: 5, currentPage: p }">
+        <tr *ngFor="let sponsor of sponsorship ">
           <td> {{sponsor?.user?.firstname}} {{sponsor?.user?.lastname}}</td>
           <td>
             <span class="badge badge-success">{{sponsor?.offer?.libelle}}</span>
@@ -48,10 +54,13 @@
           <td>
             {{0  | currency : 'FCFA'}}
           </td>
+          <td>
+            <button class="btn btn-outline-success" routerLink="/admin/detail/{{sponsor.id}}"> <span class="fa fa-eye"></span></button>
+          </td>
         </tr>
 
       </tbody>
     </table>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
   </div>
 </div>

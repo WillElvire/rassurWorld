@@ -15,6 +15,7 @@ import { OfferComponent } from '../components/modal/offer/offer.component';
 import { UploadComponent } from '../components/modal/upload/upload.component';
 import { DeleteComponent } from '../components/modal/delete/delete.component';
 import { UserComponent } from '../components/modal/user/user.component';
+import { BusinessComponent } from '../components/modal/business/business.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UserComponent } from '../components/modal/user/user.component';
     UploadComponent,
     DeleteComponent,
     UserComponent,
+    BusinessComponent,
   ],
   imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
   exports: [
@@ -43,7 +45,8 @@ import { UserComponent } from '../components/modal/user/user.component';
     RoleComponent,
     OfferComponent,
     UploadComponent,
-    UserComponent
+    UserComponent,
+    BusinessComponent
   ],
 
 })
