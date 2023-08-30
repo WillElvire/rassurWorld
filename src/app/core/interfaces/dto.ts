@@ -9,8 +9,11 @@ export interface UserDto {
   lastname?: string;
   password?: string;
   phone?: string;
-  role?: RoleDto | string;
+  role?: RoleDto | any;
   tryCount?: number;
+  isCollaborateur?:boolean;
+  code ?: string;
+
 }
 
 
@@ -24,6 +27,10 @@ export interface firstStepUser {
   lastname?: string;
   email?: string;
   phone?: string;
+  password ?: string;
+  useWhatsapp ?: boolean;
+  isCollaborateur?: boolean;
+  country ?: string;
 }
 
 
@@ -36,7 +43,8 @@ export interface tripInsuranceDto {
   country ?: string,
   tripMotif?: string,
   destination ?: string,
-  relationship ?: string
+  relationship ?: string,
+  parrainCode ?: string
 }
 
 

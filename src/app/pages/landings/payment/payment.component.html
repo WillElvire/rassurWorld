@@ -4,7 +4,7 @@
   </a>
   <app-loader *ngIf="enable"></app-loader>
 
-  <div class="grid" *ngIf="!enable && !!insurance && isAccepted" style="margin-top: 5%;">
+  <div class="grid" *ngIf="!enable && !!insurance && isAccepted;else elseBlock" style="margin-top: 5%;">
     <div class="row">
       <div class="col-md-8">
         <div class="card">
@@ -47,6 +47,9 @@
       </div>
     </div>
   </div>
+
+
+
   <div class="text-center" *ngIf="!enable && !insurance">
     <nz-result nzStatus="error" nzTitle="Votre bon de paiement est invalide"
     nzSubTitle="Cher client le bon de paiement est invalide nous vous prions de contacter les administrateurs">
@@ -56,3 +59,24 @@
   </nz-result>
   </div>
 </div>
+
+
+<ng-template #elseBlock>
+  <div class="container">
+   <div class="card mt-4" *ngIf="!!insurance?.transaction?.total && !!insurance?.offer?.libelle">
+    <div class="card-body text-center">
+      <h1>
+        <span class="fa fa-info"></span>
+      </h1>
+      <h3 >Demande de cotation : {{insurance?.offer?.libelle | titlecase}}</h3>
+      <p>
+        Le prix de la prestation de service s'eleve a : {{insurance?.transaction?.total ? (insurance?.transaction?.total | currency : 'XOF')  : 0  }}
+      </p>
+      <div class="btn btn-group">
+        <a class="btn btn-success" (click)="updateCotation()"> Je valide <span class="fa fa-check"></span></a>
+        <a class="btn btn-outline-dark"> J'annule <span class="fa fa-close"></span> </a>
+      </div>
+    </div>
+   </div>
+  </div>
+</ng-template>

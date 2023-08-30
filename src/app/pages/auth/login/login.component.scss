@@ -5,6 +5,12 @@
   position: absolute;
 }
 
+input {
+  height: 6vh !important;
+  border-radius: 12px;
+  outline: none;
+}
+
 button{
   background-color: var(--button-color);
 }

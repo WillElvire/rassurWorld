@@ -1,0 +1,66 @@
+<div class="container">
+  <br>
+  <br>
+  <div class="grid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>{{0 | currency : 'FCFA'}}</h3>
+            <p>Commission total</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>{{sponsorship.length}}</h3>
+            <p>Affaire affiliées</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead" style="background-color: forestgreen !important;color :white !important">
+        <tr >
+          <th scope="col">Nom et Prénom</th>
+          <th scope="col">Offre</th>
+          <th scope="col">Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Commission</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sponsor of sponsorship ">
+          <td> {{sponsor?.user?.firstname}} {{sponsor?.user?.lastname}}</td>
+          <td>
+            <span class="badge badge-success">{{sponsor?.offer?.libelle}}</span>
+          </td>
+          <td>
+            {{sponsor?.createdAt | date}}
+          </td>
+
+          <td>
+            <span *ngIf="sponsor.isPayed && sponsor.isAccepted" class="badge badge-success">Payé</span>
+            <span *ngIf="sponsor.isAccepted &&  !sponsor.isPayed" class="badge badge-info">En attente de paiement</span>
+            <span *ngIf="!sponsor.isPayed && !sponsor.isAccepted" class="badge badge-danger">Non reglé</span>
+          </td>
+          <td>
+            {{0  | currency : 'FCFA'}}
+          </td>
+          <td>
+            <button class="btn btn-outline-success" routerLink="/admin/detail/{{sponsor.id}}"> <span class="fa fa-eye"></span></button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -30,8 +30,19 @@
             </div>
           </div>
 
+          <div class="alert alert-info mt-4">
+            <span class="fa fa-info"></span>
+            Si vous utilisez whatsapp toute les notifications vous serons envoyé par ce canal
+          </div>
+
+
           <div class="row">
-            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> suivant <i
+            <label class="ml-3">Voulez vous utiliser whatsapp ?</label>
+            <input type="checkbox" class="ml-3" [(ngModel)]="userForm.useWhatsapp">
+          </div>
+
+          <div class="row">
+            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> Suivant <i
                 class="fa fa-arrow-right"></i></button>
           </div>
           <br>
@@ -64,6 +75,19 @@
               <input class="form-control" type="date" [(ngModel)]="tripDto.dateOfBack">
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <label>Code de l'apporteur d'affaire</label>
+              <input type="text" class="form-control" [(ngModel)]="parrainCode" placeholder="Code apporteur">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label>Motif de voyage(*)</label>
+              <textarea class="form-control" type="date" [(ngModel)]="tripDto.tripMotif"></textarea>
+            </div>
+          </div>
           <!--<div class="row">
             <div class="col-md-4">
               <label> Numero de passeport (*)</label>
@@ -85,14 +109,14 @@
         </div>
         <!--------------------- END STEP 2 --------------------->
 
-        <!--------------------- STEP 3    --------------------->
+        <!--------------------- STEP 3     --------------------->
         <div *ngIf="step3">
-          <h5 class="text-center">3/4</h5>
+          <h5 class="text-center" >3/4</h5>
           <div class="info">
             <h6>Information du client</h6>
           </div>
 
-          <h6>Information du client</h6>
+
           <p>
             Firstname : {{user.firstname}}
           </p>
@@ -123,6 +147,10 @@
             Pays de destination: {{tripDto.destination}}
           </p>
 
+          <p>
+            Motif de voyage : {{tripDto.tripMotif}}
+          </p>
+
           <!--<p>
             Numero de passport: {{tripDto.passportNub}}
           </p>
@@ -136,7 +164,9 @@
           </p>!-->
 
           <div class="col-md-12">
-            <button class="btn btn-success col-md-12" (click)="enableNewStep(4)">Suivant</button>
+            <button class="btn btn-success col-md-12" (click)="enableNewStep(4)">Suivant
+              <span class="fa fa-arrow-right"></span>
+            </button>
           </div>
         </div>
         <!--------------------- END STEP 3 --------------------->

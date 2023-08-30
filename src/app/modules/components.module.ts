@@ -13,6 +13,9 @@ import { CotationComponent } from '../components/modal/cotation/cotation.compone
 import { RoleComponent } from '../components/modal/role/role.component';
 import { OfferComponent } from '../components/modal/offer/offer.component';
 import { UploadComponent } from '../components/modal/upload/upload.component';
+import { DeleteComponent } from '../components/modal/delete/delete.component';
+import { UserComponent } from '../components/modal/user/user.component';
+import { BusinessComponent } from '../components/modal/business/business.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { UploadComponent } from '../components/modal/upload/upload.component';
     RoleComponent,
     OfferComponent,
     UploadComponent,
+    DeleteComponent,
+    UserComponent,
+    BusinessComponent,
   ],
   imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
   exports: [
@@ -38,7 +44,9 @@ import { UploadComponent } from '../components/modal/upload/upload.component';
     CotationComponent,
     RoleComponent,
     OfferComponent,
-    UploadComponent
+    UploadComponent,
+    UserComponent,
+    BusinessComponent
   ],
 
 })

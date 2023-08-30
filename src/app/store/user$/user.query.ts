@@ -32,6 +32,10 @@ export class UserQuery extends Query<UserState> {
     return this.getValue()["user"];
   }
 
+  get fullUser() {
+   return JSON.parse(this.user?.user?.user)
+  }
+
   update(user : UserStateDto) {
     return applyTransaction(()=>{
       this.store.update(user);

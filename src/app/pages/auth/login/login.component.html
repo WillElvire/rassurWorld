@@ -1,5 +1,6 @@
 <app-loader *ngIf="loaded"></app-loader>
 <div class="wrapper" *ngIf="!loaded">
+  <button class="btn btn-light" (click)="back()"><span class="fa fa-arrow-left"></span> retour </button>
   <div class="container">
     <div class="card mt-5" >
       <div class="card-body">
@@ -24,6 +25,9 @@
         <br>
         <button type="button" class="btn btn-success col-md-12" (click)="SignIn()"> Se connecter</button>
 
+        <br>
+        <br>
+        <p class="text-center">Vous etes un apporteur d'affaire  ? <a routerLink="/auth/register">Incrivez vous</a> </p>
       </div>
     </div>
   </div>

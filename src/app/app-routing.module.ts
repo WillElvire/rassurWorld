@@ -1,3 +1,4 @@
+import { RegisterComponent } from './pages/auth/register/register.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -16,13 +17,16 @@ const routes: Routes = [
     loadComponent : ()=> import('./pages/auth/login/login.component').then((c)=>c.LoginComponent)
   },
   {
+    path : 'auth/register',
+    loadComponent : ()=> import('./pages/auth/register/register.component').then((c)=>c.RegisterComponent)
+  },
+  {
     path : 'payment/:id',
     loadComponent : ()=> import('./pages/landings/payment/payment.component').then((c)=>c.PaymentComponent)
   },
   {
     path: 'assurance',
-    loadChildren: () =>
-      import('./modules/assur.module').then((m) => m.AssurModule),
+    loadChildren: () => import('./modules/assur.module').then((m) => m.AssurModule),
   },
   {
     path : '',

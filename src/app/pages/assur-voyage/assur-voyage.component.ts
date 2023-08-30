@@ -1,4 +1,3 @@
-import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { tripInsuranceDto } from './../../core/interfaces/dto';
 import { Component, inject } from '@angular/core';
 import { AppFacade } from 'src/app/core/facades/app.facade';
@@ -24,7 +23,7 @@ export class AssurVoyageComponent {
   country   : any ;
   formData  : FormData = new FormData()
 
-
+  parrainCode ?: string;
   insurance : {id ?: string , libelle ?: string} = {};
   tripBookedDetail : {detail ?: string,user ?: string} = {};
 
@@ -34,7 +33,8 @@ export class AssurVoyageComponent {
     firstname : "",
     lastname  : "",
     email     : "",
-    phone     : ""
+    phone     : "",
+    useWhatsapp : false
   };
 
   utils     = inject(UtilsFacades);
@@ -83,6 +83,7 @@ export class AssurVoyageComponent {
 
     this.enable = true;
 
+
     return this.callToServerStep1();
   }
 
@@ -91,6 +92,7 @@ export class AssurVoyageComponent {
       next: (response: any) => {
         this.user   = response.body.returnObject;
         this.enable = false;
+        console.log(response);
         this.enableNewStep(2);
       },
       error: (err: any) => {
@@ -142,7 +144,7 @@ export class AssurVoyageComponent {
       );
     }
     this.enable = true;
-    const fullTripDto = { user : this.user?.id,offer : this.insurance?.id,trip : {...this.tripDto}}
+    const fullTripDto = { user : this.user?.id,offer : this.insurance?.id,trip : {...this.tripDto} ,  parrainCode : this.parrainCode }
     return this.callToServerStep2(fullTripDto);
   }
 
@@ -155,6 +157,7 @@ export class AssurVoyageComponent {
 
       },(error)=>{
         console.log(error);
+        this.utils.errorToastMessage(!!error.error.message ? error.error.message : error.message);
         this.enable = false;
       })
   }

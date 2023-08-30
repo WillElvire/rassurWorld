@@ -30,8 +30,18 @@
             </div>
           </div>
 
+          <div class="alert alert-info mt-4">
+           <span class="fa fa-info"></span>
+           Si vous utilisez whatsapp toute les notifications vous serons envoyé par ce canal
+          </div>
+
           <div class="row">
-            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> suivant <i
+            <label class="ml-3">Voulez vous utiliser whatsapp ?</label>
+            <input type="checkbox" class="ml-3" [(ngModel)]="userForm.useWhatsapp">
+          </div>
+
+          <div class="row">
+            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> Suivant <i
                 class="fa fa-arrow-right"></i></button>
           </div>
           <br>
@@ -53,7 +63,7 @@
             </div>
             <div class="col-md-6">
               <label>Périodicité (*)</label>
-              <select  class="form-control" [(ngModel)]="autoInsurance.periodicity">
+              <select class="form-control" [(ngModel)]="autoInsurance.periodicity">
                 <option></option>
                 <option value="{{month}}" *ngFor="let month of months" value="{{month+ 1}}">{{month+ 1}} mois</option>
               </select>
@@ -70,6 +80,12 @@
             </div>
           </div>
           <div class="row">
+            <div class="col-md-12">
+              <label>Code de l'apporteur d'affaire</label>
+              <input type="text" class="form-control" [(ngModel)]="parrainCode" placeholder="Code apporteur">
+            </div>
+          </div>
+          <div class="row">
             <button class="btn btn-light  col-md-12" (click)="startSecondStep()"> suivant <i
                 class="fa fa-arrow-right"></i></button>
           </div>
@@ -83,7 +99,7 @@
 
 
         <!------------------- STEP 3  -------------------->
-        <div class="container"  *ngIf="step3">
+        <div class="container" *ngIf="step3">
           <br>
           <button class="btn btn-success" (click)="enableNewStep(2)">Retour</button>
           <h5 class="text-center">3/4</h5>

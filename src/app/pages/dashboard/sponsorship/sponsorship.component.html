@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="alert alert-danger" *ngIf="user?.isCollaborateur && !user?.isActive">
+    <i class="fa fa-warning"></i> Votre compte est restreint
+  </div>
+
+  <div class="card text-center">
+    <div class="card-body">
+      <h1>{{user?.code}}<button class="btn btn-outline-success ml-2" (click)="copy()"><i class="fa fa-clipboard"
+            aria-hidden="true"></i></button></h1>
+      <p>Code de parrainage </p>
+    </div>
+  </div>
+
+
+  <h5 class="mt-5">Mes activités <span class="badge badge-success">{{sponsorship.length}}</span></h5>
+  <div class="btn-group">
+    <button class="btn btn-outline-success"><i class="fa fa-file-csv"></i></button>
+    <button class="btn btn-outline-primary"><i class="fa fa-file-pdf"></i></button>
+  </div>
+  <br>
+  <br>
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead" style="background-color: forestgreen !important;color :white !important">
+        <tr >
+          <th scope="col">Nom et Prénom</th>
+          <th scope="col">Offre</th>
+          <th scope="col">Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Commission</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sponsor of sponsorship | paginate: { itemsPerPage: 5, currentPage: p }">
+          <td> {{sponsor?.user?.firstname}} {{sponsor?.user?.lastname}}</td>
+          <td>
+            <span class="badge badge-success">{{sponsor?.offer?.libelle}}</span>
+          </td>
+          <td>
+            {{sponsor?.createdAt | date}}
+          </td>
+
+          <td>
+            <span *ngIf="sponsor.isPayed && sponsor.isAccepted" class="badge badge-success">Payé</span>
+            <span *ngIf="sponsor.isAccepted &&  !sponsor.isPayed" class="badge badge-info">En attente de paiement</span>
+            <span *ngIf="!sponsor.isPayed && !sponsor.isAccepted" class="badge badge-danger">Non reglé</span>
+          </td>
+          <td>
+            {{0  | currency : 'FCFA'}}
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

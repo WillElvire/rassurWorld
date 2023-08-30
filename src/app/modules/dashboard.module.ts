@@ -8,11 +8,14 @@ import { TransactionComponent } from '../pages/dashboard/transaction/transaction
 import { OffreComponent } from '../pages/dashboard/offre/offre.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DetailComponent } from '../pages/dashboard/detail/detail.component';
+import { UtilisateurComponent } from '../pages/dashboard/utilisateur/utilisateur.component';
+import { SponsorshipComponent } from '../pages/dashboard/sponsorship/sponsorship.component';
+import { ApporteurComponent } from '../pages/dashboard/apporteur/apporteur.component';
 
 @NgModule({
   imports : [DashboardRoutingModule,defaultModule,NgxPaginationModule],
   exports : [],
-  declarations : [IndexComponent,AssuranceComponent,RoleComponent,TransactionComponent,OffreComponent,DetailComponent]
+  declarations : [IndexComponent,AssuranceComponent,RoleComponent,TransactionComponent,OffreComponent,DetailComponent, UtilisateurComponent, SponsorshipComponent, ApporteurComponent]
 })
 export class DashboardModule {
 

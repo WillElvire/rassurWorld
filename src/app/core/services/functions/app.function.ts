@@ -41,6 +41,11 @@ export class AppFunctionService {
     return this.api.post({endpoint : "/api/register",data}).pipe(shareReplay(1));
   }
 
+  businessRegistration(data : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/business/registration",data}).pipe(shareReplay(1));
+  }
+
   firstStep(data : any , insuranceController : insuranceType = "voyage") {
     this.api.setApiType("rest");
     return this.api.post({endpoint : `/api/assur/${insuranceController}/first-user-step`,data}).pipe(shareReplay(1));
@@ -59,6 +64,11 @@ export class AppFunctionService {
   getInsurance(assurId : any) {
     this.api.setApiType("rest");
     return this.api.get("/api/assur/get/"+assurId).pipe(shareReplay(1));
+  }
+
+  validateCotation(assurId : string) {
+    this.api.setApiType("rest");
+    return this.api.get("/api/assur/validate/"+assurId).pipe(shareReplay(1));
   }
 
   uploadPassport(data : any, insuranceController : insuranceType = "voyage"){
@@ -90,6 +100,13 @@ export class AppFunctionService {
     this.api.setApiType("rest");
     return this.api.get("/api/admin/statistics").pipe(shareReplay(1));
   }
+
+
+  getBusinessAccount() {
+    this.api.setApiType("rest");
+    return this.api.get("/api/user/apporteur").pipe(shareReplay(1));
+  }
+
 
   updateTransaction(data : any) {
     this.api.setApiType("rest");
@@ -124,6 +141,29 @@ export class AppFunctionService {
   deleteOffer(id : string) {
     this.api.setApiType("rest");
     return this.api.delete("/api/offer/"+id).pipe(shareReplay(1));
+  }
+
+  fetchBusinessSponsorship(id : string) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/assur/sponsorship" , data : {parrainId : id}}).pipe(shareReplay(1));
+  }
+
+
+  fetchTeamAccounts(){
+    this.api.setApiType('rest');
+    return this.api.get('/api/user/team').pipe(shareReplay(1));
+  }
+
+
+  activeUserAccount(id : string , status : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/user/active", data : {userId : id, prevStatus : status} })
+  }
+
+
+  deleteTeamMember(id: string) {
+    this.api.setApiType("rest");
+    return this.api.delete("/api/user/team/"+id).pipe(shareReplay(1));
   }
 
 }
