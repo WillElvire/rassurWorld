@@ -8,7 +8,7 @@
       <div class="sidebar-logo">
         <a routerLink="/" >
           <img src="/assets/logo.svg" alt="logo">
-          <h1>Rassur World</h1>
+          <h1>RASSUR WORLD</h1>
         </a>
       </div>
       <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
@@ -20,20 +20,27 @@
 
         <ng-container >
           <div *ngIf="userRole.libelle == 'admin'">
-            <li nz-menu-item routerLink="/admin/assurance/pending" routerLinkActive="active" >
+            <li nz-menu-item routerLink="/admin/assurance/unpaid" routerLinkActive="active" >
               <span nz-icon nzType="schedule" nzTheme="outline"></span>
               <span>Demande d'assurance</span>
             </li>
 
-            <li nz-menu-item routerLink="/admin/assurance/payment" routerLinkActive="active">
+            <li nz-menu-item routerLink="/admin/assurance/active" routerLinkActive="active">
               <span nz-icon nzType="schedule" nzTheme="outline"></span>
               <span>Assurance en cours </span>
             </li>
 
-            <li nz-menu-item routerLink="/admin/assurance/done" routerLinkActive="active">
+            <li nz-menu-item routerLink="/admin/assurance/payed" routerLinkActive="active">
               <span nz-icon nzType="schedule" nzTheme="outline"></span>
               <span>Assurance traité</span>
             </li>
+
+            <li nz-menu-item routerLink="/admin/assurance/acepted" routerLinkActive="active">
+              <span nz-icon nzType="schedule" nzTheme="outline"></span>
+              <span>Assurance Confirmé</span>
+            </li>
+
+
             <li nz-menu-item routerLink="/admin/transaction" routerLinkActive="active">
               <span nz-icon nzType="pay-circle" nzTheme="outline"></span>
               <span>Transaction</span>

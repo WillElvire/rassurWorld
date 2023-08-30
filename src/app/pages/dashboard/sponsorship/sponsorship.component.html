@@ -41,9 +41,9 @@
           </td>
 
           <td>
-            <span *ngIf="sponsor.isPayed && sponsor.isAccepted" class="badge badge-success">Payé</span>
-            <span *ngIf="sponsor.isAccepted &&  !sponsor.isPayed" class="badge badge-info">En attente de paiement</span>
-            <span *ngIf="!sponsor.isPayed && !sponsor.isAccepted" class="badge badge-danger">Non reglé</span>
+            <span *ngIf="sponsor.isPayed && sponsor.isAcepted" class="badge badge-success">Payé</span>
+            <span *ngIf="sponsor.isAcepted &&  !sponsor.isPayed" class="badge badge-info">En attente de paiement</span>
+            <span *ngIf="!sponsor.isPayed && !sponsor.isAcepted" class="badge badge-danger">Non reglé</span>
           </td>
           <td>
             {{0  | currency : 'FCFA'}}

@@ -1,5 +1,10 @@
 <div class="container">
 
+  <h3>Liste des demandes d'assurance <b class="badge badge-success">{{insuranceRequest.length}}</b></h3>
+  <div class="btn-group d-flex">
+    <button class="btn btn-outline-success"><i class="fa fa-file-csv"></i></button>
+    <button class="btn btn-outline-primary"><i class="fa fa-file-pdf"></i></button>
+  </div>
   <div class="table-responsive mt-5">
     <table class="table">
       <thead class="thead" style="background-color: white !important;color :forestgreen !important">
@@ -24,12 +29,12 @@
 
           <td>
             <div class="btn-group">
-              <button class="btn btn-success" routerLink="/admin/detail/{{insurance.id}}">
+              <button class="btn btn-outline-success" routerLink="/admin/detail/{{insurance.id}}">
                 <span class="fa fa-eye"></span>
               </button>
-              <button class="btn btn-danger">
+              <!--<button class="btn btn-outline-danger">
                 <span class="fa fa-trash"></span>
-              </button>
+              </button>!-->
             </div>
           </td>
         </tr>

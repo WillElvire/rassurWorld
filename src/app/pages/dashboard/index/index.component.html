@@ -21,7 +21,7 @@
         <div class="card">
           <div class="card-body text-center">
             <h1 class="_text">{{stats?.approvedPayment}}</h1>
-            <p>Apporteur</p>
+            <p>Souscriptions confirmé</p>
           </div>
          </div>
       </div>
@@ -42,7 +42,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let insurance of insuranceRequest">
+        <tr *ngFor="let insurance of insuranceRequest.slice(0,3)">
           <th scope="row">{{insurance.id}}</th>
           <td><b class="badge badge-success">{{insurance.offer.libelle}}</b></td>
           <td>{{insurance.user.firstname}}  {{insurance.user.lastname}}</td>
@@ -63,7 +63,7 @@
     </table>
   </div>
 
-  <a routerLink="/admin/assurance/auto">Voir plus </a>
+  <a routerLink="/admin/assurance/active">Voir plus </a>
 
 </div>
 

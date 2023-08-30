@@ -4,79 +4,90 @@
   </a>
   <app-loader *ngIf="enable"></app-loader>
 
-  <div class="grid" *ngIf="!enable && !!insurance && isAccepted;else elseBlock" style="margin-top: 5%;">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">
-            <h6>Recapitulatif de votre demande</h6>
-          </div>
-          <div class="card-body">
-            <p>Date de demande : {{insurance?.createdAt | date}}</p>
-            <p>Status : <span *ngIf="insurance.isPayed" style="color: green;">Payé</span>
-              <span *ngIf="!insurance.isPayed" style="color:red">en attente de paiement</span>
-            </p>
-            <p>Demandeur : {{insurance?.user?.firstname}} {{insurance?.user?.lastname}}</p>
-            <p>email : {{insurance?.user?.email}}</p>
-            <p>Téléphone : {{insurance?.user?.phone}}</p>
-            <p *ngIf="!!insurance?.offer?.libelle">Type d'assurance : {{insurance?.offer?.libelle | titlecase}}</p>
-            <p *ngIf="!!insurance?.detail?.country">Pays : {{insurance?.detail?.country}}</p>
-            <p *ngIf="!!insurance?.detail?.dateOfLeft">Date de depart : {{insurance?.detail?.dateOfLeft | date}}</p>
-            <p *ngIf="!!insurance?.detail?.dateOfBack">Date de retour : {{insurance?.detail?.dateOfBack | date}}</p>
-            <p *ngIf="!!insurance?.detail?.destination">Destination : {{insurance?.detail?.country}} </p>
-            <p *ngIf="!!insurance?.detail?.passportDayOfCreation">Date d'optention de passeport : {{insurance?.detail?.passportDayOfCreation | date}} </p>
-            <p *ngIf="!!insurance?.detail?.passportNub">Numero du passport : {{insurance?.detail?.passportNub}} </p>
-            <p *ngIf="!!insurance?.detail?.passportValidity">Periode de validité : {{insurance?.detail?.passportValidity}} </p>
-            <p *ngIf="!!insurance?.detail?.periodicity">Péridicité : {{insurance?.detail?.periodicity}} </p>
-            <p *ngIf="!!insurance?.detail?.price">Prix du biens : {{insurance?.detail?.price}} </p>
-            <p *ngIf="!!insurance?.detail?.typeTiers">Type tiers : {{insurance?.detail?.typeTiers}} </p>
-            <p *ngIf="!!insurance?.detail?.valeur_a_neuf">Valeur a neuf : {{insurance?.detail?.valeur_a_neuf}} </p>
-            <p *ngIf="!!insurance?.detail?.date_a_effet">Date a effet : {{insurance?.detail?.date_a_effet | date}} </p>
+  <div class="wrapper" *ngIf="!enable && !!insurance && isAccepted;else elseBlock" style="margin-top: 1%;">
+    <h3 class="text-center" style="color :forestgreen">R'ASSUR Pay </h3>
+    <div class="alert alert-info">
+      <i class="fa fa-warning"></i> Ne divulgez aucune informations contenu sur ce portail a votre entourage
+    </div>
+    <hr>
+    <div class="grid">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <h6>Recapitulatif de votre demande</h6>
+            </div>
+            <div class="card-body">
+              <p>Date de demande : {{insurance?.createdAt | date}}</p>
+              <p>Status : <span *ngIf="insurance.isPayed" style="color: green;">Payé</span>
+                <span *ngIf="!insurance.isPayed" style="color:red">en attente de paiement</span>
+              </p>
+              <p>Demandeur : {{insurance?.user?.firstname}} {{insurance?.user?.lastname}}</p>
+              <p>email : {{insurance?.user?.email}}</p>
+              <p>Téléphone : {{insurance?.user?.phone}}</p>
+              <p *ngIf="!!insurance?.offer?.libelle">Type d'assurance : {{insurance?.offer?.libelle | titlecase}}</p>
+              <p *ngIf="!!insurance?.detail?.country">Pays : {{insurance?.detail?.country}}</p>
+              <p *ngIf="!!insurance?.detail?.dateOfLeft">Date de depart : {{insurance?.detail?.dateOfLeft | date}}</p>
+              <p *ngIf="!!insurance?.detail?.dateOfBack">Date de retour : {{insurance?.detail?.dateOfBack | date}}</p>
+              <p *ngIf="!!insurance?.detail?.destination">Destination : {{insurance?.detail?.country}} </p>
+              <p *ngIf="!!insurance?.detail?.passportDayOfCreation">Date d'optention de passeport :
+                {{insurance?.detail?.passportDayOfCreation | date}} </p>
+              <p *ngIf="!!insurance?.detail?.passportNub">Numero du passport : {{insurance?.detail?.passportNub}} </p>
+              <p *ngIf="!!insurance?.detail?.passportValidity">Periode de validité :
+                {{insurance?.detail?.passportValidity}} </p>
+              <p *ngIf="!!insurance?.detail?.periodicity">Péridicité : {{insurance?.detail?.periodicity}} </p>
+              <p *ngIf="!!insurance?.detail?.price">Prix du biens : {{insurance?.detail?.price}} </p>
+              <p *ngIf="!!insurance?.detail?.typeTiers">Type tiers : {{insurance?.detail?.typeTiers}} </p>
+              <p *ngIf="!!insurance?.detail?.valeur_a_neuf">Valeur a neuf : {{insurance?.detail?.valeur_a_neuf}} </p>
+              <p *ngIf="!!insurance?.detail?.date_a_effet">Date a effet : {{insurance?.detail?.date_a_effet | date}}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <br>
-        <br>
-        <h4>Total : {{insurance?.transaction?.total ? parseInt(insurance?.transaction?.total) : 0  }} FCFA </h4>
-        <div class="alert alert-info">
-          Cher client vous etes prier de bien vouloir verifier les informations relatifs a votre demande avant de proceder au paiement
-        </div>
+        <div class="col-md-4">
+          <br>
+          <br>
+          <h4>Total : {{insurance?.transaction?.total ? parseInt(insurance?.transaction?.total)   : 0 }} FCFA </h4>
+          <div class="alert alert-info">
+            Cher client vous etes prier de bien vouloir verifier les informations relatifs a votre demande avant de
+            proceder au paiement
+          </div>
 
-        <button class="btn btn-success col-md-12" [disabled]="!insurance">Payer</button>
+          <button class="btn btn-success col-md-12" [disabled]="!insurance">Payer <i class="fa fa-credit-card" aria-hidden="true"></i></button>
+        </div>
       </div>
     </div>
   </div>
 
 
-
   <div class="text-center" *ngIf="!enable && !insurance">
     <nz-result nzStatus="error" nzTitle="Votre bon de paiement est invalide"
-    nzSubTitle="Cher client le bon de paiement est invalide nous vous prions de contacter les administrateurs">
-    <div nz-result-extra>
-      <button nz-button >Retour</button>
-    </div>
-  </nz-result>
+      nzSubTitle="Cher client le bon de paiement est invalide nous vous prions de contacter les administrateurs">
+      <div nz-result-extra>
+        <button nz-button>Retour</button>
+      </div>
+    </nz-result>
   </div>
 </div>
 
 
 <ng-template #elseBlock>
   <div class="container">
-   <div class="card mt-4" *ngIf="!!insurance?.transaction?.total && !!insurance?.offer?.libelle">
-    <div class="card-body text-center">
-      <h1>
-        <span class="fa fa-info"></span>
-      </h1>
-      <h3 >Demande de cotation : {{insurance?.offer?.libelle | titlecase}}</h3>
-      <p>
-        Le prix de la prestation de service s'eleve a : {{insurance?.transaction?.total ? (insurance?.transaction?.total | currency : 'XOF')  : 0  }}
-      </p>
-      <div class="btn btn-group">
-        <a class="btn btn-success" (click)="updateCotation()"> Je valide <span class="fa fa-check"></span></a>
-        <a class="btn btn-outline-dark"> J'annule <span class="fa fa-close"></span> </a>
+    <div class="card mt-4" *ngIf="!!insurance?.transaction?.total">
+      <div class="card-body text-center">
+        <h1>
+          <span class="fa fa-info"></span>
+        </h1>
+        <h3>Demande de cotation : {{insurance?.offer?.libelle | titlecase}}</h3>
+        <p>
+          Le prix de la prestation de service s'eleve a : {{insurance?.transaction?.total ?
+          (insurance?.transaction?.total | currency : 'XOF') : 0 }}
+        </p>
+        <div class="btn btn-group">
+          <a class="btn btn-success" (click)="updateCotation()"> Je valide <span class="fa fa-check"></span></a>
+          <a class="btn btn-outline-dark"> J'annule <span class="fa fa-close"></span> </a>
+        </div>
       </div>
     </div>
-   </div>
   </div>
 </ng-template>

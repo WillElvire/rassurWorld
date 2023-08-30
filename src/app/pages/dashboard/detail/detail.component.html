@@ -56,8 +56,8 @@
             <p >Souscription  : <b class="badge badge-{{insuranceDto?.isPayed == true ? 'success' : 'danger'}}">
               {{insuranceDto?.isPayed == true ? 'Payé' : 'Impayé'}}
             </b></p>
-            <p >Confirmation  : <b class="badge badge-{{insuranceDto?.isAcepted== true ? 'success' : 'danger'}}">
-              {{insuranceDto?.isAcepted == true ? 'Confirmé' : 'En attente ...'}}
+            <p >Cotation  : <b class="badge badge-{{insuranceDto?.isAcepted== true ? 'success' : 'danger'}}">
+              {{insuranceDto?.isAcepted == true ? 'Accepté' : 'En attente ...'}}
             </b></p>
             <hr>
             <a *ngIf="!!insuranceDto" class="btn btn-outline-success" target="_blank" href="https://api.myrassurance.com/public/uploads/{{!!insuranceDto?.detail?.passportPhoto ?insuranceDto?.detail?.passportPhoto : insuranceDto?.detail?.cartePhoto}}">
