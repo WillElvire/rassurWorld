@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="btn-group">
+    <button class="btn btn-success" (click)="isVisible = true">Rétrait <i class="fa fa-wallet"></i></button>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h1 class="_text">0 XOF</h1>
+          <span>Balance</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h1 class="_text">0 </h1>
+          <span>Transaction en cours</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h1 class="_text">0 XOF</h1>
+          <span>Total des rétraits</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <app-withdrall></app-withdrall>
+  </ng-container>
+</nz-modal>

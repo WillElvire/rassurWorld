@@ -11,11 +11,12 @@ import { DetailComponent } from '../pages/dashboard/detail/detail.component';
 import { UtilisateurComponent } from '../pages/dashboard/utilisateur/utilisateur.component';
 import { SponsorshipComponent } from '../pages/dashboard/sponsorship/sponsorship.component';
 import { ApporteurComponent } from '../pages/dashboard/apporteur/apporteur.component';
+import { CommissionComponent } from '../pages/dashboard/commission/commission.component';
 
 @NgModule({
   imports : [DashboardRoutingModule,defaultModule,NgxPaginationModule],
   exports : [],
-  declarations : [IndexComponent,AssuranceComponent,RoleComponent,TransactionComponent,OffreComponent,DetailComponent, UtilisateurComponent, SponsorshipComponent, ApporteurComponent]
+  declarations : [IndexComponent,AssuranceComponent,RoleComponent,TransactionComponent,OffreComponent,DetailComponent, UtilisateurComponent, SponsorshipComponent, ApporteurComponent, CommissionComponent]
 })
 export class DashboardModule {
 

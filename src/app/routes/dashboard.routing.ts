@@ -11,6 +11,7 @@ import { DetailComponent } from '../pages/dashboard/detail/detail.component';
 import { UtilisateurComponent } from '../pages/dashboard/utilisateur/utilisateur.component';
 import { SponsorshipComponent } from '../pages/dashboard/sponsorship/sponsorship.component';
 import { ApporteurComponent } from '../pages/dashboard/apporteur/apporteur.component';
+import { CommissionComponent } from '../pages/dashboard/commission/commission.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path: 'sponsorship',
         component: SponsorshipComponent,
+      },
+      {
+        path: 'commission',
+        component: CommissionComponent,
       },
       {
         path: '',

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppFacade } from 'src/app/core/facades/app.facade';
+import { StatesFacades } from 'src/app/core/facades/state.facade';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 import { UserDto } from 'src/app/core/interfaces/dto';
 import { UserQuery } from 'src/app/store/user$/user.query';
@@ -17,6 +18,7 @@ export class IndexComponent {
   private readonly router      = inject(Router);
   private readonly utilsFacade = inject(UtilsFacades);
   private readonly userQuery   = inject(UserQuery);
+  private readonly state       = inject(StatesFacades);
 
   insuranceRequest : any[] = [];
   stats :any;
@@ -36,7 +38,8 @@ export class IndexComponent {
     },(error)=> {
       if(error.status === 401) {
         this.utilsFacade.errorToastMessage("Veuillez vous reconnecter");
-        this.router.navigate(["/auth/login"])
+        this.state.logout();
+        location.href = '/auth/login';
       }
     })
   }
@@ -51,7 +54,8 @@ export class IndexComponent {
       error : (err)=>{
         if(err.status === 401) {
           this.utilsFacade.errorToastMessage("Veuillez vous reconnecter");
-          this.router.navigate(["/auth/login"])
+          this.state.logout();
+          location.href = '/auth/login';
         }
       }
     })
