@@ -3,7 +3,23 @@
   button{
     background-color: var(--button-color);
   }
+
+
 }
+
+.card {
+  .addButton{
+    background-color: white !important;
+    border-radius: 1px solid var(--button-color) !important;
+    border-radius: 20px !important;
+    width: 90% !important;
+    margin-left: 5% !important;
+    &:hover{
+      color: var(--button-color);
+    }
+  }
+}
+
 input {
   height: 6vh !important;
   border-radius: 12px;

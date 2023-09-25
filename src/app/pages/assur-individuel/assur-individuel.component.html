@@ -56,33 +56,44 @@
 
         <!------------------- STEP 2  -------------------->
 
-        <div class="grid">
+        <div class="grid" *ngIf="step2">
           <h5 class="text-center">2/4</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <label>Code de parrainage </label>
+              <input class="form-control" placeholder="Code parrainage" [(ngModel)]="parrainCode">
+            </div>
+
+          </div>
           <div class="row">
             <div class="col-md-6">
               <label>Description de l'activité princiaple (*)</label>
-              <input class="form-control" placeholder="l'activité princiaple">
+              <input class="form-control" placeholder="l'activité princiaple"
+                [(ngModel)]="individuel.principal_activity">
             </div>
             <div class="col-md-6">
               <label>Outils dangereux utilisé (*)</label>
-              <input class="form-control" placeholder="Outils dangereux utilisé ">
+              <input class="form-control" placeholder="Outils dangereux utilisé"
+                [(ngModel)]="individuel.warn_tool_used">
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <label>Activités accessoires</label>
-              <input class="form-control" placeholder="Activités accessoires" type="text">
+              <input class="form-control" placeholder="Activités accessoires" type="text"
+                [(ngModel)]="individuel.other_activity">
             </div>
             <div class="col-md-6">
               <label>Activités sportives</label>
-              <input class="form-control" placeholder="Activités sportives" type="text">
+              <input class="form-control" placeholder="Activités sportives" type="text"
+                [(ngModel)]="individuel.sport_activity">
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <label>Grande circulation (*)</label>
-              <select class="form-control" type="text">
+              <select class="form-control" type="text" [(ngModel)]="individuel.circulation">
                 <option></option>
                 <option>Oui</option>
                 <option>Non</option>
@@ -91,7 +102,7 @@
 
             <div class="col-md-6">
               <label>Etes vous deja assuré (*)</label>
-              <select class="form-control" type="text">
+              <select class="form-control" type="text" [(ngModel)]="individuel.isAssured">
                 <option></option>
                 <option>Oui</option>
                 <option>Non</option>
@@ -102,16 +113,16 @@
           <div class="row">
             <div class="col-md-6">
               <label>Nom de la société</label>
-              <input class="form-control" placeholder="Nom de la société" type="text">
+              <input class="form-control" placeholder="Nom de la société" type="text" [(ngModel)]="individuel.society">
             </div>
             <div class="col-md-6">
               <label>Capitaux garantis</label>
-              <input class="form-control" placeholder="Capitaux garantis" type="text">
+              <input class="form-control" placeholder="Capitaux garantis" type="text" [(ngModel)]="individuel.salary">
             </div>
           </div>
 
           <div class="row">
-            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> Suivant <i
+            <button class="btn btn-light  col-md-12" (click)="enableNewStep(3)"> Suivant <i
                 class="fa fa-arrow-right"></i></button>
           </div>
           <br>
@@ -123,22 +134,22 @@
 
 
         <!------------------- STEP 3  -------------------->
-        <div class="grid">
+        <div class="grid" *ngIf="step3">
           <h5 class="text-center">3/4</h5>
           <div class="row">
             <div class="col-md-6">
               <label>Taille (*)</label>
-              <input class="form-control" placeholder="1.60">
+              <input class="form-control" placeholder="1.60" [(ngModel)]="individuel.taille">
             </div>
             <div class="col-md-6">
               <label>Poids (*)</label>
-              <input class="form-control" placeholder="80" type="number">
+              <input class="form-control" placeholder="80" type="number" [(ngModel)]="individuel.poids">
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <label>Usage (*)</label>
-              <select class="form-control" type="text">
+              <select class="form-control" type="text" [(ngModel)]="individuel.usage">
                 <option></option>
                 <option>Gaucher</option>
                 <option>Droitier</option>
@@ -146,7 +157,7 @@
             </div>
             <div class="col-md-6">
               <label>Surdité (*)</label>
-              <select class="form-control" type="text">
+              <select class="form-control" type="text" [(ngModel)]="individuel.surdite">
                 <option></option>
                 <option>Partielle</option>
                 <option>Total</option>
@@ -157,7 +168,7 @@
           <div class="row">
             <div class="col-md-6">
               <label>Vision (*)</label>
-              <select class="form-control" type="text">
+              <select class="form-control" type="text" [(ngModel)]="individuel.vision">
                 <option></option>
                 <option>Tres bonne</option>
                 <option>Moyenne</option>
@@ -166,25 +177,27 @@
 
             <div class="col-md-6">
               <label>Pathologie (*)</label>
-              <input class="form-control" placeholder="Pathologie" type="text">
+              <input class="form-control" placeholder="Pathologie" type="text" [(ngModel)]="individuel.pathologie">
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <label>Nature de l'infirmité</label>
-              <input class="form-control" placeholder="Nature de l'infirmité" type="text">
+              <input class="form-control" placeholder="Nature de l'infirmité" type="text"
+                [(ngModel)]="individuel.infirmite">
             </div>
             <div class="col-md-6">
               <label>Dégré de l'infirmité</label>
-              <input class="form-control" placeholder="Dégré de l'infirmité" type="text">
+              <input class="form-control" placeholder="Dégré de l'infirmité" type="text"
+                [(ngModel)]="individuel.degre_infirmite">
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <label>Maladie chronique (*)</label>
-              <select class="form-control" type="text">
+              <select class="form-control" type="text" [(ngModel)]="individuel.maladie_chronique">
                 <option></option>
                 <option>Maladie de la moelle épiniere</option>
                 <option>Cancer</option>
@@ -198,10 +211,83 @@
             </div>
             <div class="col-md-6">
               <label>Autre</label>
-              <input class="form-control" placeholder="Maladie chronique" type="text">
+              <input class="form-control" placeholder="Maladie chronique" type="text" [(ngModel)]="individuel.autre">
             </div>
           </div>
 
+          <div class="row">
+            <button class="btn btn-light  col-md-12" (click)="startSecondStep()"> Suivant <i
+                class="fa fa-arrow-right"></i></button>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+
+        <!------------------- END STEP 3  -------------------->
+
+
+        <!------------------- STEP 4  -------------------->
+        <div class="grid" *ngIf="step4">
+          <h5 class="text-center">4/4</h5>
+          <div class="card">
+            <div class="card-body text-center">
+              <h1>Avez vous des ayants droit ?</h1>
+              <button class="btn btn-success" (click)="preparationAyantDroit(true)"> Oui </button>
+              <button class="btn btn-danger" (click)="preparationAyantDroit(false)"> Non </button>
+            </div>
+          </div>
+          <div *ngIf="ayantdroit">
+            <div class="person-form" *ngFor="let form of beneficiaries;let index = index">
+              <div class="btn btn-group mt-3">
+                <button class="btn btn-outline-success" (click)="addBeneficiary()"><span
+                    class="fa fa-add"></span></button>
+                <button class="btn btn-outline-danger" (click)="removeBeneficiary(index)"><span
+                    class="fa fa-close"></span></button>
+              </div>
+              <br>
+              <br>
+              <div class="card">
+                <div class="card-header">Ayant droit {{index +1 }}</div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Nom & Prenom</label>
+                      <input type="text" placeholder="nom & prenom" [(ngModel)]="beneficiaries[index].firstname"
+                        class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                      <label>Date de naissance</label>
+                      <input type="date" class="form-control" [(ngModel)]="beneficiaries[index].dateOfBirth">
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Lieu de naissance</label>
+                      <input type="text" placeholder="Lieu de naissance" class="form-control"
+                        [(ngModel)]="beneficiaries[index].areaOfBirth">
+                    </div>
+                    <div class="col-md-6">
+                      <label>Fonction</label>
+                      <input type="text" placeholder="Fonction" class="form-control"
+                        [(ngModel)]="beneficiaries[index].job">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <button class="btn btn-outline-success  addButton " (click)="saveBeneficiary(index)"> Ajouter l'ayant
+                    droit {{index + 1}} <i class="fa fa-user"></i></button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> Suivant <i
                 class="fa fa-arrow-right"></i></button>
@@ -211,12 +297,8 @@
           <br>
           <br>
         </div>
-
-
-
+        <!------------------- END STEP 4  -------------------->
       </div>
-
     </div>
   </div>
-
 </div>
