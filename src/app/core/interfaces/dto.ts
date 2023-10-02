@@ -64,6 +64,20 @@ export interface firstStepUser {
   country?: string;
 }
 
+
+export interface insuranceDetail {
+  isPayed: boolean,
+  isActive: boolean,
+  parrainCode:string ,
+  user: boolean,
+  offer: string,
+  detail: string,
+  transaction: string,
+  date: string,
+  createdAt: string,
+  isAcepted: string,
+  id: string
+}
 export interface tripInsuranceDto {
   dateOfLeft?: string;
   dateOfBack?: string;

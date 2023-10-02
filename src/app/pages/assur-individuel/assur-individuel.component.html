@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="card">
     <div class="card-body">
-      <h4 class="text-center">{{insurance?.libelle | titlecase}}</h4>
+      <h4 class="text-center">{{ insurance?.libelle | titlecase }}</h4>
       <app-loader *ngIf="enable"></app-loader>
       <div class="container" *ngIf="!enable">
         <!------------------- STEP 1  -------------------->
@@ -10,49 +10,68 @@
           <div class="row">
             <div class="col-md-6">
               <label>Votre nom (*)</label>
-              <input class="form-control" placeholder="renseigner votre nom" [(ngModel)]="userForm.firstname">
+              <input
+                class="form-control"
+                placeholder="renseigner votre nom"
+                [(ngModel)]="userForm.firstname"
+              />
             </div>
             <div class="col-md-6">
               <label>Votre prenom (*)</label>
-              <input class="form-control" placeholder="renseigner votre prenom" [(ngModel)]="userForm.lastname">
+              <input
+                class="form-control"
+                placeholder="renseigner votre prenom"
+                [(ngModel)]="userForm.lastname"
+              />
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <label>email (*)</label>
-              <input class="form-control" placeholder="renseigner votre email" type="email"
-                [(ngModel)]="userForm.email">
+              <input
+                class="form-control"
+                placeholder="renseigner votre email"
+                type="email"
+                [(ngModel)]="userForm.email"
+              />
             </div>
             <div class="col-md-6">
               <label>Téléphone (*)</label>
-              <input class="form-control" placeholder="renseigner votre numero de téléphone (Ex : +2250000000000)"
-                type="tel" [(ngModel)]="userForm.phone">
+              <input
+                class="form-control"
+                placeholder="renseigner votre numero de téléphone (Ex : +2250000000000)"
+                type="tel"
+                [(ngModel)]="userForm.phone"
+              />
             </div>
           </div>
 
           <div class="alert alert-info mt-4">
             <span class="fa fa-info"></span>
-            Si vous utilisez whatsapp toute les notifications vous serons envoyé par ce canal
+            Si vous utilisez whatsapp toute les notifications vous serons envoyé
+            par ce canal
           </div>
 
           <div class="row">
             <label class="ml-3">Voulez vous utiliser whatsapp ?</label>
-            <input type="checkbox" class="ml-3" [(ngModel)]="userForm.useWhatsapp">
+            <input
+              type="checkbox"
+              class="ml-3"
+              [(ngModel)]="userForm.useWhatsapp"
+            />
           </div>
 
           <div class="row">
-            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> Suivant <i
-                class="fa fa-arrow-right"></i></button>
+            <button class="btn btn-light col-md-12" (click)="startFirstStep()">
+              Suivant <i class="fa fa-arrow-right"></i>
+            </button>
           </div>
-          <br>
-          <br>
-          <br>
-          <br>
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
         <!------------------- END STEP 1  -------------------->
-
-
-
 
         <!------------------- STEP 2  -------------------->
 
@@ -61,39 +80,60 @@
           <div class="row">
             <div class="col-md-12">
               <label>Code de parrainage </label>
-              <input class="form-control" placeholder="Code parrainage" [(ngModel)]="parrainCode">
+              <input
+                class="form-control"
+                placeholder="Code parrainage"
+                [(ngModel)]="parrainCode"
+              />
             </div>
-
           </div>
           <div class="row">
             <div class="col-md-6">
               <label>Description de l'activité princiaple (*)</label>
-              <input class="form-control" placeholder="l'activité princiaple"
-                [(ngModel)]="individuel.principal_activity">
+              <input
+                class="form-control"
+                placeholder="l'activité princiaple"
+                [(ngModel)]="individuel.principal_activity"
+              />
             </div>
             <div class="col-md-6">
               <label>Outils dangereux utilisé (*)</label>
-              <input class="form-control" placeholder="Outils dangereux utilisé"
-                [(ngModel)]="individuel.warn_tool_used">
+              <input
+                class="form-control"
+                placeholder="Outils dangereux utilisé"
+                [(ngModel)]="individuel.warn_tool_used"
+              />
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <label>Activités accessoires</label>
-              <input class="form-control" placeholder="Activités accessoires" type="text"
-                [(ngModel)]="individuel.other_activity">
+              <input
+                class="form-control"
+                placeholder="Activités accessoires"
+                type="text"
+                [(ngModel)]="individuel.other_activity"
+              />
             </div>
             <div class="col-md-6">
               <label>Activités sportives</label>
-              <input class="form-control" placeholder="Activités sportives" type="text"
-                [(ngModel)]="individuel.sport_activity">
+              <input
+                class="form-control"
+                placeholder="Activités sportives"
+                type="text"
+                [(ngModel)]="individuel.sport_activity"
+              />
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <label>Grande circulation (*)</label>
-              <select class="form-control" type="text" [(ngModel)]="individuel.circulation">
+              <select
+                class="form-control"
+                type="text"
+                [(ngModel)]="individuel.circulation"
+              >
                 <option></option>
                 <option>Oui</option>
                 <option>Non</option>
@@ -102,7 +142,11 @@
 
             <div class="col-md-6">
               <label>Etes vous deja assuré (*)</label>
-              <select class="form-control" type="text" [(ngModel)]="individuel.isAssured">
+              <select
+                class="form-control"
+                type="text"
+                [(ngModel)]="individuel.isAssured"
+              >
                 <option></option>
                 <option>Oui</option>
                 <option>Non</option>
@@ -113,25 +157,35 @@
           <div class="row">
             <div class="col-md-6">
               <label>Nom de la société</label>
-              <input class="form-control" placeholder="Nom de la société" type="text" [(ngModel)]="individuel.society">
+              <input
+                class="form-control"
+                placeholder="Nom de la société"
+                type="text"
+                [(ngModel)]="individuel.society"
+              />
             </div>
             <div class="col-md-6">
               <label>Capitaux garantis</label>
-              <input class="form-control" placeholder="Capitaux garantis" type="text" [(ngModel)]="individuel.salary">
+              <input
+                class="form-control"
+                placeholder="Capitaux garantis"
+                type="text"
+                [(ngModel)]="individuel.salary"
+              />
             </div>
           </div>
 
           <div class="row">
-            <button class="btn btn-light  col-md-12" (click)="enableNewStep(3)"> Suivant <i
-                class="fa fa-arrow-right"></i></button>
+            <button class="btn btn-light col-md-12" (click)="enableNewStep(3)">
+              Suivant <i class="fa fa-arrow-right"></i>
+            </button>
           </div>
-          <br>
-          <br>
-          <br>
-          <br>
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
         <!------------------- END STEP 2  -------------------->
-
 
         <!------------------- STEP 3  -------------------->
         <div class="grid" *ngIf="step3">
@@ -139,17 +193,30 @@
           <div class="row">
             <div class="col-md-6">
               <label>Taille (*)</label>
-              <input class="form-control" placeholder="1.60" [(ngModel)]="individuel.taille">
+              <input
+                class="form-control"
+                placeholder="1.60"
+                [(ngModel)]="individuel.taille"
+              />
             </div>
             <div class="col-md-6">
               <label>Poids (*)</label>
-              <input class="form-control" placeholder="80" type="number" [(ngModel)]="individuel.poids">
+              <input
+                class="form-control"
+                placeholder="80"
+                type="number"
+                [(ngModel)]="individuel.poids"
+              />
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <label>Usage (*)</label>
-              <select class="form-control" type="text" [(ngModel)]="individuel.usage">
+              <select
+                class="form-control"
+                type="text"
+                [(ngModel)]="individuel.usage"
+              >
                 <option></option>
                 <option>Gaucher</option>
                 <option>Droitier</option>
@@ -157,7 +224,11 @@
             </div>
             <div class="col-md-6">
               <label>Surdité (*)</label>
-              <select class="form-control" type="text" [(ngModel)]="individuel.surdite">
+              <select
+                class="form-control"
+                type="text"
+                [(ngModel)]="individuel.surdite"
+              >
                 <option></option>
                 <option>Partielle</option>
                 <option>Total</option>
@@ -168,7 +239,11 @@
           <div class="row">
             <div class="col-md-6">
               <label>Vision (*)</label>
-              <select class="form-control" type="text" [(ngModel)]="individuel.vision">
+              <select
+                class="form-control"
+                type="text"
+                [(ngModel)]="individuel.vision"
+              >
                 <option></option>
                 <option>Tres bonne</option>
                 <option>Moyenne</option>
@@ -177,27 +252,44 @@
 
             <div class="col-md-6">
               <label>Pathologie (*)</label>
-              <input class="form-control" placeholder="Pathologie" type="text" [(ngModel)]="individuel.pathologie">
+              <input
+                class="form-control"
+                placeholder="Pathologie"
+                type="text"
+                [(ngModel)]="individuel.pathologie"
+              />
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <label>Nature de l'infirmité</label>
-              <input class="form-control" placeholder="Nature de l'infirmité" type="text"
-                [(ngModel)]="individuel.infirmite">
+              <input
+                class="form-control"
+                placeholder="Nature de l'infirmité"
+                type="text"
+                [(ngModel)]="individuel.infirmite"
+              />
             </div>
             <div class="col-md-6">
               <label>Dégré de l'infirmité</label>
-              <input class="form-control" placeholder="Dégré de l'infirmité" type="text"
-                [(ngModel)]="individuel.degre_infirmite">
+              <input
+                class="form-control"
+                placeholder="Dégré de l'infirmité"
+                type="text"
+                [(ngModel)]="individuel.degre_infirmite"
+              />
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <label>Maladie chronique (*)</label>
-              <select class="form-control" type="text" [(ngModel)]="individuel.maladie_chronique">
+              <select
+                class="form-control"
+                type="text"
+                [(ngModel)]="individuel.maladie_chronique"
+              >
                 <option></option>
                 <option>Maladie de la moelle épiniere</option>
                 <option>Cancer</option>
@@ -211,91 +303,153 @@
             </div>
             <div class="col-md-6">
               <label>Autre</label>
-              <input class="form-control" placeholder="Maladie chronique" type="text" [(ngModel)]="individuel.autre">
+              <input
+                class="form-control"
+                placeholder="Maladie chronique"
+                type="text"
+                [(ngModel)]="individuel.autre"
+              />
             </div>
           </div>
 
           <div class="row">
-            <button class="btn btn-light  col-md-12" (click)="startSecondStep()"> Suivant <i
-                class="fa fa-arrow-right"></i></button>
+            <button
+              class="btn btn-light mt-3 col-md-12"
+              (click)="enableNewStep(2)"
+            >
+              <i class="fa fa-arrow-left"></i> Retour
+            </button>
+            <button class="btn btn-light col-md-12" (click)="startSecondStep()">
+              Suivant <i class="fa fa-arrow-right"></i>
+            </button>
+
           </div>
-          <br>
-          <br>
-          <br>
-          <br>
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
 
         <!------------------- END STEP 3  -------------------->
 
-
         <!------------------- STEP 4  -------------------->
         <div class="grid" *ngIf="step4">
           <h5 class="text-center">4/4</h5>
-          <div class="card">
+          <div class="card" *ngIf="!ayantdroit">
             <div class="card-body text-center">
               <h1>Avez vous des ayants droit ?</h1>
-              <button class="btn btn-success" (click)="preparationAyantDroit(true)"> Oui </button>
-              <button class="btn btn-danger" (click)="preparationAyantDroit(false)"> Non </button>
+              <button
+                class="btn btn-success"
+                (click)="preparationAyantDroit(true)"
+              >
+                Oui
+              </button>
+              <button
+                class="btn btn-danger"
+                (click)="preparationAyantDroit(false)"
+              >
+                Non
+              </button>
             </div>
           </div>
           <div *ngIf="ayantdroit">
-            <div class="person-form" *ngFor="let form of beneficiaries;let index = index">
+            <div
+              class="person-form"
+              *ngFor="let form of beneficiaries; let index = index"
+            >
               <div class="btn btn-group mt-3">
-                <button class="btn btn-outline-success" (click)="addBeneficiary()"><span
-                    class="fa fa-add"></span></button>
-                <button class="btn btn-outline-danger" (click)="removeBeneficiary(index)"><span
-                    class="fa fa-close"></span></button>
+                <button
+                  class="btn btn-outline-success"
+                  (click)="addBeneficiary()"
+                >
+                  <span class="fa fa-add"></span>
+                </button>
+                <button
+                  class="btn btn-outline-danger"
+                  (click)="removeBeneficiary(index)"
+                >
+                  <span class="fa fa-close"></span>
+                </button>
               </div>
-              <br>
-              <br>
+              <br />
+              <br />
               <div class="card">
-                <div class="card-header">Ayant droit {{index +1 }}</div>
+                <div class="card-header">Ayant droit {{ index + 1 }}</div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
                       <label>Nom & Prenom</label>
-                      <input type="text" placeholder="nom & prenom" [(ngModel)]="beneficiaries[index].firstname"
-                        class="form-control">
+                      <input
+                        type="text"
+                        placeholder="nom & prenom"
+                        [(ngModel)]="beneficiaries[index].firstname"
+                        class="form-control"
+                      />
                     </div>
                     <div class="col-md-6">
                       <label>Date de naissance</label>
-                      <input type="date" class="form-control" [(ngModel)]="beneficiaries[index].dateOfBirth">
+                      <input
+                        type="date"
+                        class="form-control"
+                        [(ngModel)]="beneficiaries[index].dateOfBirth"
+                      />
                     </div>
-
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <label>Lieu de naissance</label>
-                      <input type="text" placeholder="Lieu de naissance" class="form-control"
-                        [(ngModel)]="beneficiaries[index].areaOfBirth">
+                      <input
+                        type="text"
+                        placeholder="Lieu de naissance"
+                        class="form-control"
+                        [(ngModel)]="beneficiaries[index].areaOfBirth"
+                      />
                     </div>
                     <div class="col-md-6">
                       <label>Fonction</label>
-                      <input type="text" placeholder="Fonction" class="form-control"
-                        [(ngModel)]="beneficiaries[index].job">
+                      <input
+                        type="text"
+                        placeholder="Fonction"
+                        class="form-control"
+                        [(ngModel)]="beneficiaries[index].job"
+                      />
                     </div>
                   </div>
                 </div>
 
                 <div class="row">
-                  <button class="btn btn-outline-success  addButton " (click)="saveBeneficiary(index)"> Ajouter l'ayant
-                    droit {{index + 1}} <i class="fa fa-user"></i></button>
+                  <button
+                    class="btn btn-outline-success addButton"
+                    (click)="saveBeneficiary(index)"
+                  >
+                    Ajouter l'ayant droit {{ index + 1 }}
+                    <i class="fa fa-user"></i>
+                  </button>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
+                <br />
+                <br />
+                <br />
+                <br />
               </div>
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-light  col-md-12" (click)="startFirstStep()"> Suivant <i
-                class="fa fa-arrow-right"></i></button>
+            <button class="btn btn-light col-md-12" (click)="startFirstStep()">
+              Valider <i class="fa fa-check"></i>
+            </button>
+
+            <button
+              class="btn btn-light mt-3 col-md-12"
+              *ngIf="ayantdroit"
+              (click)="ayantdroit = false"
+            >
+              <i class="fa fa-arrow-left"></i> Retour
+            </button>
           </div>
-          <br>
-          <br>
-          <br>
-          <br>
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
         <!------------------- END STEP 4  -------------------->
       </div>

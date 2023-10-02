@@ -41,6 +41,25 @@
               <p *ngIf="!!insurance?.detail?.valeur_a_neuf">Valeur a neuf : {{insurance?.detail?.valeur_a_neuf}} </p>
               <p *ngIf="!!insurance?.detail?.date_a_effet">Date a effet : {{insurance?.detail?.date_a_effet | date}}
               </p>
+              <p *ngIf="!!insurance?.detail?.principal_activity">Activité principale : {{insurance?.detail?.principal_activity}} </p>
+              <p *ngIf="!!insurance?.detail?.warn_tool_used">Outils dangereux utilisés : {{insurance?.detail?.warn_tool_used}} </p>
+              <p *ngIf="!!insurance?.detail?.other_activity">Autre activité: {{insurance?.detail?.other_activity}} </p>
+              <p *ngIf="!!insurance?.detail?.sport_activity">Activité sportive: {{insurance?.detail?.sport_activity}} </p>
+              <p *ngIf="!!insurance?.detail?.isAssured">Assurance : {{insurance?.detail?.isAssured}}</p>
+              <p *ngIf="!!insurance?.detail?.society">Société : {{insurance?.detail?.society}}</p>
+              <p *ngIf="!!insurance?.detail?.salary">Capitaux : {{insurance?.detail?.salary | currency : 'XOF'}}</p>
+              <p *ngIf="!!insurance?.detail?.taille">Taille : {{insurance?.detail?.taille}} cm</p>
+              <p *ngIf="!!insurance?.detail?.poids">Poids : {{insurance?.detail?.poids}} kg</p>
+              <p *ngIf="!!insurance?.detail?.usage">Usage : {{insurance?.detail?.usage}} </p>
+              <p *ngIf="!!insurance?.detail?.surdite">Surdité : {{insurance?.detail?.surdite}} </p>
+              <p *ngIf="!!insurance?.detail?.vision">Vision : {{insurance?.detail?.vision}} </p>
+              <p *ngIf="!!insurance?.detail?.pathologie">Pathologie : {{insurance?.detail?.pathologie}} </p>
+              <p *ngIf="!!insurance?.detail?.infirmite">Infirmite : {{insurance?.detail?.infirmite}} </p>
+              <p *ngIf="!!insurance?.detail?.degre_infirmite">Degré d'infirmité : {{insurance?.detail?.degre_infirmite}}</p>
+              <p *ngIf="!!insurance?.detail?.maladie_chronique">Maladie chronique: {{insurance?.detail?.maladie_chronique}}</p>
+              <p *ngIf="!!insurance?.detail?.autre">Autre: {{insurance?.detail?.autre}}</p>
+
+
             </div>
           </div>
         </div>

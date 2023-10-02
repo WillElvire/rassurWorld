@@ -7,6 +7,7 @@ import {
   IndividuelleSanteDto,
   UserDto,
   firstStepUser,
+  insuranceDetail,
 } from 'src/app/core/interfaces/dto';
 
 @Component({
@@ -44,8 +45,7 @@ export class AssurIndividuelComponent {
   };
   parrainCode?: string;
 
-  individuelInsuranceDetail: any;
-
+  individuelInsuranceDetail: Partial<insuranceDetail> = {} ;
   constructor() {
     this.getOffer();
   }
@@ -62,6 +62,7 @@ export class AssurIndividuelComponent {
   }
 
   addBeneficiary() {
+
     this.beneficiaries.push({ ...this.defaultBeneficiaryDto });
   }
 
@@ -73,6 +74,10 @@ export class AssurIndividuelComponent {
 
 
   saveBeneficiary(index : number) {
+    if(!this.beneficiaries[index].firstname  || !this.beneficiaries[index].dateOfBirth ||!this.beneficiaries[index].areaOfBirth || !this.beneficiaries[index].job)
+    {
+      return this.utils.errorToastMessage('Veuillez renseigner tout les champs nécessaire');
+    }
     console.log(this.beneficiaries[index]);
   }
 
