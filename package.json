@@ -21,6 +21,7 @@
     "@datorama/akita": "^7.1.1",
     "@datorama/akita-ng-entity-service": "^7.0.0",
     "@datorama/akita-ng-router-store": "^7.0.0",
+    "@grapecity/gcpdfviewer": "^4.2.3",
     "file-saver": "^2.0.5",
     "i": "^0.3.7",
     "ng-zorro-antd": "^15.1.0",

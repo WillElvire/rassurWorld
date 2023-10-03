@@ -19,6 +19,7 @@ export class DetailComponent {
   isVisible: boolean = false;
   isMailVisible: boolean = false;
   isUploadVisible: boolean = false;
+  isViewed : boolean = false;
   file?: File;
   formData: FormData = new FormData();
 
@@ -83,12 +84,14 @@ export class DetailComponent {
     this.isVisible = false;
     this.isMailVisible = false;
     this.isUploadVisible = false;
+    this.isViewed = false;
   }
 
   handleCancel(): void {
     this.isVisible = false;
     this.isMailVisible = false;
     this.isUploadVisible = false;
+    this.isViewed = false;
   }
 
   sendFile(event: any) {

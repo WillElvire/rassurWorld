@@ -13,6 +13,7 @@ import { SponsorshipComponent } from '../pages/dashboard/sponsorship/sponsorship
 import { ApporteurComponent } from '../pages/dashboard/apporteur/apporteur.component';
 import { CommissionComponent } from '../pages/dashboard/commission/commission.component';
 
+
 @NgModule({
   imports : [DashboardRoutingModule,defaultModule,NgxPaginationModule],
   exports : [],

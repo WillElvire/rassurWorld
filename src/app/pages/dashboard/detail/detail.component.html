@@ -85,7 +85,8 @@
 
 
             <hr>
-            <a *ngIf="(!!insuranceDto && insuranceDto?.detail?.cartePhoto) || (!!insuranceDto && insuranceDto?.detail?.passportPhoto) " class="btn btn-outline-success" target="_blank" href="https://api.myrassurance.com/public/uploads/{{!!insuranceDto?.detail?.passportPhoto ?insuranceDto?.detail?.passportPhoto : insuranceDto?.detail?.cartePhoto}}">
+            <a *ngIf="(!!insuranceDto && insuranceDto?.detail?.cartePhoto) || (!!insuranceDto && insuranceDto?.detail?.passportPhoto) " class="btn btn-outline-success"  (click)="isViewed = true"
+>
              Voir le fichier <span class="fa fa-file"> </span>
             </a>
           </div>
@@ -126,6 +127,12 @@
   </ng-container>
 </nz-modal>
 
+
+<nz-modal [(nzVisible)]="isViewed" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzWidth]="1000">
+  <ng-container *nzModalContent>
+    <app-viewer source="http://localhost:3002/public/uploads/{{!!insuranceDto?.detail?.passportPhoto ?insuranceDto?.detail?.passportPhoto : insuranceDto?.detail?.cartePhoto}}"></app-viewer>
+  </ng-container>
+</nz-modal>
 
 <nz-modal [(nzVisible)]="isUploadVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
