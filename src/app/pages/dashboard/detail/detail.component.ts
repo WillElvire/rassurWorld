@@ -66,9 +66,9 @@ export class DetailComponent {
     return this.postCotation(event);
   }
 
-  postCotation(cotation: string) {
+  postCotation(cotation: any) {
     const id = this.insuranceDto.transaction.id;
-    this.appFacade.updateTransaction({ id, total: cotation }).subscribe(
+    this.appFacade.updateTransaction({ id, total_net: cotation.total_net , fees : cotation.fees , total : cotation.total }).subscribe(
       (response) => {
         console.log(response);
         this.loadRequestDetail(this.id as string);

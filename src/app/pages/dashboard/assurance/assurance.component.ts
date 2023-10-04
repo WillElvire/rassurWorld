@@ -10,13 +10,14 @@ import { UtilsFacades } from 'src/app/core/facades/utils.facade';
   styleUrls: ['./assurance.component.scss'],
 })
 export class AssuranceComponent implements OnInit {
-  private readonly appFacades  = inject(AppFacade);
+  public readonly appFacades  = inject(AppFacade);
   private readonly utilsFacade = inject(UtilsFacades);
   private readonly activatedRo = inject(ActivatedRoute);
   private readonly state       = inject(StatesFacades);
 
   insuranceRequest: any[] = [];
   fechArgument: string = 'unpaid';
+  isSpinning : boolean = true;
   searchArgument = {
     active  : '',
     acepted : '',
@@ -69,6 +70,7 @@ export class AssuranceComponent implements OnInit {
         (response: any) => {
           console.log(response);
           this.insuranceRequest = response.body.returnObject;
+          this.isSpinning = false;
         },
         (error) => {
           if (error.status === 401) {
@@ -76,6 +78,7 @@ export class AssuranceComponent implements OnInit {
             this.state.logout();
             location.href = '/auth/login';
           }
+          this.isSpinning = false;
         }
       );
   }

@@ -12,7 +12,7 @@ export class OffreComponent {
   p: number = 1;
   private readonly appFacades   = inject(AppFacade);
   private readonly utilsFacades = inject(UtilsFacades);
-
+  isSpinning = true;
   offers : any[] = [];
   isVisible: boolean = false;
   constructor(){
@@ -23,41 +23,49 @@ export class OffreComponent {
     this.appFacades.getOffer().subscribe({
       next : (response : any)=> {
         this.offers = response.body.returnObject;
+        this.isSpinning = false;
         console.log(response);
       },
       error : (err)=> {
         this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
+        this.isSpinning = false;
       }
     })
   }
 
 
   addOffer(event : any) {
+    this.isSpinning = true;
     this.appFacades.addOffer(event).subscribe({
       next : (response : any)=> {
         this.utilsFacades.successToastMessage(response.body.message);
         this.loadOffers();
         this.isVisible = false;
+        this.isSpinning = false;
       },
       error : (err)=> {
         this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
         this.isVisible = false;
+        this.isSpinning = false;
       }
     })
   }
 
 
   deleteOffer(id : string){
+    this.isSpinning = true;
     this.appFacades.deleteOffer(id).subscribe({
       next : (response : any)=> {
         this.utilsFacades.successToastMessage(response.body.message);
         this.loadOffers();
+        this.isSpinning = false;
       },
       error : (err)=> {
         this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
+        this.isSpinning = false;
       }
     })
   }

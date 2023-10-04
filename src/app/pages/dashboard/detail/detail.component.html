@@ -15,143 +15,329 @@
             <h6>Information client</h6>
           </div>
           <div class="card-body">
-            <p>Nom  : {{insuranceDto?.user?.firstname}}</p>
-            <p>Prenoms  : {{insuranceDto?.user?.lastname}}</p>
-            <p>Email  : {{insuranceDto?.user?.email}}</p>
-            <p>Téléphone  : {{insuranceDto?.user?.phone}}</p>
-            <p>Moyen de reception de mail   : <b class="badge badge-info">{{insuranceDto?.user?.useWhatsapp ? 'whatsapp'  : 'email' }}</b></p>
+            <p>
+              Nom :
+              <b class="badge badge-success">{{
+                insuranceDto?.user?.firstname
+              }}</b>
+            </p>
+            <p>
+              Prenoms :
+              <b class="badge badge-success">{{
+                insuranceDto?.user?.lastname
+              }}</b>
+            </p>
+            <p>
+              Email :
+              <b class="badge badge-success">{{ insuranceDto?.user?.email }}</b>
+            </p>
+            <p>
+              Téléphone :
+              <b class="badge badge-success">{{ insuranceDto?.user?.phone }}</b>
+            </p>
+            <p>
+              Moyen de reception de mail :
+              <b class="badge badge-info">{{
+                insuranceDto?.user?.useWhatsapp ? "whatsapp" : "email"
+              }}</b>
+            </p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
-         <div class="card ">
+        <div class="card">
           <div class="card-header">
             <h6>Information sur l'offre</h6>
           </div>
           <div class="card-body detail">
-            <p *ngIf="!!insuranceDto?.createdAt">Date de demande : {{insuranceDto?.createdAt | date}}</p>
-            <p *ngIf="!!insuranceDto?.isPayed">Status : <span *ngIf="insuranceDto?.isPayed" style="color: green;">Payé</span>
-              <span *ngIf="!insuranceDto?.isPayed" style="color:red">en attente de paiement</span>
+            <p *ngIf="!!insuranceDto?.createdAt">
+              Date de demande : {{ insuranceDto?.createdAt | date }}
             </p>
-            <p *ngIf="!!insuranceDto?.offer?.libelle">Type d'assurance : <b class="badge badge-success">{{insuranceDto?.offer?.libelle | titlecase}}</b></p>
-            <p *ngIf="!!insuranceDto?.detail?.country">Pays : {{insuranceDto?.detail?.country}}</p>
-            <p *ngIf="!!insuranceDto?.detail?.destination">Destination : {{insuranceDto?.detail?.country}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.dateOfLeft">Date de depart : {{insuranceDto?.detail?.dateOfLeft | date}}</p>
-            <p *ngIf="!!insuranceDto?.detail?.dateOfBack">Date de retour : {{insuranceDto?.detail?.dateOfBack | date}}</p>
-            <p *ngIf="!!insuranceDto?.detail?.passportDayOfCreation">Date d'optention de passeport : {{insuranceDto?.detail?.passportDayOfCreation | date}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.passportNub">Numero du passport : {{insuranceDto?.detail?.passportNub}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.passportValidity">Periode de validité : {{insuranceDto?.detail?.passportValidity}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.periodicity">Péridiocité : {{insuranceDto?.detail?.periodicity}}  mois</p>
-            <p *ngIf="!!insuranceDto?.detail?.price">Prix du bien : {{insuranceDto?.detail?.price | currency : 'FCFA'}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.typeTiers">Type tiers : {{insuranceDto?.detail?.typeTiers}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.valeur_a_neuf">Valeur a neuf : {{insuranceDto?.detail?.valeur_a_neuf | currency : 'FCFA' }} </p>
-            <p *ngIf="!!insuranceDto?.detail?.date_a_effet">Date a effet : {{insuranceDto?.detail?.date_a_effet | date}} </p>
+            <p *ngIf="!!insuranceDto?.isPayed">
+              Status :
+              <b class="badge badge-success"
+                ><span *ngIf="insuranceDto?.isPayed" style="color: white"
+                  >Payé</span
+                ></b
+              >
+              <span *ngIf="!insuranceDto?.isPayed" style="color: white"
+                ><b class="badge badge-danger">en attente de paiement</b></span
+              >
+            </p>
+            <p *ngIf="!!insuranceDto?.offer?.libelle">
+              Type d'assurance :
+              <b class="badge badge-success">{{
+                insuranceDto?.offer?.libelle | titlecase
+              }}</b>
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.country">
+              Pays : {{ insuranceDto?.detail?.country }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.destination">
+              Destination : {{ insuranceDto?.detail?.country }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.dateOfLeft">
+              Date de depart : {{ insuranceDto?.detail?.dateOfLeft | date }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.dateOfBack">
+              Date de retour : {{ insuranceDto?.detail?.dateOfBack | date }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.passportDayOfCreation">
+              Date d'optention de passeport :
+              {{ insuranceDto?.detail?.passportDayOfCreation | date }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.passportNub">
+              Numero du passport : {{ insuranceDto?.detail?.passportNub }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.passportValidity">
+              Periode de validité : {{ insuranceDto?.detail?.passportValidity }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.periodicity">
+              Péridiocité : {{ insuranceDto?.detail?.periodicity }} mois
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.price">
+              Prix du bien :
+              {{ insuranceDto?.detail?.price | currency : "FCFA" }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.typeTiers">
+              Type tiers : {{ insuranceDto?.detail?.typeTiers }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.valeur_a_neuf">
+              Valeur a neuf :
+              {{ insuranceDto?.detail?.valeur_a_neuf | currency : "FCFA" }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.date_a_effet">
+              Date a effet : {{ insuranceDto?.detail?.date_a_effet | date }}
+            </p>
 
-            <p *ngIf="!!insuranceDto?.detail?.principal_activity">Activité principale : {{insuranceDto?.detail?.principal_activity}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.warn_tool_used">Outils dangereux utilisés : {{insuranceDto?.detail?.warn_tool_used}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.other_activity">Autre activité: {{insuranceDto?.detail?.other_activity}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.sport_activity">Activité sportive: {{insuranceDto?.detail?.sport_activity}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.isAssured">Assurance : {{insuranceDto?.detail?.isAssured}}</p>
-            <p *ngIf="!!insuranceDto?.detail?.society">Société : {{insuranceDto?.detail?.society}}</p>
-            <p *ngIf="!!insuranceDto?.detail?.salary">Capitaux : {{insuranceDto?.detail?.salary | currency : 'XOF'}}</p>
-            <p *ngIf="!!insuranceDto?.detail?.taille">Taille : {{insuranceDto?.detail?.taille}} cm</p>
-            <p *ngIf="!!insuranceDto?.detail?.poids">Poids : {{insuranceDto?.detail?.poids}} kg</p>
-            <p *ngIf="!!insuranceDto?.detail?.usage">Usage : {{insuranceDto?.detail?.usage}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.surdite">Surdité : {{insuranceDto?.detail?.surdite}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.vision">Vision : {{insuranceDto?.detail?.vision}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.pathologie">Pathologie : {{insuranceDto?.detail?.pathologie}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.infirmite">Infirmite : {{insuranceDto?.detail?.infirmite}} </p>
-            <p *ngIf="!!insuranceDto?.detail?.degre_infirmite">Degré d'infirmité : {{insuranceDto?.detail?.degre_infirmite}}</p>
-            <p *ngIf="!!insuranceDto?.detail?.maladie_chronique">Maladie chronique: {{insuranceDto?.detail?.maladie_chronique}}</p>
-            <p *ngIf="!!insuranceDto?.detail?.autre">Autre: {{insuranceDto?.detail?.autre}}</p>
+            <p *ngIf="!!insuranceDto?.detail?.principal_activity">
+              Activité principale :
+              {{ insuranceDto?.detail?.principal_activity }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.warn_tool_used">
+              Outils dangereux utilisés :
+              {{ insuranceDto?.detail?.warn_tool_used }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.other_activity">
+              Autre activité: {{ insuranceDto?.detail?.other_activity }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.sport_activity">
+              Activité sportive: {{ insuranceDto?.detail?.sport_activity }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.isAssured">
+              Assurance : {{ insuranceDto?.detail?.isAssured }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.society">
+              Société : {{ insuranceDto?.detail?.society }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.salary">
+              Capitaux : {{ insuranceDto?.detail?.salary | currency : "XOF" }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.taille">
+              Taille : {{ insuranceDto?.detail?.taille }} cm
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.poids">
+              Poids : {{ insuranceDto?.detail?.poids }} kg
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.usage">
+              Usage : {{ insuranceDto?.detail?.usage }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.surdite">
+              Surdité : {{ insuranceDto?.detail?.surdite }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.vision">
+              Vision : {{ insuranceDto?.detail?.vision }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.pathologie">
+              Pathologie : {{ insuranceDto?.detail?.pathologie }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.infirmite">
+              Infirmite : {{ insuranceDto?.detail?.infirmite }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.degre_infirmite">
+              Degré d'infirmité : {{ insuranceDto?.detail?.degre_infirmite }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.maladie_chronique">
+              Maladie chronique: {{ insuranceDto?.detail?.maladie_chronique }}
+            </p>
+            <p *ngIf="!!insuranceDto?.detail?.autre">
+              Autre: {{ insuranceDto?.detail?.autre }}
+            </p>
 
+            <p *ngIf="!!insuranceDto?.transaction?.total_net">
+              Prime net :
+              <b class="badge badge-success">{{
+                insuranceDto?.transaction?.total_net | currency : "FCFA"
+              }}</b>
+            </p>
+            <p *ngIf="!!insuranceDto?.transaction?.total">
+              Prime TTC :
+              <b class="badge badge-success">{{
+                insuranceDto?.transaction?.total | currency : "FCFA"
+              }}</b>
+            </p>
+            <p *ngIf="!!insuranceDto?.transaction?.fees">
+              Frais accessoires :
+              <b class="badge badge-success">{{
+                insuranceDto?.transaction?.fees | currency : "FCFA"
+              }}</b>
+            </p>
+            <p *ngIf="!!insuranceDto?.transaction?.transactionNumb">
+              Numero de transaction :
+              {{ insuranceDto?.transaction?.transactionNumb }}
+            </p>
+            <p *ngIf="!!insuranceDto?.transaction?.meanOfPayment">
+              Moyen de paiement : {{ insuranceDto?.transaction?.meanOfPayment }}
+            </p>
 
-            <p *ngIf="!!insuranceDto?.transaction?.total">Total a payer :  {{insuranceDto?.transaction?.total | currency : 'FCFA'}}</p>
-            <p *ngIf="!!insuranceDto?.transaction?.transactionNumb">Numero de transaction : {{insuranceDto?.transaction?.transactionNumb}} </p>
-            <p *ngIf="!!insuranceDto?.transaction?.meanOfPayment">Moyen de paiement : {{insuranceDto?.transaction?.meanOfPayment}} </p>
+            <p *ngIf="!!insuranceDto?.isActive">
+              Status :
+              <b
+                class="badge badge-{{
+                  !!insuranceDto?.isActive ? 'success' : 'danger'
+                }}"
+              >
+                {{
+                  !!insuranceDto?.isActive ? "actif" : ("inactif" | titlecase)
+                }}
+              </b>
+            </p>
+            <p>
+              Souscription :
+              <b
+                class="badge badge-{{
+                  insuranceDto?.isPayed == true ? 'success' : 'danger'
+                }}"
+              >
+                {{ insuranceDto?.isPayed == true ? "Payé" : "Impayé" }}
+              </b>
+            </p>
+            <p>
+              Cotation :
+              <b
+                class="badge badge-{{
+                  insuranceDto?.isAcepted == true ? 'success' : 'danger'
+                }}"
+              >
+                {{
+                  insuranceDto?.isAcepted == true ? "Accepté" : "En attente ..."
+                }}
+              </b>
+            </p>
 
-            <p *ngIf="!!insuranceDto?.isActive ">Status  : <b class="badge badge-{{!!insuranceDto?.isActive ? 'success' : 'danger'}}">
-              {{!!insuranceDto?.isActive ? 'actif' : 'inactif' | titlecase}}
-            </b></p>
-            <p >Souscription  : <b class="badge badge-{{insuranceDto?.isPayed == true ? 'success' : 'danger'}}">
-              {{insuranceDto?.isPayed == true ? 'Payé' : 'Impayé'}}
-            </b></p>
-            <p >Cotation  : <b class="badge badge-{{insuranceDto?.isAcepted== true ? 'success' : 'danger'}}">
-              {{insuranceDto?.isAcepted == true ? 'Accepté' : 'En attente ...'}}
-            </b></p>
-
-
-
-
-
-            <hr>
-            <a *ngIf="(!!insuranceDto && insuranceDto?.detail?.cartePhoto) || (!!insuranceDto && insuranceDto?.detail?.passportPhoto) " class="btn btn-outline-success"  (click)="isViewed = true"
->
-             Voir le fichier <span class="fa fa-file"> </span>
+            <hr />
+            <a
+              *ngIf="
+                (!!insuranceDto && insuranceDto?.detail?.cartePhoto) ||
+                (!!insuranceDto && insuranceDto?.detail?.passportPhoto)
+              "
+              class="btn btn-outline-success"
+              (click)="isViewed = true"
+            >
+              Voir le fichier <span class="fa fa-file"> </span>
             </a>
           </div>
         </div>
-
       </div>
       <div class="col-md-2">
         <!--<div class="card">
           <div class="card-body">!-->
 
-            <button class="col-md-12 btn btn-dark" (click)="isVisible = true" *ngIf="!insuranceDto?.transaction?.total">
-              <span class="fa fa-wallet"></span>
-            </button>
-            <button class="col-md-12 btn btn-primary mt-2" (click)="isMailVisible = true" >
-              <span class="fa fa-envelope"></span>
-            </button>
-            <button class="col-md-12 btn btn-success mt-2" (click)="confirmInsurance()">
-              <span class="fa fa-check"></span>
-            </button>
-            <button class="col-md-12 btn btn-dark mt-2" (click)="isUploadVisible = true">
-              <span class="fa fa-upload"></span>
-            </button>
-            <button class="col-md-12 btn btn-danger mt-2">
-              <span class="fa fa-trash"></span>
-            </button>
+        <button
+          class="col-md-12 btn btn-dark"
+          (click)="isVisible = true"
+          *ngIf="!insuranceDto?.transaction?.total"
+        >
+          <span class="fa fa-wallet"></span>
+        </button>
+        <button
+          class="col-md-12 btn btn-primary mt-2"
+          (click)="isMailVisible = true"
+        >
+          <span class="fa fa-envelope"></span>
+        </button>
+        <button
+          class="col-md-12 btn btn-success mt-2"
+          (click)="confirmInsurance()"
+        >
+          <span class="fa fa-check"></span>
+        </button>
+        <button
+          class="col-md-12 btn btn-dark mt-2"
+          (click)="isUploadVisible = true"
+        >
+          <span class="fa fa-upload"></span>
+        </button>
+        <button class="col-md-12 btn btn-danger mt-2">
+          <span class="fa fa-trash"></span>
+        </button>
 
-           <!--</div>
+        <!--</div>
         </div>!-->
       </div>
     </div>
   </div>
 </div>
 
-
-<nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
   <ng-container *nzModalContent>
     <app-cotation (cotation)="addCotation($event)"></app-cotation>
   </ng-container>
 </nz-modal>
 
-
-<nz-modal [(nzVisible)]="isViewed" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzWidth]="1000">
+<nz-modal
+  [(nzVisible)]="isViewed"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzWidth]="1000"
+>
   <ng-container *nzModalContent>
-    <app-viewer source="http://localhost:3002/public/uploads/{{!!insuranceDto?.detail?.passportPhoto ?insuranceDto?.detail?.passportPhoto : insuranceDto?.detail?.cartePhoto}}"></app-viewer>
+    <app-viewer
+      source="http://localhost:3002/public/uploads/{{
+        !!insuranceDto?.detail?.passportPhoto
+          ? insuranceDto?.detail?.passportPhoto
+          : insuranceDto?.detail?.cartePhoto
+      }}"
+    ></app-viewer>
   </ng-container>
 </nz-modal>
 
-<nz-modal [(nzVisible)]="isUploadVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal
+  [(nzVisible)]="isUploadVisible"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
   <ng-container *nzModalContent>
     <app-upload (fileSelected)="sendFile($event)"></app-upload>
   </ng-container>
 </nz-modal>
 
-
-<nz-modal [(nzVisible)]="isMailVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal
+  [(nzVisible)]="isMailVisible"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
   <ng-container *nzModalContent>
     <div class="container">
-        <h4 class="text-center">Envoyer un mail</h4>
-        <hr>
-        <button class="col-md-12 btn btn-success" (click)="sendPayment()">Lien de paiement <span class="fa fa-envelope"></span></button>
-        <button class="col-md-12 btn btn-warning mt-2" (click)="sendRelance()">Relance <span class="fa fa-envelope"></span></button>
-        <button class="col-md-12 btn btn-info mt-2" (click)="sendWelcome()">Bienvenue <span class="fa fa-envelope"></span></button>
-
+      <h4 class="text-center">Envoyer un mail</h4>
+      <hr />
+      <button class="col-md-12 btn btn-success" (click)="sendPayment()">
+        Lien de paiement <span class="fa fa-envelope"></span>
+      </button>
+      <button class="col-md-12 btn btn-warning mt-2" (click)="sendRelance()">
+        Relance <span class="fa fa-envelope"></span>
+      </button>
+      <button class="col-md-12 btn btn-info mt-2" (click)="sendWelcome()">
+        Bienvenue <span class="fa fa-envelope"></span>
+      </button>
     </div>
   </ng-container>
 </nz-modal>
-
-

@@ -19,7 +19,7 @@
         </li>
 
         <ng-container >
-          <div *ngIf="userRole.libelle == 'admin'">
+          <div *ngIf="userRole?.libelle == 'admin'">
             <li nz-menu-item routerLink="/admin/assurance/unpaid" routerLinkActive="active" >
               <span nz-icon nzType="schedule" nzTheme="outline"></span>
               <span>Demande d'assurance</span>
@@ -67,7 +67,7 @@
             </li>
           </div>
         </ng-container >
-        <ng-container *ngIf="userRole.libelle == 'apporteur'">
+        <ng-container *ngIf="userRole?.libelle == 'apporteur'">
           <li nz-menu-item routerLink="/admin/sponsorship" routerLinkActive="active">
             <span nz-icon nzType="link" nzTheme="outline"></span>
             <span>Lien de parrainages</span>
@@ -77,8 +77,6 @@
             <span nz-icon nzType="wallet" nzTheme="outline"></span>
             <span>Commission</span>
           </li>
-
-
         </ng-container>
 
 

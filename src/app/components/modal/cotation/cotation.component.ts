@@ -12,7 +12,12 @@ export class CotationComponent {
 
   @Output() cotation  = new EventEmitter();
 
-  amount : number = 0;
+
+  fees  = {
+    total_net : 0,
+    total : 0,
+    fees : 0
+  }
   private utils = inject(UtilsFacades);
 
   constructor(){
@@ -20,10 +25,10 @@ export class CotationComponent {
   }
 
   addCotation(){
-    if(!this.amount){
+    if(!this.fees.total || !this.fees.total_net){
       return this.utils.errorToastMessage("Veuillez renseigner la cotation");
     }
-    this.cotation.emit(this.amount);
+    this.cotation.emit(this.fees);
     return;
   }
 

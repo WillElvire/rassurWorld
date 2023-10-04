@@ -2,55 +2,97 @@
   <div class="grid">
     <div class="row">
       <div class="col-md-4">
-       <div class="card">
-        <div class="card-body text-center">
-          <h1 class="_text">{{stats?.activatedRequest}}</h1>
-          <p>Demande souscriptions </p>
+        <div class="card" routerLink="/admin/assurance/unpaid">
+          <div class="card-body text-center">
+            <div *ngIf="!isSpinning && !!stats; else block">
+              <h1 class="_text">{{ stats?.activatedRequest }}</h1>
+              <p>Demande souscriptions</p>
+            </div>
+            <app-loader *ngIf="isSpinning"></app-loader>
+          </div>
         </div>
-       </div>
       </div>
       <div class="col-md-4">
-        <div class="card">
+        <div class="card" routerLink="/admin/assurance/active">
           <div class="card-body text-center">
-            <h1 class="_text">{{stats?.waitingPayment}}</h1>
-            <p> Souscriptions en attente de paiement </p>
+            <div *ngIf="!isSpinning && !!stats; else block">
+              <h1 class="_text">{{ stats?.waitingPayment }}</h1>
+              <p>Souscriptions en attente de paiement</p>
+            </div>
+
+            <app-loader *ngIf="isSpinning"></app-loader>
           </div>
-         </div>
+        </div>
       </div>
       <div class="col-md-4">
-        <div class="card">
+        <div class="card" routerLink="/admin/assurance/acepted">
           <div class="card-body text-center">
-            <h1 class="_text">{{stats?.approvedPayment}}</h1>
-            <p>Souscriptions confirmé</p>
+            <div *ngIf="!isSpinning && !!stats; else block">
+              <h1 class="_text">{{ stats?.approvedPayment }}</h1>
+              <p>Souscriptions confirmé</p>
+            </div>
+
+            <app-loader *ngIf="isSpinning"></app-loader>
           </div>
-         </div>
+        </div>
       </div>
     </div>
   </div>
 
+  <ng-template #block>
+    <div *ngIf="!isSpinning">
+      <h1 class="_text" style="margin-top: 10%">
+        <i class="fa fa-server" aria-hidden="true"></i>
+      </h1>
+    </div>
+  </ng-template>
+
   <h5 class="mt-5">Activités récentes</h5>
   <div class="table-responsive">
-    <table class="table">
-      <thead class="thead" style="background-color: white !important;color :forestgreen !important">
+    <table class="table table-bordered">
+      <thead
+        class="thead"
+        style="
+          background-color: white !important;
+          color: forestgreen !important;
+        "
+      >
         <tr>
           <th scope="col">Identifiant</th>
           <th scope="col">Offre</th>
           <th scope="col">Nom et Prénom</th>
           <th scope="col">Email</th>
           <th scope="col">Téléphone</th>
+          <th scope="col">Preuve</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let insurance of insuranceRequest.slice(0,3)">
-          <th scope="row">{{insurance.id}}</th>
-          <td><b class="badge badge-success">{{insurance.offer.libelle}}</b></td>
-          <td>{{insurance.user.firstname}}  {{insurance.user.lastname}}</td>
-          <td>{{insurance.user.email}}</td>
-          <td>{{insurance.user.phone}}</td>
+        <tr *ngFor="let insurance of insuranceRequest.slice(0, 3)">
+          <th scope="row">{{ insurance.id }}</th>
+          <td>
+            <b class="badge badge-success">{{ insurance.offer.libelle }}</b>
+          </td>
+          <td>{{ insurance.user.firstname }} {{ insurance.user.lastname }}</td>
+          <td>{{ insurance.user.email }}</td>
+          <td>{{ insurance.user.phone }}</td>
+          <td>
+            <b class="badge badge-success"
+              >{{
+                appFacades.getFileExtension(
+                  insurance?.detail?.passportPhoto
+                    ? insurance?.detail?.passportPhoto
+                    : insurance?.detail?.cartePhoto
+                )
+              }}
+            </b>
+          </td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-outline-success" routerLink="/admin/detail/{{insurance.id}}">
+              <button
+                class="btn btn-outline-success"
+                routerLink="/admin/detail/{{ insurance.id }}"
+              >
                 <span class="fa fa-eye"></span>
               </button>
               <button class="btn btn-outline-danger">
@@ -64,13 +106,14 @@
   </div>
 
   <a routerLink="/admin/assurance/active">Voir plus </a>
-
 </div>
 
-
 <div class="container" *ngIf="user?.role?.libelle?.includes('apporteur')">
-  <div class="alert alert-danger" *ngIf="user?.isCollaborateur && !user?.isActive">
-   <i class="fa fa-warning"></i> Votre  compte est restreint
+  <div
+    class="alert alert-danger"
+    *ngIf="user?.isCollaborateur && !user?.isActive"
+  >
+    <i class="fa fa-warning"></i> Votre compte est restreint
   </div>
   <div class="grid">
     <div class="row">
@@ -78,19 +121,18 @@
         <div class="card">
           <div class="card-body text-center">
             <h1 class="_text">0</h1>
-            <p> Mes affaires traitées </p>
+            <p>Mes affaires traitées</p>
           </div>
-         </div>
+        </div>
       </div>
       <div class="col-md-6">
         <div class="card">
           <div class="card-body text-center">
-            <h1 class="_text">0 <span style="font-size: 17px;">XOF</span></h1>
+            <h1 class="_text">0 <span style="font-size: 17px">XOF</span></h1>
             <p>Ma commission</p>
           </div>
-         </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-

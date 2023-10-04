@@ -1,6 +1,7 @@
 <div class="container">
   <!--<button class="btn btn-outline-success"> Ajouter un role</button>!-->
-  <div class="table-responsive mt-5">
+  <app-loader *ngIf="isSpinning"></app-loader>
+  <div class="table-responsive mt-5" *ngIf="!isSpinning">
     <table class="table">
       <thead class="thead" style="background-color: white !important;color :forestgreen !important">
         <tr>
@@ -16,10 +17,10 @@
           <td>
             <b>{{role?.flag}}</b>
           </td>
-          <td>{{role?.libelle | titlecase}}</td>
+          <td><b class="badge badge-success">{{role?.libelle | titlecase}}</b></td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-danger" disabled><span class="fa fa-trash"></span></button>
+              <button class="btn btn-outline-danger" disabled><span class="fa fa-trash"></span></button>
             </div>
           </td>
         </tr>

@@ -16,7 +16,7 @@ export class UtilisateurComponent implements OnInit {
   isVisible: boolean    = false;
   teams : UserDto[]     = [];
   p : number            = 1;
-
+  isSpinning : boolean  = true;
   ngOnInit(): void {
     this.fetchTeamAccount();
   }
@@ -36,10 +36,12 @@ export class UtilisateurComponent implements OnInit {
       next : (response : any)=> {
         this.utilsFacades.successToastMessage(response.body.message);
         this.fetchTeamAccount();
+        this.isSpinning  = false;
       },
       error : (err)=> {
         this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
+        this.isSpinning  = false;
       }
     })
   }
@@ -49,10 +51,12 @@ export class UtilisateurComponent implements OnInit {
       next : (response : any)=> {
         this.utilsFacades.successToastMessage(response.body.message);
         this.fetchTeamAccount();
+
       },
       error : (err)=> {
         this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
+        this.isSpinning  = false;
       }
     })
   }
@@ -65,10 +69,12 @@ export class UtilisateurComponent implements OnInit {
         const body : any = response?.body;
         this.teams = body.returnObject as UserDto[];
         console.log(this.teams)
+        this.isSpinning  = false;
       },
       error : (err)=> {
         this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
         console.log(err)
+        this.isSpinning  = false;
       }
     })
   }

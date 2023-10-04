@@ -3,11 +3,11 @@
     NB : cette action est irreversible
   </div>
   <label>Prime net</label>
-  <input type="text" class="form-control" [(ngModel)]="amount">
+  <input type="text" class="form-control" [(ngModel)]="fees.total_net">
   <label>Prime TTC</label>
-  <input type="text" class="form-control" [(ngModel)]="amount">
+  <input type="text" class="form-control" [(ngModel)]="fees.total">
   <label>Frais accessoires</label>
-  <input type="text" class="form-control" [(ngModel)]="amount">
+  <input type="text" class="form-control" [(ngModel)]="fees.fees">
 
   <button class="btn btn-success mt-5 col-md-12" (click)="addCotation()">Ajouter la cotation</button>
 </div>

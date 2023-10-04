@@ -32,6 +32,11 @@ export class AppFacade {
   }
 
 
+  getFileExtension(file: string) {
+    return file.split(".")[1];
+  }
+
+
   fetchBusinessAccount() {
     return this.appFunction.getBusinessAccount();
   }
