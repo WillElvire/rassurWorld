@@ -33,7 +33,7 @@ export class AppFacade {
 
 
   getFileExtension(file: string) {
-    return file.split(".")[1];
+    return !!file ? file.split(".")[1] : "neant";
   }
 
 

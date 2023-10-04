@@ -35,6 +35,23 @@
 </div>
 
 
+<div class="container mt-5">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="thead" style="background-color: white !important;color :forestgreen !important">
+        <tr >
+          <th scope="col">Identifiant</th>
+          <th scope="col">Montant</th>
+          <th scope="col">Type de transaction</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>

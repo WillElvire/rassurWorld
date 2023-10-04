@@ -17,7 +17,8 @@ export class ViewerComponent  implements AfterViewInit{
 
 
   checkSource(source : any) {
-    return source.includes(".pdf")
+   return source.includes(".pdf");
+
   }
 
 
