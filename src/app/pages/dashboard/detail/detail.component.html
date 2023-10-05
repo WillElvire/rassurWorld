@@ -262,6 +262,14 @@
         >
           <span class="fa fa-check"></span>
         </button>
+
+        <button
+          class="col-md-12 btn btn-success mt-2"
+          (click)="isBenefiariesVisible = true"
+        >
+          Beneficiaire <span class="fa fa-eye"></span>
+        </button>
+
         <button
           class="col-md-12 btn btn-dark mt-2"
           (click)="isUploadVisible = true"
@@ -338,6 +346,50 @@
       <button class="col-md-12 btn btn-info mt-2" (click)="sendWelcome()">
         Bienvenue <span class="fa fa-envelope"></span>
       </button>
+    </div>
+  </ng-container>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="isBenefiariesVisible"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  nzWidth="{{ 500 }}"
+>
+  <ng-container *nzModalContent>
+    <h3>Liste des beneficiaires</h3>
+    <div class="table-responsive mt-5">
+      <table class="table table-bordered">
+        <thead
+          class="thead"
+          style="
+            background-color: white !important;
+            color: forestgreen !important;
+          "
+        >
+          <tr>
+            <th scope="col">Nom et Prénom</th>
+            <th scope="col">Profession</th>
+            <th scope="col">Date de naissance</th>
+            <th scope="col">Date d'ajout</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let beneficiary of insuranceDto?.beneficiary
+                | paginate : { itemsPerPage: 4, currentPage: p }
+            "
+          >
+            <td>{{ beneficiary?.firstname }} {{ beneficiary?.lastname }}</td>
+            <td>{{ beneficiary?.job }}</td>
+            <td>{{ beneficiary?.dateOfBirth | date }}</td>
+            <td>{{ beneficiary?.createdAt | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </ng-container>
 </nz-modal>

@@ -20,8 +20,10 @@ export class DetailComponent {
   isMailVisible: boolean = false;
   isUploadVisible: boolean = false;
   isViewed : boolean = false;
+  isBenefiariesVisible : boolean = false;
   file?: File;
   formData: FormData = new FormData();
+  p : number = 1;
 
   constructor() {
     this.activatedRoute.params.subscribe((params: any) => {
@@ -85,6 +87,7 @@ export class DetailComponent {
     this.isMailVisible = false;
     this.isUploadVisible = false;
     this.isViewed = false;
+    this.isBenefiariesVisible = false;
   }
 
   handleCancel(): void {
@@ -92,6 +95,7 @@ export class DetailComponent {
     this.isMailVisible = false;
     this.isUploadVisible = false;
     this.isViewed = false;
+    this.isBenefiariesVisible = false;
   }
 
   sendFile(event: any) {

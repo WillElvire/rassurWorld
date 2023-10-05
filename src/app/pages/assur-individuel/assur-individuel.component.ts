@@ -78,7 +78,7 @@ export class AssurIndividuelComponent {
       return this.utils.errorToastMessage('Veuillez renseigner tout les champs nécessaire');
     }
     this.beneficiaries[index].user = this.user.id;
-    this.beneficiaries[index].assurance = this.individuelInsuranceDetail.id;
+    this.beneficiaries[index].assuranceId = this.individuelInsuranceDetail.id;
     console.log(this.beneficiaries[index]);
   }
 

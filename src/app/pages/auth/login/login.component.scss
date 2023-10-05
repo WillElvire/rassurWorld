@@ -15,6 +15,13 @@ button{
   background-color: var(--button-color);
 }
 
+.btn-success {
+  border-radius: 10px !important;
+  background-color: forestgreen !important;
+  color:white !important;
+  border : none;
+}
+
 
 .wrapper {
   width: 100%;
