@@ -1,14 +1,14 @@
 <div class="container">
   <h2>Compte Apporteur <span class="badge badge-success">{{users.length}}</span></h2>
   <div class="table-responsive mt-5">
-    <table class="table">
-      <thead class="thead" style="background-color: forestgreen !important;color :white !important">
+    <table class="table table-bordered">
+      <thead class="thead" style="background-color: white !important;color :forestgreen !important">
         <tr>
           <th scope="col">Id</th>
           <th scope="col">Nom</th>
-          <th scope="col">Prenom</th>
+          <th scope="col">Prénom</th>
           <th scope="col">Email</th>
-          <th scope="col">Telephone</th>
+          <th scope="col">Téléphone</th>
           <th scope="col">Code</th>
           <th scope="col">status</th>
           <th scope="col">Action</th>
@@ -30,11 +30,12 @@
           </td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-outline-danger" ><span class="fa fa-trash"></span></button>
               <button class="btn btn-outline-{{!user.isActive ? 'success'  : 'danger'}}" (click)="activeUserAccount(user.id,user.isActive)" >
                 <span class="fa fa-check" *ngIf="!user.isActive"></span>
                 <span class="fa fa-close" *ngIf="user.isActive"></span>
               </button>
+              <button class="btn btn-outline-danger" ><span class="fa fa-trash"></span></button>
+
               <button class="btn btn-outline-info"  (click)="viewBusinessDetail(user?.code)"><span class="fa fa-eye"></span></button>
             </div>
           </td>

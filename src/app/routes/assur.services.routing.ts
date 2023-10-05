@@ -4,6 +4,7 @@ import { AssurVoyageComponent } from '../pages/assur-voyage/assur-voyage.compone
 import { AssurSanteComponent } from '../pages/assur-sante/assur-sante.component';
 import { AssurAutoComponent } from '../pages/assur-auto/assur-auto.component';
 import { AssurComponent } from '../layouts/assur/assur.component';
+import { AssurIndividuelComponent } from '../pages/assur-individuel/assur-individuel.component';
 const routes: Routes = [
   {
     path :'',
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path : 'sante',
         component : AssurSanteComponent
+      },
+      {
+        path : 'individuel',
+        component : AssurIndividuelComponent
       },
       {
         path : 'auto',

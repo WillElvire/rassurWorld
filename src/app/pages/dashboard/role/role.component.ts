@@ -15,6 +15,7 @@ export class RoleComponent {
   private readonly utilsFacade = inject(UtilsFacades);
 
   roles : any[] = [];
+  isSpinning : boolean = true;
   constructor(){
    this.loadRoles();
   }
@@ -23,9 +24,11 @@ export class RoleComponent {
     this.appFacades.getRoles().subscribe({
       next : (response : any)=> {
         this.roles = response.body.returnObject;
+        this.isSpinning = false;
         console.log(response);
       },
       error : (err)=> {
+        this.isSpinning = false;
         if(err.status === 401) {
           this.utilsFacade.errorToastMessage("Veuillez vous reconnecter");
           this.router.navigate(["/auth/login"])

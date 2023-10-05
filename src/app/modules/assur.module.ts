@@ -6,6 +6,7 @@ import { AssurRoutingModule } from "../routes/assur.services.routing";
 import { NgZoroModule } from "./ngzoro.module";
 import { CommonModule } from "@angular/common";
 import { defaultModule } from "../core/helpers/api.loader";
+import { AssurIndividuelComponent } from '../pages/assur-individuel/assur-individuel.component';
 
 @NgModule({
   imports : [AssurRoutingModule,NgZoroModule,CommonModule,defaultModule],
@@ -13,7 +14,8 @@ import { defaultModule } from "../core/helpers/api.loader";
   declarations : [
     AssurAutoComponent,
     AssurSanteComponent,
-    AssurVoyageComponent
+    AssurVoyageComponent,
+    AssurIndividuelComponent
   ]
 })
 export class AssurModule {

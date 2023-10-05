@@ -16,6 +16,10 @@ import { UploadComponent } from '../components/modal/upload/upload.component';
 import { DeleteComponent } from '../components/modal/delete/delete.component';
 import { UserComponent } from '../components/modal/user/user.component';
 import { BusinessComponent } from '../components/modal/business/business.component';
+import { WithdrallComponent } from '../components/modal/withdrall/withdrall.component';
+import { ViewerComponent } from '../components/modal/viewer/viewer.component';
+import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,9 @@ import { BusinessComponent } from '../components/modal/business/business.compone
     DeleteComponent,
     UserComponent,
     BusinessComponent,
+    WithdrallComponent,
+    ViewerComponent,
+    SanitizerPipe
   ],
   imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
   exports: [
@@ -46,7 +53,10 @@ import { BusinessComponent } from '../components/modal/business/business.compone
     OfferComponent,
     UploadComponent,
     UserComponent,
-    BusinessComponent
+    BusinessComponent,
+    WithdrallComponent,
+    ViewerComponent,
+    SanitizerPipe
   ],
 
 })

@@ -1,0 +1,20 @@
+.card {
+  border: 1px dashed forestgreen;
+  ._text {
+    font-size: 40px;
+    color: forestgreen;
+  }
+  p{
+    font-weight: bold !important;
+  }
+  &:hover {
+    border : 2px solid black;
+  }
+}
+
+.btn-success {
+  border-radius: 10px !important;
+  background-color: forestgreen !important;
+  color:white !important;
+
+}

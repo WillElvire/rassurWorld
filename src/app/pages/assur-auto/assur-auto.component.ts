@@ -16,12 +16,12 @@ export class AssurAutoComponent {
   appFacade = inject(AppFacade);
   router = inject(Router);
 
-  step1: boolean = true;
-  step2: boolean = false;
-  step3: boolean = false;
-  step4: boolean = false;
-  months: number[] = Array.from(Array(12).keys());
-  user: UserDto = {};
+  step1  : boolean   = true;
+  step2  : boolean   = false;
+  step3  : boolean   = false;
+  step4  : boolean   = false;
+  months : number[]  = Array.from(Array(12).keys());
+  user   : UserDto   = {};
   insurance: { id?: string; libelle?: string } = {};
   country: any;
   formData: FormData = new FormData();

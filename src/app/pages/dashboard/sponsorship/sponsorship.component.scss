@@ -1,0 +1,26 @@
+.card {
+  border: 1px dashed forestgreen;
+  ._text {
+    font-size: 40px;
+    color: forestgreen;
+  }
+  p{
+    font-weight: bold !important;
+  }
+}
+
+
+.btn-outline-success {
+  border-radius: 10px !important;
+  background-color: forestgreen !important;
+  color:white !important;
+
+}
+
+.btn-outline-primary {
+  border-radius: 10px !important;
+  background-color: dodgerblue !important;
+  border: none;
+  margin-left : 2% !important;
+  color:white !important;
+}

@@ -1,8 +1,14 @@
 <div class="container">
 
-  <div class="table-responsive mt-5">
-    <table class="table">
-      <thead class="thead" style="background-color: forestgreen !important;color :white !important">
+  <h3>Liste des demandes d'assurance <b class="badge badge-success">{{insuranceRequest.length}}</b></h3>
+  <div class="btn-group d-flex">
+    <button class="btn btn-outline-success"><i class="fa fa-file-csv"></i></button>
+    <button class="btn btn-outline-primary"><i class="fa fa-file-pdf"></i></button>
+  </div>
+  <app-loader *ngIf="isSpinning"></app-loader>
+  <div class="table-responsive mt-5" *ngIf="!isSpinning">
+    <table class="table table-bordered">
+      <thead class="thead" style="background-color: white !important;color :forestgreen !important">
         <tr>
           <th scope="col">Numero de demande</th>
           <th scope="col">Offre</th>
@@ -10,6 +16,7 @@
           <th scope="col">Email</th>
           <th scope="col">Téléphone</th>
           <th scope="col">Date </th>
+          <th scope="col">Preuve</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -21,20 +28,30 @@
           <td>{{insurance.user.email}}</td>
           <td>{{insurance.user.phone}}</td>
           <td>{{insurance.detail.createdAt | date}}</td>
-
+          <td> <b
+            class="badge badge-success"
+              >{{
+                appFacades.getFileExtension(
+                  insurance?.detail?.passportPhoto
+                    ? insurance?.detail?.passportPhoto
+                    : insurance?.detail?.cartePhoto
+                )
+              }}
+            </b></td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-success" routerLink="/admin/detail/{{insurance.id}}">
+              <button class="btn btn-outline-success" routerLink="/admin/detail/{{insurance.id}}">
                 <span class="fa fa-eye"></span>
               </button>
-              <button class="btn btn-danger">
+              <!--<button class="btn btn-outline-danger">
                 <span class="fa fa-trash"></span>
-              </button>
+              </button>!-->
             </div>
           </td>
         </tr>
       </tbody>
     </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
 </div>

@@ -32,6 +32,11 @@ export class AppFacade {
   }
 
 
+  getFileExtension(file: string) {
+    return !!file ? file.split(".")[1] : "neant";
+  }
+
+
   fetchBusinessAccount() {
     return this.appFunction.getBusinessAccount();
   }
@@ -129,6 +134,10 @@ export class AppFacade {
 
   deleteTeamMember(id : string) {
     return this.appFunction.deleteTeamMember(id);
+  }
+
+  confirmInsurance(id : string) {
+    return this.appFunction.confirmInsurance(id);
   }
 
   /*--------------------------------*/

@@ -1,0 +1,36 @@
+.card {
+  border: 1px dashed forestgreen;
+  height: 20vh !important;
+  ._text {
+    font-size: 40px;
+    color: forestgreen;
+  }
+  p{
+    font-weight: bold !important;
+  }
+  &:hover {
+    border : 1px solid gray;
+    box-shadow: 10px 0px 10px 0px rgba(0,0,0,0.1);
+  }
+}
+
+app-loader {
+  position: absolute !important;
+  margin-top: 13% !important;
+}
+
+
+.btn-outline-success {
+  border-radius: 10px !important;
+  background-color: forestgreen !important;
+  color:white !important;
+
+}
+
+.btn-outline-danger {
+  border-radius: 10px !important;
+  border: none;
+  background-color: rgb(120, 17, 17) !important;
+  color:white !important;
+  margin-left:2% !important;
+}

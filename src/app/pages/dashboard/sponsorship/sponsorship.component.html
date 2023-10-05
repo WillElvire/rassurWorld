@@ -20,8 +20,8 @@
   <br>
   <br>
   <div class="table-responsive">
-    <table class="table">
-      <thead class="thead" style="background-color: forestgreen !important;color :white !important">
+    <table class="table table-bordered">
+      <thead class="thead" style="background-color: white !important;color :forestgreen !important">
         <tr >
           <th scope="col">Nom et Prénom</th>
           <th scope="col">Offre</th>
@@ -41,9 +41,9 @@
           </td>
 
           <td>
-            <span *ngIf="sponsor.isPayed && sponsor.isAccepted" class="badge badge-success">Payé</span>
-            <span *ngIf="sponsor.isAccepted &&  !sponsor.isPayed" class="badge badge-info">En attente de paiement</span>
-            <span *ngIf="!sponsor.isPayed && !sponsor.isAccepted" class="badge badge-danger">Non reglé</span>
+            <span *ngIf="sponsor.isPayed && sponsor.isAcepted" class="badge badge-success">Payé</span>
+            <span *ngIf="sponsor.isAcepted &&  !sponsor.isPayed" class="badge badge-info">En attente de paiement</span>
+            <span *ngIf="!sponsor.isPayed && !sponsor.isAcepted" class="badge badge-danger">Non reglé</span>
           </td>
           <td>
             {{0  | currency : 'FCFA'}}

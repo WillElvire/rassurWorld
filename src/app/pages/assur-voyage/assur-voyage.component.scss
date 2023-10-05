@@ -5,14 +5,27 @@
     background-color: var(--button-color) !important;
   }
 }
+
 input {
   height: 6vh !important;
   border-radius: 12px;
   outline: none;
 }
 
+select {
+  height: 6vh !important;
+  border-radius: 12px;
+  outline: none;
+}
+
+.card{
+  box-shadow: 10px 5px 10px 5px rgba(0,0,0,0.2);
+  border-radius: 20px !important;
+}
+
 button {
   height: 6vh !important;
+  border-radius: 12px;
 }
 
 .info {

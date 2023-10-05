@@ -40,7 +40,10 @@
                 "input": "src/styles/variable.scss"
               }
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@grapecity/gcpdfviewer"
+            ]
           },
           "configurations": {
             "production": {

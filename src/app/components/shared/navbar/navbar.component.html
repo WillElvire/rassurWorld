@@ -15,6 +15,9 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/assurance/voyage" routerLinkActive="active" *ngIf="url?.includes('voyage')">Assurance Voyage</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/assurance/individuel" routerLinkActive="active" *ngIf="url?.includes('individuel')">Individuel Accident</a>
+      </li>
     </ul>
     <div class="d-flex" *ngIf="!isLoggedIn">
       <a class="btn btn-success" routerLink="/auth/login" >
