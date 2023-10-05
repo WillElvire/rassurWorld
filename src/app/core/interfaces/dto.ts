@@ -25,6 +25,8 @@ export interface BeneficiaryDto {
   ipt?: string;
   areaOfBirth ?:string;
   medicalFees?: string;
+  user ?:string;
+  assurance ?:string;
 }
 
 export interface IndividuelleSanteDto {

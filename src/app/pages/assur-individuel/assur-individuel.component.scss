@@ -7,17 +7,42 @@
 
 }
 
+select {
+  height: 6vh !important;
+  border-radius: 12px;
+  outline: none;
+}
+
+.card{
+  box-shadow: 10px 5px 10px 5px rgba(0,0,0,0.2);
+  border-radius: 20px !important;
+}
+
+button {
+  height: 6vh !important;
+  border-radius: 12px;
+}
+
 .card {
-  .addButton{
-    background-color: white !important;
-    border-radius: 1px solid var(--button-color) !important;
-    border-radius: 20px !important;
+
+  .btn-outline-success {
+    border-radius: 10px !important;
+    background-color: forestgreen !important;
+    color:white !important;
+    border : none;
     width: 90% !important;
     margin-left: 5% !important;
-    &:hover{
-      color: var(--button-color);
-    }
+
   }
+
+  .btn-outline-danger {
+    border-radius: 10px !important;
+    background-color: rgb(120, 17, 17) !important;
+    border: none;
+    color:white !important;
+    margin-left: 3% !important;
+  }
+
 }
 
 input {

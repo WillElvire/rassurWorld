@@ -62,7 +62,6 @@ export class AssurIndividuelComponent {
   }
 
   addBeneficiary() {
-
     this.beneficiaries.push({ ...this.defaultBeneficiaryDto });
   }
 
@@ -78,6 +77,8 @@ export class AssurIndividuelComponent {
     {
       return this.utils.errorToastMessage('Veuillez renseigner tout les champs nécessaire');
     }
+    this.beneficiaries[index].user = this.user.id;
+    this.beneficiaries[index].assurance = this.individuelInsuranceDetail.id;
     console.log(this.beneficiaries[index]);
   }
 
@@ -129,6 +130,34 @@ export class AssurIndividuelComponent {
         );
       }
     );
+  }
+
+
+  startThirdStep() {
+    this.enable = true;
+    const benefDto = {
+      beneficaries : this.beneficiaries ,
+    }
+    return this.callToServerStep3(benefDto);
+
+  }
+
+  callToServerStep3(data : any) {
+    this.appFacade.thirdStep(data, 'individuel').subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.enable = false;
+        this.utils.successToastMessage("Felicitations votre demande a bien été pris en compte . Veuillez verifier votre addresse email pour les details supplementaire");
+        this.router.navigate(["/success"]);
+      },
+      error: (error) => {
+        console.log(error.message);
+        this.utils.errorToastMessage(
+          !!error.error.message ? error.error.message : error.message
+        );
+        this.enable = false;
+      },
+    });
   }
 
   startSecondStep() {

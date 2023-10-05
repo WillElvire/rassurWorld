@@ -384,6 +384,7 @@
                         placeholder="nom & prenom"
                         [(ngModel)]="beneficiaries[index].firstname"
                         class="form-control"
+
                       />
                     </div>
                     <div class="col-md-6">
@@ -421,6 +422,7 @@
                   <button
                     class="btn btn-outline-success addButton"
                     (click)="saveBeneficiary(index)"
+                    [disabled]="!beneficiaries[index]"
                   >
                     Ajouter l'ayant droit {{ index + 1 }}
                     <i class="fa fa-user"></i>
@@ -434,7 +436,7 @@
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-light col-md-12" (click)="startFirstStep()">
+            <button *ngIf="ayantdroit" class="btn btn-light col-md-12" (click)="startThirdStep()">
               Valider <i class="fa fa-check"></i>
             </button>
 
