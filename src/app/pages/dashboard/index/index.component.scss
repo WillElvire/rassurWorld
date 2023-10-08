@@ -1,12 +1,12 @@
 .card {
-  border: 1px dashed forestgreen;
+  border: 1px solid black;
   height: 20vh !important;
   ._text {
-    font-size: 40px;
+    font-size: 50px;
     color: forestgreen;
   }
   p{
-    font-weight: bold !important;
+    font-weight: inherit !important;
   }
   &:hover {
     border : 1px solid gray;

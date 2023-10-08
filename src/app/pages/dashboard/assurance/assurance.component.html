@@ -2,10 +2,13 @@
 
   <h3>Liste des demandes d'assurance <b class="badge badge-success">{{insuranceRequest.length}}</b></h3>
   <div class="btn-group d-flex">
-    <button class="btn btn-outline-success"><i class="fa fa-file-csv"></i></button>
+    <button class="btn btn-outline-success" (click)="export('xlxs')"><i class="fa fa-file-csv"></i></button>
     <button class="btn btn-outline-primary"><i class="fa fa-file-pdf"></i></button>
   </div>
   <app-loader *ngIf="isSpinning"></app-loader>
+  <div class="row mt-5 ml-1">
+    <input placeholder="rechercher" class="form-control col-md-4" type="search" (keyup)="searchInsurance($event)">
+  </div>
   <div class="table-responsive mt-5" *ngIf="!isSpinning">
     <table class="table table-bordered">
       <thead class="thead" style="background-color: white !important;color :forestgreen !important">
@@ -21,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let insurance of insuranceRequest | paginate: { itemsPerPage: 4, currentPage: p }">
+        <tr *ngFor="let insurance of insuranceRequest | paginate: { itemsPerPage: 3, currentPage: p }">
           <th scope="row">{{insurance.id}}</th>
           <td><b class="badge badge-success">{{insurance.offer.libelle}}</b></td>
           <td>{{insurance.user.firstname}}  {{insurance.user.lastname}}</td>
