@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UserQuery } from 'src/app/store/user$/user.query';
+
 
 @Component({
   selector: 'app-commission',
@@ -6,6 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./commission.component.scss']
 })
 export class CommissionComponent {
+
+
+  private readonly userQuery = inject(UserQuery);
+  public user = this.userQuery.fullUser;
+  constructor() {
+
+  }
   isVisible : boolean = false;
 
   handleOk(): void {
