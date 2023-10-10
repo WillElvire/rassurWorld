@@ -23,26 +23,29 @@
           <th scope="col">Montant</th>
           <th scope="col">Type</th>
           <th scope="col">Date de demande</th>
+          <th scope="col">Paiement</th>
           <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
           <tr *ngFor="let transaction of transactions | paginate: { itemsPerPage: 2, currentPage: p }">
-            <td>{{transaction.id}}</td>
+            <td>{{transaction?.id}}</td>
             <td>{{transaction?.user?.firstname}}  {{transaction?.user?.lastname}}</td>
             <td>{{transaction?.user?.email}}</td>
             <td>{{transaction?.user?.phone}}</td>
             <td>{{transaction?.amount | currency : 'XOF'}}</td>
             <td><b class="badge badge-success">{{transaction.type == 1 ? 'Retrait' : 'Depot'}}</b></td>
             <td>{{transaction?.createdAt | date}}</td>
-            <td><b class="badge badge-{{transaction.isPayed ? 'success' : 'danger'}}">{{transaction.isPayed ? 'Payé' : "En attente de paiement"}}</b></td>
+            <td><b class="badge badge-{{transaction.isPayed ? 'success' : 'warning'}}">{{transaction.isPayed ? 'Payé' : "En attente de paiement"}}</b></td>
+            <td><b class="badge badge-{{transaction.isConfirmed ? 'success' : 'warning'}}">{{transaction.isConfirmed ? 'processing' : "to be processed"}}</b></td>
+
             <td>
               <div class="btn-group">
-                <a class="btn btn-outline-danger">
+                <a class="btn btn-outline-danger" >
                   <i class="fa fa-trash"></i>
                 </a>
-                <a class="btn btn-outline-success">
+                <a class="btn btn-outline-success" (click)="confirmRequest(transaction?.id,transaction?.amount,transaction?.user?.id)" >
                   <i class="fa fa-check"></i>
                 </a>
               </div>

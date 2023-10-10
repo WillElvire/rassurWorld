@@ -80,6 +80,10 @@ export class AppFacade {
     return this.appFunction.getRequest();
   }
 
+  confirmRequest(data:any){
+    return this.appFunction.confirmRequest(data);
+  }
+
   getRequestByUserId(id: string) {
     return this.appFunction.getRequestByUserId(id);
   }

@@ -101,6 +101,11 @@ export class AppFunctionService {
     return this.api.get("/api/request").pipe(shareReplay(1));
   }
 
+  confirmRequest(data : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/request/confirm",data }).pipe(shareReplay(1));
+  }
+
   getRequestByUserId(id : string) {
     this.api.setApiType("rest");
     return this.api.post({endpoint:"/api/request/user" , data : {user : id }}).pipe(shareReplay(1));

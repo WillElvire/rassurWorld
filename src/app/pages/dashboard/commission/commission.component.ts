@@ -92,9 +92,10 @@ export class CommissionComponent implements OnInit {
         this.utilsFacades.successToastMessage(body?.message);
         this.getUserRequest();
       },
-      error : (error)=> {
-        console.log(error);
+      error : (err)=> {
+        console.log(err);
         this.isLoaded = false;
+        this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
       }
     })
   }
