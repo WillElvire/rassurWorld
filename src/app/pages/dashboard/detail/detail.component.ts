@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-detail',
@@ -24,6 +25,7 @@ export class DetailComponent {
   file?: File;
   formData: FormData = new FormData();
   p : number = 1;
+  baseUrl = environment.BASE_URL;
 
   constructor() {
     this.activatedRoute.params.subscribe((params: any) => {

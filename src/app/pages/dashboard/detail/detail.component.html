@@ -307,7 +307,7 @@
 >
   <ng-container *nzModalContent>
     <app-viewer
-      source="https://api.myrassurance.com/public/uploads/{{
+      source="{{baseUrl}}/public/uploads/{{
         !!insuranceDto?.detail?.passportPhoto
           ? insuranceDto?.detail?.passportPhoto
           : insuranceDto?.detail?.cartePhoto

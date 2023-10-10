@@ -18,7 +18,7 @@ export class HttpService {
     })
   }
 
-  setApiType(apiType : string){
+  setApiType(apiType : "rest" | "assets"){
    this.apiType = apiType;
   }
 

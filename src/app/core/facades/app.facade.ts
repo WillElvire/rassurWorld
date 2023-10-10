@@ -72,6 +72,18 @@ export class AppFacade {
     return this.appFunction.getInsurance(assurId)
   }
 
+  getRequestById(id: string){
+    return this.appFunction.getRequestById(id)
+  }
+
+  getRequest(){
+    return this.appFunction.getRequest();
+  }
+
+  getRequestByUserId(id: string) {
+    return this.appFunction.getRequestByUserId(id);
+  }
+
   validateCotation(assurId : string) {
     return this.appFunction.validateCotation(assurId);
   }
@@ -138,6 +150,9 @@ export class AppFacade {
 
   confirmInsurance(id : string) {
     return this.appFunction.confirmInsurance(id);
+  }
+  addRequest(data : any) {
+    return this.appFunction.addRequest(data);
   }
 
   /*--------------------------------*/

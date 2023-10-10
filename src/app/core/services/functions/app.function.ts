@@ -91,6 +91,21 @@ export class AppFunctionService {
     return this.api.post({endpoint : "/api/offer" , data}).pipe(shareReplay(1))
   }
 
+  getRequestById(id : string) {
+    this.api.setApiType("rest");
+    return this.api.get("/api/request/"+id).pipe(shareReplay(1));
+  }
+
+  getRequest(){
+    this.api.setApiType("rest");
+    return this.api.get("/api/request").pipe(shareReplay(1));
+  }
+
+  getRequestByUserId(id : string) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint:"/api/request/user" , data : {user : id }}).pipe(shareReplay(1));
+  }
+
   getRoles() {
     this.api.setApiType("rest");
     return this.api.get("/api/role").pipe(shareReplay(1));
@@ -164,6 +179,12 @@ export class AppFunctionService {
   deleteTeamMember(id: string) {
     this.api.setApiType("rest");
     return this.api.delete("/api/user/team/"+id).pipe(shareReplay(1));
+  }
+
+
+  addRequest(data : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/request",data}).pipe(shareReplay(1));
   }
 
 

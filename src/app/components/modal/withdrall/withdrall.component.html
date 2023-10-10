@@ -1,7 +1,10 @@
 <div class="container">
   <h3>Retirer de l'argent</h3>
+  <div class="alert alert-danger" *ngIf="price >balance">
+   Vous ne pouvez pas faire de retrait superieur a votre balance
+  </div>
   <label>Veuillez renseigner le montant a retirer</label>
-  <input class="form-control" placeholder="montant a retirer" type="number">
+  <input class="form-control" placeholder="montant a retirer" type="number" [(ngModel)]="price">
   <br>
-  <button class="btn btn-success col-md-12"> Confirmer <i class="fa fa-wallet"></i> </button>
+  <button class="btn btn-success col-md-12" (click)="ConfirmRequest()" [disabled]="price>balance"> Confirmer <i class="fa fa-wallet"></i> </button>
 </div>
