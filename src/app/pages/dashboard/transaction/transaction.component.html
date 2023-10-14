@@ -2,10 +2,16 @@
 <div class="container">
   <h3>Liste des transactions <b class="badge badge-success">{{transactions.length}}</b></h3>
   <app-loader *ngIf="this.isLoaded"></app-loader>
+
   <div class="btn-group d-flex">
     <button class="btn btn-outline-success" ><i class="fa fa-file-csv"></i></button>
     <button class="btn btn-outline-primary"><i class="fa fa-file-pdf"></i></button>
   </div>
+  <select class="form-control mt-3 col-md-4">
+    <option></option>
+    <option>Actif</option>
+    <option>Pending</option>
+  </select>
   <div class="table-responsive mt-5" *ngIf="!this.isLoaded">
     <table class="table table-bordered">
       <thead

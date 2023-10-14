@@ -1,8 +1,5 @@
 import { RoleDto } from './../../../../../backend/src/app/modules/roles/dto/role.dto';
-
-
 import { UserQuery } from 'src/app/store/user$/user.query';
-import { StatesFacades } from './../facades/state.facade';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';

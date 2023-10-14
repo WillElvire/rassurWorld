@@ -75,8 +75,9 @@ export class DetailComponent {
     this.appFacade.updateTransaction({ id, total_net: cotation.total_net , fees : cotation.fees , total : cotation.total }).subscribe(
       (response) => {
         console.log(response);
+        const body = response.body as any;
         this.loadRequestDetail(this.id as string);
-        this.sendMailCotation(cotation);
+        this.sendMailCotation(cotation.total,body?.returnObject?.id);
       },
       (error) => {
         console.log(error);
@@ -114,6 +115,7 @@ export class DetailComponent {
     this.formData.append('lastname', this.insuranceDto?.user?.lastname);
     this.formData.append('phone', this.insuranceDto?.user?.phone);
     this.formData.append('id', id);
+    this.formData.append('email',this.insuranceDto?.user?.email);
 
     this.appFacade.fileReceiptAndMail(this.formData).subscribe(
       (response) => {
@@ -186,10 +188,10 @@ export class DetailComponent {
       );
   }
 
-  sendMailCotation(amount: string) {
+  sendMailCotation(amount: string , id :string = this.insuranceDto.id) {
     this.appFacade
       .cotation({
-        id: this.insuranceDto.id,
+        id,
         phone: this.insuranceDto?.user?.phone,
         lastname: this.insuranceDto?.user?.lastname,
         firstname: this.insuranceDto?.user?.firstname,

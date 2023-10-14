@@ -9,6 +9,9 @@
   <div class="row mt-5 ml-1">
     <input placeholder="rechercher" class="form-control col-md-4" type="search" (keyup)="searchInsurance($event)">
   </div>
+  <div *ngIf="!!keyword" class="mt-3">
+   <p>Recherche  par mot clé : <b class="badge badge-success">{{keyword}}</b></p>
+  </div>
   <div class="table-responsive mt-5" *ngIf="!isSpinning">
     <table class="table table-bordered">
       <thead class="thead" style="background-color: white !important;color :forestgreen !important">

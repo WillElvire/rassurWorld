@@ -18,6 +18,7 @@ export class AssuranceComponent implements OnInit {
   insuranceRequest: any[] = [];
   fechArgument: string = 'unpaid';
   isSpinning : boolean = true;
+  keyword : string = "";
   searchArgument = {
     active  : '',
     acepted : '',
@@ -63,6 +64,7 @@ export class AssuranceComponent implements OnInit {
 
   searchInsurance(event : any) {
     const keyword = event.target.value;
+    this.keyword = keyword;
     if(keyword == "" || !keyword) {
       this.insuranceRequest = this.insuranceCopy;
       return;
@@ -70,16 +72,13 @@ export class AssuranceComponent implements OnInit {
 
     this.insuranceRequest = this.insuranceRequest.filter(
       insurance =>
-      insurance?.id.toLowerCase().includes(keyword.toLowerCase()) ||
+      insurance?.id?.toLowerCase().includes(keyword.toLowerCase()) ||
       insurance?.offer?.libelle.toLowerCase().includes(keyword.toLowerCase()) ||
       insurance?.user?.email.toLowerCase().includes(keyword.toLowerCase()) ||
       insurance?.user?.phone.toLowerCase().includes(keyword.toLowerCase()) ||
       insurance?.user?.firstname.toLowerCase().includes(keyword.toLowerCase()) ||
       insurance?.user?.lastname.toLowerCase().includes(keyword.toLowerCase())
     );
-
-    //this.insuranceRequest = [];
-    console.log(event.target.value)
   }
 
   loadInsuranceRequest() {
