@@ -12,12 +12,14 @@ import { UtilisateurComponent } from '../pages/dashboard/utilisateur/utilisateur
 import { SponsorshipComponent } from '../pages/dashboard/sponsorship/sponsorship.component';
 import { ApporteurComponent } from '../pages/dashboard/apporteur/apporteur.component';
 import { CommissionComponent } from '../pages/dashboard/commission/commission.component';
+import { TransactionFilterPipe } from '../core/pipe/transaction-filter.pipe';
+
 
 
 @NgModule({
   imports : [DashboardRoutingModule,defaultModule,NgxPaginationModule],
   exports : [],
-  declarations : [IndexComponent,AssuranceComponent,RoleComponent,TransactionComponent,OffreComponent,DetailComponent, UtilisateurComponent, SponsorshipComponent, ApporteurComponent, CommissionComponent]
+  declarations : [IndexComponent,AssuranceComponent,RoleComponent,TransactionComponent,OffreComponent,DetailComponent, UtilisateurComponent, SponsorshipComponent, ApporteurComponent, CommissionComponent,TransactionFilterPipe]
 })
 export class DashboardModule {
 

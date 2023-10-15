@@ -14,6 +14,7 @@ export class TransactionComponent {
   transactions: any[] = [];
   p = 1;
   isLoaded : boolean = true;
+  filter : string = "";
   constructor(){
    this.getRequest();
   }
@@ -30,6 +31,10 @@ export class TransactionComponent {
       this.isLoaded = false;
     }
    })
+  }
+
+  getFilter(event : any){
+    this.filter = event.target.value;
   }
 
   confirmRequest(id: string,amount : string , userId : string) {

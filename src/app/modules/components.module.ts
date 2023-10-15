@@ -20,7 +20,6 @@ import { WithdrallComponent } from '../components/modal/withdrall/withdrall.comp
 import { ViewerComponent } from '../components/modal/viewer/viewer.component';
 import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
 
-
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -38,7 +37,8 @@ import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
     BusinessComponent,
     WithdrallComponent,
     ViewerComponent,
-    SanitizerPipe
+    SanitizerPipe,
+
   ],
   imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
   exports: [

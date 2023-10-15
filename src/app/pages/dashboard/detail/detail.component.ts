@@ -118,8 +118,15 @@ export class DetailComponent {
     this.formData.append('email',this.insuranceDto?.user?.email);
 
     this.appFacade.fileReceiptAndMail(this.formData).subscribe(
-      (response) => {
-        console.log(response);
+      (response : any) => {
+        const resp = response.body;
+        if (resp.code == 200)
+        return this.utilsFacade.successToastMessage(
+          'Mail envoyé avec success'
+        );
+      return this.utilsFacade.errorToastMessage(
+        "Erreur durant l'envoi du mail"
+      );
       },
       (error) => {
         console.log(error);
