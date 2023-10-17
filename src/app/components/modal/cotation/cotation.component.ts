@@ -16,7 +16,8 @@ export class CotationComponent {
   fees  = {
     total_net : 0,
     total : 0,
-    fees : 0
+    fees : 0,
+    primeApporteur : 0
   }
   private utils = inject(UtilsFacades);
 

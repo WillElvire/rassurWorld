@@ -19,7 +19,7 @@ import { BusinessComponent } from '../components/modal/business/business.compone
 import { WithdrallComponent } from '../components/modal/withdrall/withdrall.component';
 import { ViewerComponent } from '../components/modal/viewer/viewer.component';
 import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
-
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -40,7 +40,7 @@ import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
     SanitizerPipe,
 
   ],
-  imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
+  imports: [CommonModule,RouterModule, NgZoroModule,FormsModule,NgxImageZoomModule],
   exports: [
     NavbarComponent,
     FooterComponent,
