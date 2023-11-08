@@ -1,0 +1,22 @@
+<div class="container">
+  <h4>Modifier les informations clients</h4>
+  <div class="container">
+    <form>
+      <div class="" *ngFor="let input of propertyNames;let i = index">
+        <div *ngIf="!['password','id','country','tryCount','photoUrl'].includes(propertyNames[i])">
+          <label>{{propertyNames[i] | titlecase}}</label>
+          <ng-container *ngIf="['useWhatsapp','isCollaborateur','isActive'].includes(propertyNames[i]);else selectBlock">
+            <select class="form-control" [(ngModel)]="propertyValues[i]" name="{{propertyNames[i]}}" >
+              <option value="true">Oui</option>
+              <option value="false">Non</option>
+            </select>
+          </ng-container>
+          <ng-template #selectBlock>
+            <input class="form-control" [(ngModel)]="propertyValues[i]" name="{{propertyNames[i]}}" >
+          </ng-template>
+        </div>
+      </div>
+      <button class="btn btn-success col-md-12 mt-5" (click)="save()"> Sauvegarder <span class="fa fa-edit"></span></button>
+    </form>
+  </div>
+</div>

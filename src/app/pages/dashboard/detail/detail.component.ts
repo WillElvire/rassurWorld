@@ -22,6 +22,7 @@ export class DetailComponent {
   isUploadVisible: boolean = false;
   isViewed : boolean = false;
   isBenefiariesVisible : boolean = false;
+  isEditVisible : boolean = false;
   file?: File;
   formData: FormData = new FormData();
   p : number = 1;
@@ -91,6 +92,7 @@ export class DetailComponent {
     this.isUploadVisible = false;
     this.isViewed = false;
     this.isBenefiariesVisible = false;
+    this.isEditVisible = false;
   }
 
   handleCancel(): void {
@@ -99,6 +101,7 @@ export class DetailComponent {
     this.isUploadVisible = false;
     this.isViewed = false;
     this.isBenefiariesVisible = false;
+    this.isEditVisible = false;
   }
 
   sendFile(event: any) {

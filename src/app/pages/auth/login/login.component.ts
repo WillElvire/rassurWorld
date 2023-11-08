@@ -41,6 +41,13 @@ export class LoginComponent {
    return this.callToServer();
   }
 
+  clearForm = () => {
+    this.login  = {
+      email : "",
+      password : ""
+    }
+}
+
   callToServer() {
     this.loaded = true;
     this.appFacade.login(this.login).subscribe( {
@@ -55,6 +62,7 @@ export class LoginComponent {
         this.loaded = false;
         if(!!err.error?.code){
           this.utils.errorToastMessage(err.error.message);
+          this.clearForm()
         }
       }
     }

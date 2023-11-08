@@ -1,5 +1,5 @@
 .detail{
-  height: 450px !important;
+  height: 550px !important;
   overflow: scroll;
 }
 
@@ -9,6 +9,21 @@
   background-color: forestgreen !important;
   color:white !important;
 
+}
+.icon{
+  width: 50px !important;
+  height: 50px !important;
+  background-color: forestgreen !important;
+  border-radius: 30px !important;
+  h1{
+    position: absolute !important;
+    margin-left: 4% !important;
+    font-size: 30px !important;
+    margin-top: 2% !important;
+  }
+  .fa {
+    color: white ;
+  }
 }
 
 .btn-danger {

@@ -15,9 +15,9 @@ export class TransactionFilterPipe implements PipeTransform {
 
     switch(filter) {
       case "pending" :
-      return  transactions.filter((transaction)=>{return transaction?.isConfirmed == false})
+      return  transactions.filter((transaction)=>{return !transaction?.isConfirmed})
       case "active" :
-      return  transactions.filter((transaction)=>{return transaction?.isConfirmed == true})
+      return  transactions.filter((transaction)=>{return !!transaction?.isConfirmed})
       default  :
       return transactions
     }
