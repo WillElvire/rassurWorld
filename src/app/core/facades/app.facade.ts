@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AppFunctionService } from '../services/functions/app.function';
 import { insuranceType } from '../type/system.type';
 import { StorageManagerService } from '../services/storage/storage.manager';
+import { UserDto } from '../interfaces/dto';
 
 
 @Injectable({
@@ -78,6 +79,10 @@ export class AppFacade {
 
   getRequest(){
     return this.appFunction.getRequest();
+  }
+
+  updateUser(user : UserDto) {
+    return this.appFunction.updateUser(user)
   }
 
   confirmRequest(data:any){

@@ -340,7 +340,7 @@
   [nzWidth]="800"
 >
   <ng-container *nzModalContent>
-    <app-edit [user]="insuranceDto?.user"></app-edit>
+    <app-edit [user]="insuranceDto?.user" (newUser)="updateUserInfo($event)"></app-edit>
   </ng-container>
 </nz-modal>
 

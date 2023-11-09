@@ -1,4 +1,5 @@
 <div class="container">
+  <h3>Liste des Offres <b class="badge badge-success">{{offers.length}}</b></h3>
   <button class="btn btn-outline-success" (click)="isVisible = true" > Ajouter un offre</button>
   <app-loader *ngIf="isSpinning"></app-loader>
   <div class="table-responsive mt-5" *ngIf="!isSpinning">

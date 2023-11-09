@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 import { environment } from 'src/environments/environment.prod';
+import { UserDto } from 'src/app/core/interfaces/dto';
 
 @Component({
   selector: 'app-detail',
@@ -29,6 +30,10 @@ export class DetailComponent {
   baseUrl = environment.BASE_URL;
 
   constructor() {
+    this.loadData();
+  }
+
+  loadData() {
     this.activatedRoute.params.subscribe((params: any) => {
       this.id = params.id;
       this.loadRequestDetail(params.id);
@@ -257,5 +262,18 @@ export class DetailComponent {
           );
         }
       );
+  }
+
+  updateUserInfo(event : any) {
+    this.isEditVisible = false;
+    this.appFacade.updateUser(event as any).subscribe(
+       (response)=> {
+        const resp : any = response.body;
+        console.log(resp)
+        this.utilsFacade.successToastMessage("Les informations utilisateur ont été modifiées");
+        this.loadData()
+      },
+       (err)=>  this.utilsFacade.errorToastMessage(!!err.error.message ?  err.error.message :  err.message)
+    )
   }
 }

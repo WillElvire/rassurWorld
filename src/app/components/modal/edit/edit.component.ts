@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserDto } from 'src/app/core/interfaces/dto';
 
 
@@ -9,8 +9,9 @@ import { UserDto } from 'src/app/core/interfaces/dto';
 })
 export class EditComponent implements OnInit {
   @Input() user !: UserDto ;
+  @Output() newUser = new EventEmitter<UserDto>();
   propertyNames !: any;
-  propertyValues !: any
+  propertyValues !: any;
 
 
 
@@ -20,23 +21,11 @@ export class EditComponent implements OnInit {
     this.propertyValues = Object.values(this.user);
   }
 
-  changeKeys(obj : any , newkeys : any) {
-    const keyValues = Object.keys(obj).map(key => {
-      const newKey = newkeys[key] || key;
-      return { [newKey]: obj[key] };
-    });
-    return Object.assign({}, ...keyValues);
-  }
+
 
   save() {
-    let obj :any = {};
-    obj = this.changeKeys(obj,this.user);
-    console.log(obj)
-
-    /*this.user = this.propertyValues.reduce(function(result :any, item :any, index :any, array :any) {
-      result[index] = item; //a, b, c
-      return result;
-    }, {});
-    console.log(this.user)*/
+    const newData = [this.propertyValues];
+    const result : any = newData.map((r : any)=> Object.fromEntries(r.map((c : any, i : any) => [this.propertyNames[i], c])));
+    this.newUser.emit(result[0])
   }
 }

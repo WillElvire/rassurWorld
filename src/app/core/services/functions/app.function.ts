@@ -86,6 +86,11 @@ export class AppFunctionService {
     return this.api.get("/api/offer").pipe(shareReplay(1));
   }
 
+  updateUser(data : any) {
+    this.api.setApiType("rest");
+    return this.api.put({endpoint : "/api/user" , data }).pipe(shareReplay(1))
+  }
+
   addOffer(data : any) {
     this.api.setApiType("rest");
     return this.api.post({endpoint : "/api/offer" , data}).pipe(shareReplay(1))
