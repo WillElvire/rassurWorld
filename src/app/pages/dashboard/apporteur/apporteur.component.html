@@ -34,12 +34,15 @@
                 <span class="fa fa-check" *ngIf="!user.isActive"></span>
                 <span class="fa fa-close" *ngIf="user.isActive"></span>
               </button>
-              <button class="btn btn-outline-danger" ><span class="fa fa-trash"></span></button>
+              <button class="btn btn-outline-info"  (click)="editUserInformation(user)"><span class="fa fa-edit"></span></button>
 
               <button class="btn btn-outline-info"  (click)="viewBusinessDetail(user?.code)"><span class="fa fa-eye"></span></button>
             </div>
           </td>
+
         </tr>
+
+
       </tbody>
     </table>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -53,3 +56,9 @@
 </nz-modal>
 
 
+
+<nz-modal [nzWidth]="1000" [(nzVisible)]="isEditVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <app-edit [user]="userToEdit" (newUser)="updateUser($event)"></app-edit>
+  </ng-container>
+</nz-modal>
