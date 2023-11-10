@@ -4,7 +4,7 @@
   </button>
 
   <div class="alert alert-info mt-2">
-    Toutes actions ménees dans cette partie sont irreversibles
+    Toutes actions menées dans cette partie sont irréversibles.
   </div>
 
   <div class="grid text-center">
@@ -372,10 +372,13 @@
   [nzFooter]="null"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
-  nzWidth="{{ 500 }}"
+  [nzWidth]="800"
 >
   <ng-container *nzModalContent>
     <h3>Liste des beneficiaires</h3>
+    <div class="btn-group d-flex">
+      <button class="btn btn-outline-success" ><i class="fa fa-file-csv"></i></button>
+    </div>
     <div class="table-responsive mt-5">
       <table class="table table-bordered">
         <thead

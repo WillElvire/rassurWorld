@@ -13,6 +13,7 @@ export interface UserDto {
   tryCount?: number;
   isCollaborateur?: boolean;
   code?: string;
+  useWhatsapp ?:boolean ;
 }
 
 export interface BeneficiaryDto {

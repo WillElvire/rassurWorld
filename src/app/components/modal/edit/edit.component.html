@@ -7,8 +7,8 @@
           <label>{{propertyNames[i] | titlecase}}</label>
           <ng-container *ngIf="['useWhatsapp','isCollaborateur','isActive'].includes(propertyNames[i]);else selectBlock">
             <select class="form-control" [(ngModel)]="propertyValues[i]" name="{{propertyNames[i]}}" >
-              <option value="true">Oui</option>
-              <option value="false">Non</option>
+              <option value="1" selected>Oui</option>
+              <option value="0">Non</option>
             </select>
           </ng-container>
           <ng-template #selectBlock>
