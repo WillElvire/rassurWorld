@@ -1,4 +1,4 @@
-import { tripInsuranceDto } from './../../core/interfaces/dto';
+import { tripInsuranceDto } from '../../../core/interfaces/dto';
 import { Component, inject } from '@angular/core';
 import { AppFacade } from 'src/app/core/facades/app.facade';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
