@@ -1,0 +1,45 @@
+<h2>Audit Transaction {{transactions.length}}</h2>
+<div id="accordion">
+  <div class="card" *ngFor="let transaction of transactions; let i = index">
+    <div class="card-header" id="heading{{ i }}">
+      <h5 class="mb-0">
+        <div>
+          <button
+            class="btn btn-link"
+            data-toggle="collapse"
+            [attr.data-target]="'#collapse' + i"
+            [attr.aria-expanded]="i==0 ? 'true' : 'false'"
+            [attr.aria-controls]="'collapse' + i"
+          >
+            <!--{{!!parse(transaction.request).order_id ?parse(transaction.request).order_id : transaction.request.toString()}}!-->
+            {{ transaction.provider }} -
+            {{ transaction.createdAt | date : "dd:MM:YYYY hh:mm:ss" }}
+          </button>
+        </div>
+      </h5>
+    </div>
+
+    <div
+      id="collapse{{ i }}"
+      class="collapse show"
+      [attr.aria-labelledby]="'heading' + i"
+      data-parent="#accordion"
+    >
+      <div class="alert alert-info">
+        <p>
+          Api d'appel :
+          <b class="badge badge-primary">{{ transaction.apiPath }}</b>
+        </p>
+        <p>
+          Addresse Ip : <b class="badge badge-primary">{{ transaction.ip }}</b>
+        </p>
+        <p>
+          Navigateur :
+          <b class="badge badge-primary">{{ transaction.browser }}</b>
+        </p>
+        <p>Requete : {{ parse(transaction.request) | json }}</p>
+        <p>Reponse : {{ parse(transaction.response) | json }}</p>
+      </div>
+    </div>
+  </div>
+</div>

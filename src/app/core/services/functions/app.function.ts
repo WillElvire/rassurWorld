@@ -205,5 +205,23 @@ export class AppFunctionService {
   }
 
 
+  /**
+   * @section transaction
+   */
+
+  getTransfer() {
+    this.api.setApiType("rest");
+    return this.api.get("/api/transfer/list").pipe(shareReplay(1));
+  }
+
+  momoTransfer(momoPayload : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/transfer/momo",data : momoPayload}).pipe(shareReplay(1));
+  }
+
+  momoTransferDetail(momoPayload : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/transfer/detail",data : momoPayload}).pipe(shareReplay(1));
+  }
 
 }

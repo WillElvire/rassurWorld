@@ -176,4 +176,11 @@ export class AppFacade {
     return this.storageService.delete(key);
   }
   /*--------------------------------*/
+
+
+
+  /*--------------------------------*/
+  getTransfer() {
+    return this.appFunction.getTransfer();
+  }
 }

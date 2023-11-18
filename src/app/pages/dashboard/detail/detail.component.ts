@@ -27,7 +27,7 @@ export class DetailComponent {
   file?: File;
   formData: FormData = new FormData();
   p : number = 1;
-  baseUrl = environment.BASE_URL;
+  baseUrl = environment.BASE_URL_DEV;
 
   constructor() {
     this.loadData();
@@ -37,7 +37,15 @@ export class DetailComponent {
     this.activatedRoute.params.subscribe((params: any) => {
       this.id = params.id;
       this.loadRequestDetail(params.id);
+      this.loadTransfers()
     });
+  }
+
+  loadTransfers() {
+    this.appFacade.getTransfer().subscribe({
+      next : (response)=> console.log(response),
+      error : (err)=> console.log(err)
+    })
   }
 
   goBack() {
@@ -92,21 +100,21 @@ export class DetailComponent {
   }
 
   handleOk(): void {
-    this.isVisible = false;
-    this.isMailVisible = false;
-    this.isUploadVisible = false;
-    this.isViewed = false;
+    this.isVisible            = false;
+    this.isMailVisible        = false;
+    this.isUploadVisible      = false;
+    this.isViewed             = false;
     this.isBenefiariesVisible = false;
-    this.isEditVisible = false;
+    this.isEditVisible        = false;
   }
 
   handleCancel(): void {
-    this.isVisible = false;
-    this.isMailVisible = false;
-    this.isUploadVisible = false;
-    this.isViewed = false;
+    this.isVisible            = false;
+    this.isMailVisible        = false;
+    this.isUploadVisible      = false;
+    this.isViewed             = false;
     this.isBenefiariesVisible = false;
-    this.isEditVisible = false;
+    this.isEditVisible        = false;
   }
 
   sendFile(event: any) {
