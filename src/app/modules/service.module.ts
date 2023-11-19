@@ -16,6 +16,7 @@ import { UserQuery } from '../store/user$/user.query';
 import { ModalAppService } from '../core/services/utils/modal/modal.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { XLXSProvider } from '../core/services/third-party/xlxs.service';
+import { TransferService } from '../core/services/transfer/transfer.service';
 
 @NgModule({
   declarations: [],
@@ -36,7 +37,8 @@ import { XLXSProvider } from '../core/services/third-party/xlxs.service';
     UserQuery,
     ModalAppService,
     NzModalService,
-    XLXSProvider
+    XLXSProvider,
+    TransferService
 
   ],
   exports: [HttpClientModule],

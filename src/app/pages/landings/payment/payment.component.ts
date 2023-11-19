@@ -69,6 +69,15 @@ export class PaymentComponent implements OnInit {
     this.enable = false;
   }
 
+
+  pay() {
+    this.enable = true;
+    this.appFacade.momoTransfer({amount : Number(this.insurance?.transaction?.total) } ).subscribe({
+      next : (resp)=> console.log(resp),
+      error : (error) => console.log(error)
+    })
+  }
+
   updateCotation() {
     this.enable = true;
    this.appFacade.validateCotation(this.insuranceId).subscribe({

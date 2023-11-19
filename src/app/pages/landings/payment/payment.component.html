@@ -72,7 +72,7 @@
             proceder au paiement
           </div>
 
-          <button class="btn btn-success col-md-12" [disabled]="!insurance">Payer <i class="fa fa-credit-card" aria-hidden="true"></i></button>
+          <button class="btn btn-success col-md-12" [disabled]="!insurance" (click)="pay()">Payer <i class="fa fa-credit-card" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
@@ -92,7 +92,8 @@
 
 <ng-template #elseBlock>
   <div class="container">
-    <div class="card mt-4" *ngIf="!!insurance?.transaction?.total">
+    <div class="card mt-4" *ngIf="!!insurance?.transaction?.total && !insurance?.isAcepted
+    ">
       <div class="card-body text-center">
         <h1>
           <span class="fa fa-info"></span>

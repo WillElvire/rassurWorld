@@ -4,6 +4,7 @@ import { AppFunctionService } from '../services/functions/app.function';
 import { insuranceType } from '../type/system.type';
 import { StorageManagerService } from '../services/storage/storage.manager';
 import { UserDto } from '../interfaces/dto';
+import { TransferService } from '../services/transfer/transfer.service';
 
 
 @Injectable({
@@ -11,9 +12,9 @@ import { UserDto } from '../interfaces/dto';
 })
 export class AppFacade {
 
-  private appFunction    = inject(AppFunctionService);
-  private storageService = inject(StorageManagerService);
-
+  private appFunction     = inject(AppFunctionService);
+  private storageService  = inject(StorageManagerService);
+  private transferService = inject(TransferService);
 
   getReceiptFile() {
    return this.appFunction.getReceiptFile();
@@ -48,6 +49,10 @@ export class AppFacade {
 
   businessRegistration(data :any) {
     return this.appFunction.businessRegistration(data);
+  }
+
+  mobileMoneyPayout(amount : number) {
+    return this.transferService.mobileMoneyPayment(amount);
   }
 
   firstStep(data : any , type : insuranceType = "voyage") {
@@ -182,5 +187,9 @@ export class AppFacade {
   /*--------------------------------*/
   getTransfer() {
     return this.appFunction.getTransfer();
+  }
+
+  momoTransfer(payload :any) {
+    return this.appFunction.momoTransfer(payload);
   }
 }
