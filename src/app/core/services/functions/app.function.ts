@@ -204,6 +204,11 @@ export class AppFunctionService {
     return this.api.post({endpoint: "/api/admin/insurance/confirm",data : {insuranceId : id}}).pipe(shareReplay(1));
   }
 
+  getWalletById(walletId : string) {
+    this.api.setApiType("rest");
+    return this.api.get("/api/wallet/"+ walletId).pipe(shareReplay(1));
+  }
+
 
   /**
    * @section transaction

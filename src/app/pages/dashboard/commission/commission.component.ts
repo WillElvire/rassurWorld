@@ -20,6 +20,7 @@ export class CommissionComponent implements OnInit {
   isLoaded : boolean = true;
   requests : any[] = [];
   isVisible : boolean = false;
+  balance : number = 0;
   statistiq = {
     pending : 0,
     total : 0
@@ -28,6 +29,7 @@ export class CommissionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.loadUserWallet()
       this.getUserRequest();
   }
 
@@ -78,6 +80,20 @@ export class CommissionComponent implements OnInit {
     }
   }
 
+  loadUserWallet() {
+    this.appFacades.getWalletById(this.user.wallet.id).subscribe({
+      next : (resp)=> {
+        const body :any  = resp.body;
+        this.balance = body?.returnObject?.balance;
+      },
+      error : (err)=> {
+        console.log(err);
+        this.isLoaded = false;
+        this.utilsFacades.errorToastMessage(!!err.error.message ? err.error.message : err.message);
+      }
+    })
+  }
+
   addNewRequest() {
     const data = {
       amount : this.amount,
@@ -90,7 +106,11 @@ export class CommissionComponent implements OnInit {
       next : (response)=> {
         const body = response.body as any;
         this.utilsFacades.successToastMessage(body?.message);
+        this.balance = body?.returnObject?.balance;
+        this.user["wallet"]["balance"]=this.balance;
+        this.userQuery.update(this.user)
         this.getUserRequest();
+        this.loadUserWallet()
       },
       error : (err)=> {
         console.log(err);

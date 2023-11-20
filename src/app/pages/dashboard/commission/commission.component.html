@@ -13,7 +13,7 @@
     <div class="col-md-4">
       <div class="card text-center">
         <div class="card-body">
-          <h1 class="_text">{{user?.wallet?.balance | currency : 'XOF' }} </h1>
+          <h1 class="_text">{{balance | currency : 'XOF' }} </h1>
           <span>Balance</span>
         </div>
       </div>
@@ -38,7 +38,7 @@
 </div>
 
 <app-loader *ngIf="isLoaded"></app-loader>
-<div class="container mt-5" *ngIf="!isLoaded">
+<div class="container-fluid mt-5" *ngIf="!isLoaded">
   <div class="table-responsive">
     <table class="table table-bordered">
       <thead class="thead" style="background-color: white !important;color :forestgreen !important">
@@ -53,7 +53,7 @@
       <tbody>
         <tr *ngFor="let request of requests">
           <td>{{request.id}}</td>
-          <td>{{request.amount | currency : 'XOF'}}</td>
+          <td><b class="badge badge-success">{{request.amount | currency : 'XOF'}}</b></td>
           <td>{{(!!request.fees ? request.fees  : 0 ) | currency : 'XOF' }}</td>
           <td><b class="badge badge-success">{{request.type == 1 ? 'Retrait' : 'Depot'}}</b></td>
           <td><b class="badge badge-{{request.isPayed ? 'success' : 'danger'}}">{{request.isPayed ? 'Payé' : "En attente de paiement"}}</b></td>
@@ -66,6 +66,6 @@
 
 <nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
-    <app-withdrall (amount)="getAmount($event)" [balance]="user?.wallet?.balance"></app-withdrall>
+    <app-withdrall (amount)="getAmount($event)" [balance]="balance"></app-withdrall>
   </ng-container>
 </nz-modal>

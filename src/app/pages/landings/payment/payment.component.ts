@@ -72,7 +72,7 @@ export class PaymentComponent implements OnInit {
 
   pay() {
     this.enable = true;
-    this.appFacade.momoTransfer({amount : Number(this.insurance?.transaction?.total) } ).subscribe({
+    this.appFacade.mobileMoneyPayout( Number(this.insurance?.transaction?.total)  ).subscribe({
       next : (resp)=> console.log(resp),
       error : (error) => console.log(error)
     })

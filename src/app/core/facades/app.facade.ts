@@ -169,6 +169,10 @@ export class AppFacade {
     return this.appFunction.addRequest(data);
   }
 
+  getWalletById(walletId : string){
+    return this.appFunction.getWalletById(walletId);
+  }
+
   /*--------------------------------*/
 
   setStorage(data  : {key : string ,value : any}) {

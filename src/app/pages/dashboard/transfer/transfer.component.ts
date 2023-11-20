@@ -9,6 +9,7 @@ import { AppFacade } from 'src/app/core/facades/app.facade';
 export class TransferComponent implements OnInit {
 
   readonly appFacade = inject(AppFacade);
+  p=1;
   transactions : any[] = [];
 
   ngOnInit(): void {
