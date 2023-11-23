@@ -23,7 +23,7 @@ export class PaymentComponent implements OnInit {
   insurance : any;
   enable : boolean = false;
   isAccepted : boolean = false;
-
+  meanOfPayment : string = "orange";
   ngOnInit(): void {
     this.activated.params.subscribe((params)=> this.insuranceId = params["id"]);
     this.getInsurance();
@@ -72,9 +72,14 @@ export class PaymentComponent implements OnInit {
 
   pay() {
     this.enable = true;
-    this.appFacade.mobileMoneyPayout( Number(this.insurance?.transaction?.total)  ).subscribe({
-      next : (resp)=> console.log(resp),
-      error : (error) => console.log(error)
+    this.appFacade.momoTransfer( {amount : Number(this.insurance?.transaction?.total) , meanOfPayement : this.meanOfPayment , transferId : this.insurance.transaction.id , insurranceId : this.insuranceId } ).subscribe({
+      next : (resp)=> {
+        const body = resp.body as any;
+        const redirectUri = body.returnObject.payment_url;
+        location.href = redirectUri;
+
+      },
+      error : (error) => this.utilsFacade.errorToastMessage(error)
     })
   }
 

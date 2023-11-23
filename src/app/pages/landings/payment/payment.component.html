@@ -72,7 +72,15 @@
             proceder au paiement
           </div>
 
-          <button class="btn btn-success col-md-12" [disabled]="!insurance" (click)="pay()">Payer <i class="fa fa-credit-card" aria-hidden="true"></i></button>
+          <div class="payment-means">
+            <label>Moyen de paiement</label>
+            <select class="form-control" [(ngModel)]="meanOfPayment">
+              <option value="moov">Moov</option>
+              <option value="orange">Orange</option>
+              <option value="mtn">Mtn</option>
+            </select>
+          </div>
+          <button class="btn btn-success col-md-12 mt-3" [disabled]="!insurance" (click)="pay()">Payer <i class="fa fa-credit-card" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
