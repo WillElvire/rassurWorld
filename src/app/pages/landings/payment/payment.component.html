@@ -4,7 +4,16 @@
   </a>
   <app-loader *ngIf="enable"></app-loader>
 
-  <div class="wrapper" *ngIf="!enable && !!insurance && isAccepted;else elseBlock" style="margin-top: 1%;">
+  <div  *ngIf="isAccepted && insurance.isPayed">
+    <div class="container">
+      <div class="container mt-5">
+        <nz-result nzStatus="success" nzTitle="Votre facture a été reglé"
+        nzSubTitle="Merci d'utiliser nos services">
+      </nz-result>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper" *ngIf="!enable && !!insurance && isAccepted && !insurance.isPayed;else elseBlock" style="margin-top: 1%;">
     <h3 class="text-center" style="color :forestgreen">R'ASSUR Pay </h3>
     <div class="alert alert-info">
       <i class="fa fa-warning"></i> Ne divulgez aucune informations contenu sur ce portail a votre entourage
@@ -78,6 +87,7 @@
               <option value="moov">Moov</option>
               <option value="orange">Orange</option>
               <option value="mtn">Mtn</option>
+              <option value="wave">Wave</option>
             </select>
           </div>
           <button class="btn btn-success col-md-12 mt-3" [disabled]="!insurance" (click)="pay()">Payer <i class="fa fa-credit-card" aria-hidden="true"></i></button>
