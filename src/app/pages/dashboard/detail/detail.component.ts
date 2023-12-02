@@ -27,7 +27,7 @@ export class DetailComponent {
   file?: File;
   formData: FormData = new FormData();
   p : number = 1;
-  baseUrl = environment.BASE_URL_DEV;
+  baseUrl = environment.BASE_URL;
 
   constructor() {
     this.loadData();

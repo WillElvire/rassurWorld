@@ -72,7 +72,7 @@ export class HttpService {
   getBaseUrl() {
     switch(this.apiType) {
       case "rest" :
-         return environment.BASE_URL_DEV;
+         return environment.BASE_URL;
       case "assets" :
         return "/assets/";
       case "transfer" :
