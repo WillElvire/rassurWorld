@@ -25,6 +25,14 @@ const routes: Routes = [
     loadComponent : ()=> import('./pages/landings/payment/payment.component').then((c)=>c.PaymentComponent)
   },
   {
+    path : 'transaction/success',
+    loadComponent : ()=> import('./pages/landings/transaction/successfull/successfull.component').then((c)=>c.SuccessfullComponent)
+  },
+  {
+    path : 'transaction/failed',
+    loadComponent : ()=> import('./pages/landings/transaction/failed/failed.component').then((c)=>c.FailedComponent)
+  },
+  {
     path: 'assurance',
     loadChildren: () => import('./modules/assur.module').then((m) => m.AssurModule),
   },
