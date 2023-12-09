@@ -17,15 +17,20 @@ export class EditComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // get the keys and values of the user object
     this.propertyNames  = Object.keys(this.user);
+    // get the keys and values of the user object
     this.propertyValues = Object.values(this.user);
   }
 
 
 
   save() {
+    // creating a new array
     const newData = [this.propertyValues];
+    // mergin the two arrays
     const result : any = newData.map((r : any)=> Object.fromEntries(r.map((c : any, i : any) => [this.propertyNames[i], c])));
+    // emit the new user
     this.newUser.emit(result[0])
   }
 }

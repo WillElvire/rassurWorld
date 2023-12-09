@@ -29,7 +29,7 @@
           <div class="card-body text-center">
             <div *ngIf="!isSpinning && !!stats; else block">
               <h1 class="_text">{{ stats?.approvedPayment }}</h1>
-              <p>Souscriptions confirmé</p>
+              <p>Souscriptions confirmées</p>
             </div>
 
             <app-loader *ngIf="isSpinning"></app-loader>
@@ -51,7 +51,7 @@
     <div class="col-md-8">
       <h5 class="mt-5">Activités récentes <b class="badge badge-success"> {{insuranceRequest.length}}</b></h5>
       <div class="table-responsive">
-        <table class="table">
+        <table class="table table-bordered">
           <thead
             class="thead"
             style="
@@ -71,7 +71,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let insurance of insuranceRequest.slice(0, 2)">
-              <th scope="row">{{ insurance.id }}</th>
+              <th scope="row">{{ insurance.id.substring(0,7) }}...</th>
               <td>
                 <b class="badge badge-success">{{ insurance.offer.libelle }}</b>
               </td>
