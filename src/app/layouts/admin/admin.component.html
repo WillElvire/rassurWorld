@@ -13,31 +13,33 @@
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
 
-        <li nz-menu-item routerLink="/admin/index" routerLinkActive="active">
-          <span nz-icon nzType="home" nzTheme="fill"></span>
-          <span>Dashboard</span>
-        </li>
+
 
         <ng-container >
+
           <div *ngIf="userRole?.libelle == 'admin'">
+            <li nz-menu-item routerLink="/admin/index" routerLinkActive="active">
+              <span nz-icon nzType="home" nzTheme="fill"></span>
+              <span>Tableau de board</span>
+            </li>
             <li nz-menu-item routerLink="/admin/assurance/unpaid" routerLinkActive="active" >
-              <span nz-icon nzType="schedule" nzTheme="outline"></span>
-              <span>Demande d'assurance</span>
+              <span nz-icon nzType="sliders" nzTheme="outline"></span>
+              <span>Demandes d'assurance</span>
             </li>
 
             <li nz-menu-item routerLink="/admin/assurance/active" routerLinkActive="active">
-              <span nz-icon nzType="schedule" nzTheme="outline"></span>
-              <span>Assurance en cours </span>
+              <span nz-icon nzType="sliders" nzTheme="outline"></span>
+              <span>Assurances en cours </span>
             </li>
 
             <li nz-menu-item routerLink="/admin/assurance/payed" routerLinkActive="active">
-              <span nz-icon nzType="schedule" nzTheme="outline"></span>
-              <span>Assurance traité</span>
+              <span nz-icon nzType="sliders" nzTheme="outline"></span>
+              <span>Assurances traitées</span>
             </li>
 
             <li nz-menu-item routerLink="/admin/assurance/acepted" routerLinkActive="active">
-              <span nz-icon nzType="schedule" nzTheme="outline"></span>
-              <span>Assurance Confirmé</span>
+              <span nz-icon nzType="sliders" nzTheme="outline"></span>
+              <span>Assurances Confirmées</span>
             </li>
 
 

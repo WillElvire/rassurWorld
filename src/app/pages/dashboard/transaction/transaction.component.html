@@ -7,8 +7,9 @@
     <button class="btn btn-outline-success" ><i class="fa fa-file-csv"></i></button>
     <button class="btn btn-outline-primary"><i class="fa fa-file-pdf"></i></button>
   </div>
+
   <select class="form-control mt-3 col-md-4" (change)="getFilter($event)" >
-    <option></option>
+    <option disabled selected>Filtrer par status</option>
     <option value="active">Actif</option>
     <option value="pending">Pending</option>
   </select>

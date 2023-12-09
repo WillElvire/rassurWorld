@@ -21,6 +21,8 @@ import { ViewerComponent } from '../components/modal/viewer/viewer.component';
 import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { EditComponent } from '../components/modal/edit/edit.component';
+import { PieComponent } from '../components/widgets/charts/pie/pie.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -40,9 +42,10 @@ import { EditComponent } from '../components/modal/edit/edit.component';
     ViewerComponent,
     SanitizerPipe,
     EditComponent,
+    PieComponent
 
   ],
-  imports: [CommonModule,RouterModule, NgZoroModule,FormsModule,NgxImageZoomModule],
+  imports: [CommonModule,RouterModule, NgZoroModule,FormsModule,NgxImageZoomModule,NgApexchartsModule],
   exports: [
     NavbarComponent,
     FooterComponent,
@@ -59,7 +62,8 @@ import { EditComponent } from '../components/modal/edit/edit.component';
     WithdrallComponent,
     ViewerComponent,
     EditComponent,
-    SanitizerPipe
+    SanitizerPipe,
+    PieComponent
   ],
 
 })

@@ -77,9 +77,12 @@ export class PaymentComponent implements OnInit {
         const body = resp.body as any;
         const redirectUri = body.returnObject.payment_url;
         location.href = redirectUri;
-
+        this.enable = false;
       },
-      error : (error) => this.utilsFacade.errorToastMessage(error)
+      error : (error) => {
+        this.utilsFacade.errorToastMessage(error)
+        this.enable = false;
+      }
     })
   }
 
