@@ -4,40 +4,42 @@
               nzWidth="256px"
               nzBreakpoint="md"
               [(nzCollapsed)]="isCollapsed"
-              [nzTrigger]="null" nzTheme="light">
+              [nzTrigger]="null" nzTheme="dark">
       <div class="sidebar-logo">
         <a routerLink="/" >
           <img src="/assets/logo.svg" alt="logo">
           <h1>RASSUR WORLD</h1>
         </a>
       </div>
-      <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
 
-        <li nz-menu-item routerLink="/admin/index" routerLinkActive="active">
-          <span nz-icon nzType="home" nzTheme="fill"></span>
-          <span>Dashboard</span>
-        </li>
+
 
         <ng-container >
+
           <div *ngIf="userRole?.libelle == 'admin'">
+            <li nz-menu-item routerLink="/admin/index" routerLinkActive="active">
+              <span nz-icon nzType="home" nzTheme="fill"></span>
+              <span>Tableau de bord</span>
+            </li>
             <li nz-menu-item routerLink="/admin/assurance/unpaid" routerLinkActive="active" >
-              <span nz-icon nzType="schedule" nzTheme="outline"></span>
-              <span>Demande d'assurance</span>
+              <span nz-icon nzType="sliders" nzTheme="outline"></span>
+              <span>Demandes d'assurance</span>
             </li>
 
             <li nz-menu-item routerLink="/admin/assurance/active" routerLinkActive="active">
-              <span nz-icon nzType="schedule" nzTheme="outline"></span>
-              <span>Assurance en cours </span>
+              <span nz-icon nzType="sliders" nzTheme="outline"></span>
+              <span>Assurances en cours </span>
             </li>
 
             <li nz-menu-item routerLink="/admin/assurance/payed" routerLinkActive="active">
-              <span nz-icon nzType="schedule" nzTheme="outline"></span>
-              <span>Assurance traité</span>
+              <span nz-icon nzType="sliders" nzTheme="outline"></span>
+              <span>Assurances traitées</span>
             </li>
 
             <li nz-menu-item routerLink="/admin/assurance/acepted" routerLinkActive="active">
-              <span nz-icon nzType="schedule" nzTheme="outline"></span>
-              <span>Assurance Confirmé</span>
+              <span nz-icon nzType="sliders" nzTheme="outline"></span>
+              <span>Assurances Confirmées</span>
             </li>
 
 
@@ -59,6 +61,11 @@
             <li nz-menu-item routerLink="/admin/utilisateur" routerLinkActive="active">
               <span nz-icon nzType="user" nzTheme="outline"></span>
               <span>Equipe</span>
+            </li>
+
+            <li nz-menu-item routerLink="/admin/transfer" routerLinkActive="active">
+              <span nz-icon nzType="swap" nzTheme="outline"></span>
+              <span>Transfer</span>
             </li>
 
             <li nz-menu-item routerLink="/admin/role" routerLinkActive="active">
@@ -95,7 +102,7 @@
 
         <li nz-menu-item (click)="logout()">
           <span nz-icon nzType="logout" nzTheme="outline"></span>
-          <span>Deconnexion</span>
+          <span>Déconnexion</span>
         </li>
 
 

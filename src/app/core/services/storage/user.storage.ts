@@ -1,6 +1,6 @@
 import { environment } from './../../../../environments/environment';
 import { UserDto } from './../../interfaces/dto';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { StorageManagerService } from './storage.manager';
 @Injectable({
   providedIn : 'root'

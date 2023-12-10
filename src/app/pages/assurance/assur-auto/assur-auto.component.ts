@@ -1,8 +1,8 @@
 import { AppFacade } from 'src/app/core/facades/app.facade';
-import { UtilsFacades } from './../../core/facades/utils.facade';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDto, firstStepUser } from 'src/app/core/interfaces/dto';
+import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 
 @Component({
   selector: 'app-assur-auto',

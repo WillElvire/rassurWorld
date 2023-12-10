@@ -12,6 +12,8 @@ import { UtilisateurComponent } from '../pages/dashboard/utilisateur/utilisateur
 import { SponsorshipComponent } from '../pages/dashboard/sponsorship/sponsorship.component';
 import { ApporteurComponent } from '../pages/dashboard/apporteur/apporteur.component';
 import { CommissionComponent } from '../pages/dashboard/commission/commission.component';
+import { TransferComponent } from '../pages/dashboard/transfer/transfer.component';
+import { RoleGuard } from '../core/guard/role.guard';
 
 const routes: Routes = [
   {
@@ -58,6 +60,10 @@ const routes: Routes = [
       {
         path: 'commission',
         component: CommissionComponent,
+      },
+      {
+        path: 'transfer',
+        component: TransferComponent,
       },
       {
         path: '',

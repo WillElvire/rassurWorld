@@ -18,12 +18,15 @@ export class AssuranceComponent implements OnInit {
   insuranceRequest: any[] = [];
   fechArgument: string = 'unpaid';
   isSpinning : boolean = true;
+  keyword : string = "";
   searchArgument = {
     active  : '',
     acepted : '',
     payed   : '',
   };
   p: number = 1;
+  insuranceCopy : any [] = [];
+
   constructor() {}
 
   ngOnInit(): void {
@@ -59,6 +62,25 @@ export class AssuranceComponent implements OnInit {
     });
   }
 
+  searchInsurance(event : any) {
+    const keyword = event.target.value;
+    this.keyword = keyword;
+    if(keyword == "" || !keyword) {
+      this.insuranceRequest = this.insuranceCopy;
+      return;
+    }
+
+    this.insuranceRequest = this.insuranceRequest.filter(
+      insurance =>
+      insurance?.id?.toLowerCase().includes(keyword.toLowerCase()) ||
+      insurance?.offer?.libelle.toLowerCase().includes(keyword.toLowerCase()) ||
+      insurance?.user?.email.toLowerCase().includes(keyword.toLowerCase()) ||
+      insurance?.user?.phone.toLowerCase().includes(keyword.toLowerCase()) ||
+      insurance?.user?.firstname.toLowerCase().includes(keyword.toLowerCase()) ||
+      insurance?.user?.lastname.toLowerCase().includes(keyword.toLowerCase())
+    );
+  }
+
   loadInsuranceRequest() {
     this.appFacades
       .getInsuranceRequest({
@@ -70,6 +92,7 @@ export class AssuranceComponent implements OnInit {
         (response: any) => {
           console.log(response);
           this.insuranceRequest = response.body.returnObject;
+          this.insuranceCopy = this.insuranceRequest;
           this.isSpinning = false;
         },
         (error) => {
@@ -82,4 +105,13 @@ export class AssuranceComponent implements OnInit {
         }
       );
   }
+
+  export(type : "xlxs" | "pdf") {
+    if(type == "xlxs") {
+      this.utilsFacade.xlsProvider.generateExport(this.insuranceRequest , [["id"]])
+    }
+  }
+
+
+
 }

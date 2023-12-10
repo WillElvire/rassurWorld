@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="alert alert-danger" *ngIf="user?.isCollaborateur && !user?.isActive">
     <i class="fa fa-warning"></i> Votre compte est restreint
   </div>
@@ -46,7 +46,7 @@
             <span *ngIf="!sponsor.isPayed && !sponsor.isAcepted" class="badge badge-danger">Non reglé</span>
           </td>
           <td>
-            {{0  | currency : 'FCFA'}}
+            {{(!!sponsor?.transaction?.primeApporteur ? sponsor?.transaction?.primeApporteur : 0)  | currency : 'FCFA'}}
           </td>
         </tr>
 

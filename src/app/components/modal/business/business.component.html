@@ -6,7 +6,7 @@
       <div class="col-md-6">
         <div class="card text-center">
           <div class="card-body">
-            <h3>{{0 | currency : 'FCFA'}}</h3>
+            <h3>{{amount | currency : 'FCFA'}}</h3>
             <p>Commission total</p>
           </div>
         </div>
@@ -54,7 +54,7 @@
             <span *ngIf="!sponsor.isPayed && !sponsor.isAcepted" class="badge badge-danger">Non reglé</span>
           </td>
           <td>
-            {{0  | currency : 'FCFA'}}
+            {{(!!sponsor?.transaction?.primeApporteur ? sponsor?.transaction?.primeApporteur : 0)  | currency : 'FCFA'}}
           </td>
           <td>
             <button class="btn btn-outline-success" routerLink="/admin/detail/{{sponsor.id}}"> <span class="fa fa-eye"></span></button>

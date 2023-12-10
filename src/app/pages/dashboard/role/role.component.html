@@ -1,8 +1,9 @@
-<div class="container">
+<div class="container-fluid">
+  <h3>Liste des roles <b class="badge badge-success">{{roles.length}}</b></h3>
   <!--<button class="btn btn-outline-success"> Ajouter un role</button>!-->
   <app-loader *ngIf="isSpinning"></app-loader>
   <div class="table-responsive mt-5" *ngIf="!isSpinning">
-    <table class="table">
+    <table class="table table-bordered">
       <thead class="thead" style="background-color: white !important;color :forestgreen !important">
         <tr>
           <th scope="col">Id</th>

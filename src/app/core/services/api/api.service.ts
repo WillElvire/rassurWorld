@@ -4,11 +4,12 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, Self } from "@angular/core";
 import { HttpHeaderBuilder } from '../../classes/header.builder';
 
+export type apiType = "rest" | "assets"| "transfer";
 
 @Injectable()
 export class HttpService {
 
-  apiType : string = "rest";
+  apiType : apiType = "rest";
   isEnc   : boolean = false;
   token   ?: string;
   constructor(private http : HttpClient,@Self()private userQuery : UserQuery) {
@@ -18,7 +19,7 @@ export class HttpService {
     })
   }
 
-  setApiType(apiType : string){
+  setApiType(apiType : apiType){
    this.apiType = apiType;
   }
 
@@ -41,6 +42,9 @@ export class HttpService {
   delete<T>(endpoint : string) {
     return this.http.delete<T>(`${this.getBaseUrl()}${endpoint}`,{headers : this.httpHeader(),observe: "response",reportProgress : true});
   }
+
+
+
 
   getHtml(endpoint: string) {
     return this.http.get(`${this.getBaseUrl()}${endpoint}`,{headers : {
@@ -68,9 +72,11 @@ export class HttpService {
   getBaseUrl() {
     switch(this.apiType) {
       case "rest" :
-         return environment.BASE_URL;
+         return environment.BASE_URL_DEV;
       case "assets" :
         return "/assets/";
+      case "transfer" :
+        return environment.BIZAO_BASE_URL;
       default :
         return environment.BASE_URL;
     }
@@ -82,10 +88,18 @@ export class HttpService {
 
   httpHeader() {
 
+    if(this.apiType == "transfer") {
+      return  new HttpHeaderBuilder()
+      .addHeader({key : "Authorization", value :`Bearer ${environment.BIZAO_ACCESS_TOKEN}`})
+      .addHeader({key : "mno-name" , value : "orange" })
+      .addHeader({key : "country-code" , value : "ci"})
+      .addHeader({key : "channel" , value : "web"})
+      .build();
+    }
     return  new HttpHeaderBuilder()
     .addHeader({key : "Authorization", value :`Bearer ${this.token?.toString()}`})
     .build();
-   ;
+
   }
 
 

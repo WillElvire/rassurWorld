@@ -1,11 +1,10 @@
-import { RoleDto } from './../../../../../backend/src/app/modules/roles/dto/role.dto';
-
 
 import { UserQuery } from 'src/app/store/user$/user.query';
-import { StatesFacades } from './../facades/state.facade';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { RoleDto } from '../interfaces/dto';
+import { RoleTypes } from '../enums/roles.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ import { Observable } from 'rxjs';
 export class RoleGuard implements CanActivate {
 
 
-  userRole !: RoleDto;
+  userRole !: any;
 
   constructor(private state : UserQuery,private router : Router) {
     this.loadUserRole();
@@ -27,13 +26,19 @@ export class RoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if(this.userRole.libelle.includes("admin")) {
+      console.log(this.userRole)
+    if( this.userRole.libelle == RoleTypes.ADMIN ) {
       this.router.navigate(["/admin/index"]);
       return true;
-    }else{
-      this.router.navigate(["/admin/detail"]);
+    }
+    if( this.userRole.libelle == RoleTypes.APPORTEUR )
+    {
+      this.router.navigate(["/admin/commission"]);
       return true;
     }
+
+    this.router.navigate(["/auth/login"]);
+    return false;
 
   }
 

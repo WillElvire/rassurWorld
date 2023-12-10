@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { AppFunctionService } from '../services/functions/app.function';
 import { insuranceType } from '../type/system.type';
 import { StorageManagerService } from '../services/storage/storage.manager';
+import { UserDto } from '../interfaces/dto';
+import { TransferService } from '../services/transfer/transfer.service';
 
 
 @Injectable({
@@ -10,9 +12,9 @@ import { StorageManagerService } from '../services/storage/storage.manager';
 })
 export class AppFacade {
 
-  private appFunction    = inject(AppFunctionService);
-  private storageService = inject(StorageManagerService);
-
+  private appFunction     = inject(AppFunctionService);
+  private storageService  = inject(StorageManagerService);
+  private transferService = inject(TransferService);
 
   getReceiptFile() {
    return this.appFunction.getReceiptFile();
@@ -49,6 +51,10 @@ export class AppFacade {
     return this.appFunction.businessRegistration(data);
   }
 
+  mobileMoneyPayout(amount : number) {
+    return this.transferService.mobileMoneyPayment(amount);
+  }
+
   firstStep(data : any , type : insuranceType = "voyage") {
     return this.appFunction.firstStep(data,type);
   }
@@ -70,6 +76,26 @@ export class AppFacade {
   }
   getInsurance(assurId : string) {
     return this.appFunction.getInsurance(assurId)
+  }
+
+  getRequestById(id: string){
+    return this.appFunction.getRequestById(id)
+  }
+
+  getRequest(){
+    return this.appFunction.getRequest();
+  }
+
+  updateUser(user : UserDto) {
+    return this.appFunction.updateUser(user)
+  }
+
+  confirmRequest(data:any){
+    return this.appFunction.confirmRequest(data);
+  }
+
+  getRequestByUserId(id: string) {
+    return this.appFunction.getRequestByUserId(id);
   }
 
   validateCotation(assurId : string) {
@@ -139,6 +165,13 @@ export class AppFacade {
   confirmInsurance(id : string) {
     return this.appFunction.confirmInsurance(id);
   }
+  addRequest(data : any) {
+    return this.appFunction.addRequest(data);
+  }
+
+  getWalletById(walletId : string){
+    return this.appFunction.getWalletById(walletId);
+  }
 
   /*--------------------------------*/
 
@@ -152,4 +185,15 @@ export class AppFacade {
     return this.storageService.delete(key);
   }
   /*--------------------------------*/
+
+
+
+  /*--------------------------------*/
+  getTransfer() {
+    return this.appFunction.getTransfer();
+  }
+
+  momoTransfer(payload :any) {
+    return this.appFunction.momoTransfer(payload);
+  }
 }

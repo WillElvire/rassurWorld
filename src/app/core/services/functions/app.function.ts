@@ -86,9 +86,34 @@ export class AppFunctionService {
     return this.api.get("/api/offer").pipe(shareReplay(1));
   }
 
+  updateUser(data : any) {
+    this.api.setApiType("rest");
+    return this.api.put({endpoint : "/api/user" , data }).pipe(shareReplay(1))
+  }
+
   addOffer(data : any) {
     this.api.setApiType("rest");
     return this.api.post({endpoint : "/api/offer" , data}).pipe(shareReplay(1))
+  }
+
+  getRequestById(id : string) {
+    this.api.setApiType("rest");
+    return this.api.get("/api/request/"+id).pipe(shareReplay(1));
+  }
+
+  getRequest(){
+    this.api.setApiType("rest");
+    return this.api.get("/api/request").pipe(shareReplay(1));
+  }
+
+  confirmRequest(data : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/request/confirm",data }).pipe(shareReplay(1));
+  }
+
+  getRequestByUserId(id : string) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint:"/api/request/user" , data : {user : id }}).pipe(shareReplay(1));
   }
 
   getRoles() {
@@ -167,12 +192,41 @@ export class AppFunctionService {
   }
 
 
+  addRequest(data : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/request",data}).pipe(shareReplay(1));
+  }
+
+
 
   confirmInsurance(id : string) {
     this.api.setApiType("rest");
     return this.api.post({endpoint: "/api/admin/insurance/confirm",data : {insuranceId : id}}).pipe(shareReplay(1));
   }
 
+  getWalletById(walletId : string) {
+    this.api.setApiType("rest");
+    return this.api.get("/api/wallet/"+ walletId).pipe(shareReplay(1));
+  }
 
+
+  /**
+   * @section transaction
+   */
+
+  getTransfer() {
+    this.api.setApiType("rest");
+    return this.api.get("/api/transfer/list").pipe(shareReplay(1));
+  }
+
+  momoTransfer(momoPayload : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/transfer/momo",data : momoPayload}).pipe(shareReplay(1));
+  }
+
+  momoTransferDetail(momoPayload : any) {
+    this.api.setApiType("rest");
+    return this.api.post({endpoint : "/api/transfer/detail",data : momoPayload}).pipe(shareReplay(1));
+  }
 
 }

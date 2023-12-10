@@ -35,7 +35,7 @@ export class SponsorshipComponent  implements OnInit{
         this.sponsorship = body.returnObject;
       },
       error : (err)=>{
-        console.log(err)
+
       }
     });
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoleTypes } from 'src/app/core/enums/roles.enum';
 import { UserQuery } from 'src/app/store/user$/user.query';
 
 @Component({
@@ -28,4 +29,11 @@ export class NavbarComponent implements OnInit {
       this.userRole = user.role as RoleDto;
     })*/
   }
+
+  navigateToUserRoute() {
+    const role = this.userQuery.fullUser?.role?.libelle;
+    if(role == RoleTypes.ADMIN) return this.router.navigate(["/admin/index"]);
+    if(role == RoleTypes.APPORTEUR) return this.router.navigate(["/admin/commission"]);
+    return true;
+   }
 }

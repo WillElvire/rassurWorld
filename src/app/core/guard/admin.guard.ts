@@ -1,5 +1,4 @@
 import { UserQuery } from 'src/app/store/user$/user.query';
-import { StatesFacades } from './../facades/state.facade';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -13,7 +12,7 @@ export class AdminGuard implements CanActivate {
 
   constructor(private state : UserQuery,private router : Router) {
     this.state.isLoggedIn$.subscribe((response)=>{
-      console.log(response);
+
       if(response){
         this.isLoggedIn = true;
         return;

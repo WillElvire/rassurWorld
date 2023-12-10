@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, Input, inject } from '@angular/core';
-
+import { AfterViewInit, Component, Input, ViewChild, inject } from '@angular/core';
+//const imageThumbnail = require('image-thumbnail');
 
 @Component({
   selector: 'app-viewer',
@@ -9,6 +9,7 @@ import { AfterViewInit, Component, Input, inject } from '@angular/core';
 export class ViewerComponent  implements AfterViewInit{
 
   @Input() source  !: string  ;
+  @ViewChild("image") image ?: any ;
 
 
   ngAfterViewInit() {
@@ -16,9 +17,17 @@ export class ViewerComponent  implements AfterViewInit{
   }
 
 
+
+
+
+  async generateImageThumbnail(source : string) {
+    //const result =  await imageThumbnail(source);
+    //console.log(result);
+  }
+
+
   checkSource(source : any) {
    return source.includes(".pdf");
-
   }
 
 

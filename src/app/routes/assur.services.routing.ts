@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AssurVoyageComponent } from '../pages/assur-voyage/assur-voyage.component';
-import { AssurSanteComponent } from '../pages/assur-sante/assur-sante.component';
-import { AssurAutoComponent } from '../pages/assur-auto/assur-auto.component';
+import { AssurVoyageComponent } from '../pages/assurance/assur-voyage/assur-voyage.component';
+import { AssurSanteComponent } from '../pages/assurance/assur-sante/assur-sante.component';
+import { AssurAutoComponent } from '../pages/assurance/assur-auto/assur-auto.component';
 import { AssurComponent } from '../layouts/assur/assur.component';
-import { AssurIndividuelComponent } from '../pages/assur-individuel/assur-individuel.component';
+import { AssurIndividuelComponent } from '../pages/assurance/assur-individuel/assur-individuel.component';
+import { AssurDefaultComponent } from '../pages/assurance/assur-default/assur-default.component';
 const routes: Routes = [
   {
     path :'',
@@ -27,8 +28,12 @@ const routes: Routes = [
         component : AssurAutoComponent
       },
       {
+        path : 'default',
+        component : AssurDefaultComponent
+      },
+      {
         path : '',
-        redirectTo : 'voyage',
+        redirectTo : 'default',
         pathMatch : 'full'
       }
     ]

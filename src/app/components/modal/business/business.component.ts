@@ -9,6 +9,7 @@ import { AppFacade } from 'src/app/core/facades/app.facade';
 export class BusinessComponent  implements OnInit{
    @Input() userCode ?: string ;
   sponsorship : any[] = [];
+  amount : number = 0;
   private readonly appFacade = inject(AppFacade);
 
 
@@ -16,11 +17,18 @@ export class BusinessComponent  implements OnInit{
       this.fetchBusinessSponsorship();
   }
 
+  calculComission(sponsorship : any []) {
+    sponsorship.forEach((element)=> {
+      this.amount = this.amount + Number(element.transaction?.primeApporteur);
+    })
+  }
+
   fetchBusinessSponsorship() {
     this.appFacade.fetchBusinessSponsorship(this.userCode as string).subscribe({
       next  : (response)=>{
         const body  : any = response.body;
         this.sponsorship = body.returnObject;
+        this.calculComission(this.sponsorship);
       },
       error : (err)=>{
         console.log(err)

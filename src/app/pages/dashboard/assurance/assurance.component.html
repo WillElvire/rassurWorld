@@ -1,11 +1,17 @@
-<div class="container">
+<div class="container-fluid">
 
   <h3>Liste des demandes d'assurance <b class="badge badge-success">{{insuranceRequest.length}}</b></h3>
   <div class="btn-group d-flex">
-    <button class="btn btn-outline-success"><i class="fa fa-file-csv"></i></button>
+    <button class="btn btn-outline-success" (click)="export('xlxs')"><i class="fa fa-file-csv"></i></button>
     <button class="btn btn-outline-primary"><i class="fa fa-file-pdf"></i></button>
   </div>
   <app-loader *ngIf="isSpinning"></app-loader>
+  <div class="row mt-5 ml-1">
+    <input placeholder="rechercher" class="form-control col-md-4" type="search" (keyup)="searchInsurance($event)">
+  </div>
+  <div *ngIf="!!keyword" class="mt-3">
+   <p>Recherche  par mot clé : <b class="badge badge-success">{{keyword}}</b></p>
+  </div>
   <div class="table-responsive mt-5" *ngIf="!isSpinning">
     <table class="table table-bordered">
       <thead class="thead" style="background-color: white !important;color :forestgreen !important">
@@ -15,19 +21,21 @@
           <th scope="col">Nom et Prénom</th>
           <th scope="col">Email</th>
           <th scope="col">Téléphone</th>
-          <th scope="col">Date </th>
+          <th scope="col">Date d'ajout </th>
+          <th scope="col">Statut</th>
           <th scope="col">Preuve</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let insurance of insuranceRequest | paginate: { itemsPerPage: 4, currentPage: p }">
+        <tr *ngFor="let insurance of insuranceRequest | paginate: { itemsPerPage: 3, currentPage: p }">
           <th scope="row">{{insurance.id}}</th>
           <td><b class="badge badge-success">{{insurance.offer.libelle}}</b></td>
           <td>{{insurance.user.firstname}}  {{insurance.user.lastname}}</td>
           <td>{{insurance.user.email}}</td>
           <td>{{insurance.user.phone}}</td>
           <td>{{insurance.detail.createdAt | date}}</td>
+          <td><b class="badge badge-{{insurance.isPayed ? 'success' : 'danger'}}">{{insurance.isPayed ? 'Payé' : 'Impayé'}}</b></td>
           <td> <b
             class="badge badge-success"
               >{{

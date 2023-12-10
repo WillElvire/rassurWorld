@@ -1,9 +1,8 @@
-
 <div class="text-center">
-  <h6>{{source}}</h6>
+  <h6>{{ source }}</h6>
 </div>
 
-<div  *ngIf="checkSource(source)">
+<div *ngIf="checkSource(source)">
   <!--<iframe [src]="bypassUrl()" style="width:600px; height:500px;" frameborder="0"></iframe>
   <object data=
   "{{bypassUrl()}}"
@@ -11,12 +10,18 @@
                   height="500">
           </object> !-->
 
-          <iframe src="{{source | sanitizer : 'url'}}" width="640" height="360" frameborder="0"
-    webkitallowfullscreen mozallowfullscreen allowfullscreen>
-</iframe>
+  <iframe
+    src="{{ source | sanitizer : 'url' }}"
+    width="640"
+    height="360"
+    frameborder="0"
+    webkitallowfullscreen
+    mozallowfullscreen
+    allowfullscreen
+  >
+  </iframe>
 </div>
 
-<ng-container *ngIf="!checkSource(source)">
-  <hr>
-  <img src="{{source}}" class="img-fluid"/>
+<ng-container *ngIf="!checkSource(source)" class="bg-image hover-zoom">
+  <img src="{{ source }}" class="zoom img-fluid"  />
 </ng-container>

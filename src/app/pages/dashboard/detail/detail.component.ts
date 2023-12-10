@@ -3,6 +3,8 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UtilsFacades } from 'src/app/core/facades/utils.facade';
+import { environment } from 'src/environments/environment.prod';
+import { UserDto } from 'src/app/core/interfaces/dto';
 
 @Component({
   selector: 'app-detail',
@@ -21,15 +23,29 @@ export class DetailComponent {
   isUploadVisible: boolean = false;
   isViewed : boolean = false;
   isBenefiariesVisible : boolean = false;
+  isEditVisible : boolean = false;
   file?: File;
   formData: FormData = new FormData();
   p : number = 1;
+  baseUrl = environment.BASE_URL;
 
   constructor() {
+    this.loadData();
+  }
+
+  loadData() {
     this.activatedRoute.params.subscribe((params: any) => {
       this.id = params.id;
       this.loadRequestDetail(params.id);
+      this.loadTransfers()
     });
+  }
+
+  loadTransfers() {
+    this.appFacade.getTransfer().subscribe({
+      next : (response)=> console.log(response),
+      error : (err)=> console.log(err)
+    })
   }
 
   goBack() {
@@ -70,11 +86,12 @@ export class DetailComponent {
 
   postCotation(cotation: any) {
     const id = this.insuranceDto.transaction.id;
-    this.appFacade.updateTransaction({ id, total_net: cotation.total_net , fees : cotation.fees , total : cotation.total }).subscribe(
+    this.appFacade.updateTransaction({ id, total_net: cotation.total_net , fees : cotation.fees , total : cotation.total  , primeApporteur : cotation.primeApporteur,code  : this.insuranceDto?.parrainCode}).subscribe(
       (response) => {
         console.log(response);
+        const body = response.body as any;
         this.loadRequestDetail(this.id as string);
-        this.sendMailCotation(cotation);
+        this.sendMailCotation(cotation.total,body?.returnObject?.id);
       },
       (error) => {
         console.log(error);
@@ -83,19 +100,21 @@ export class DetailComponent {
   }
 
   handleOk(): void {
-    this.isVisible = false;
-    this.isMailVisible = false;
-    this.isUploadVisible = false;
-    this.isViewed = false;
+    this.isVisible            = false;
+    this.isMailVisible        = false;
+    this.isUploadVisible      = false;
+    this.isViewed             = false;
     this.isBenefiariesVisible = false;
+    this.isEditVisible        = false;
   }
 
   handleCancel(): void {
-    this.isVisible = false;
-    this.isMailVisible = false;
-    this.isUploadVisible = false;
-    this.isViewed = false;
+    this.isVisible            = false;
+    this.isMailVisible        = false;
+    this.isUploadVisible      = false;
+    this.isViewed             = false;
     this.isBenefiariesVisible = false;
+    this.isEditVisible        = false;
   }
 
   sendFile(event: any) {
@@ -112,10 +131,18 @@ export class DetailComponent {
     this.formData.append('lastname', this.insuranceDto?.user?.lastname);
     this.formData.append('phone', this.insuranceDto?.user?.phone);
     this.formData.append('id', id);
+    this.formData.append('email',this.insuranceDto?.user?.email);
 
     this.appFacade.fileReceiptAndMail(this.formData).subscribe(
-      (response) => {
-        console.log(response);
+      (response : any) => {
+        const resp = response.body;
+        if (resp.code == 200)
+        return this.utilsFacade.successToastMessage(
+          'Mail envoyé avec success'
+        );
+      return this.utilsFacade.errorToastMessage(
+        "Erreur durant l'envoi du mail"
+      );
       },
       (error) => {
         console.log(error);
@@ -184,10 +211,10 @@ export class DetailComponent {
       );
   }
 
-  sendMailCotation(amount: string) {
+  sendMailCotation(amount: string , id :string = this.insuranceDto.id) {
     this.appFacade
       .cotation({
-        id: this.insuranceDto.id,
+        id,
         phone: this.insuranceDto?.user?.phone,
         lastname: this.insuranceDto?.user?.lastname,
         firstname: this.insuranceDto?.user?.firstname,
@@ -243,5 +270,18 @@ export class DetailComponent {
           );
         }
       );
+  }
+
+  updateUserInfo(event : any) {
+    this.isEditVisible = false;
+    this.appFacade.updateUser(event as any).subscribe(
+       (response)=> {
+        const resp : any = response.body;
+        console.log(resp)
+        this.utilsFacade.successToastMessage("Les informations utilisateur ont été modifiées");
+        this.loadData()
+      },
+       (err)=>  this.utilsFacade.errorToastMessage(!!err.error.message ?  err.error.message :  err.message)
+    )
   }
 }

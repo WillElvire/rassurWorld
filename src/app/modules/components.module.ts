@@ -19,8 +19,10 @@ import { BusinessComponent } from '../components/modal/business/business.compone
 import { WithdrallComponent } from '../components/modal/withdrall/withdrall.component';
 import { ViewerComponent } from '../components/modal/viewer/viewer.component';
 import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
-
-
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { EditComponent } from '../components/modal/edit/edit.component';
+import { PieComponent } from '../components/widgets/charts/pie/pie.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -38,9 +40,12 @@ import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
     BusinessComponent,
     WithdrallComponent,
     ViewerComponent,
-    SanitizerPipe
+    SanitizerPipe,
+    EditComponent,
+    PieComponent
+
   ],
-  imports: [CommonModule,RouterModule, NgZoroModule,FormsModule],
+  imports: [CommonModule,RouterModule, NgZoroModule,FormsModule,NgxImageZoomModule,NgApexchartsModule],
   exports: [
     NavbarComponent,
     FooterComponent,
@@ -56,7 +61,9 @@ import { SanitizerPipe } from '../core/pipe/sanitizer.pipe';
     BusinessComponent,
     WithdrallComponent,
     ViewerComponent,
-    SanitizerPipe
+    EditComponent,
+    SanitizerPipe,
+    PieComponent
   ],
 
 })

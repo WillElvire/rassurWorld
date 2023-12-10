@@ -65,4 +65,7 @@ export class IndexComponent {
       },
     });
   }
+  formatArrayToNumber(array: any[]) {
+    return array.map((item) => Number(item));
+  }
 }

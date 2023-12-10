@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserQuery } from 'src/app/store/user$/user.query';
-import { UserDto, UserStateDto } from '../interfaces/dto';
+import { UserStateDto } from '../interfaces/dto';
 import { AppFacade } from './app.facade';
 import { environment } from 'src/environments/environment.prod';
 
