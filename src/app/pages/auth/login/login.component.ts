@@ -9,6 +9,7 @@ import { UtilsFacades } from 'src/app/core/facades/utils.facade';
 import { LoginDto } from 'src/app/core/interfaces/dto';
 import { ComponentsModule } from 'src/app/modules/components.module';
 import { ServiceModule } from 'src/app/modules/service.module';
+import { RoleTypes } from 'src/app/core/enums/roles.enum';
 
 @Component({
   selector: 'app-login',
@@ -53,9 +54,12 @@ export class LoginComponent {
     this.appFacade.login(this.login).subscribe( {
       next :  (response: any)=>{
         this.loaded = false;
-        this.state.updateUser(response.body["returnObject"] as UserStateDto)
+        const userConnected = response.body["returnObject"] as UserStateDto;
+        this.state.updateUser(userConnected)
         this.utils.successToastMessage("Bienvenue sur le portail Rassur");
-        location.href = "/admin/index";
+        console.log(userConnected)
+        this.redirectUserByRole(userConnected?.user?.role?.libelle);
+        //location.href = "/admin/index";
         return ;
       },
       error : (err)=>{
@@ -71,6 +75,35 @@ export class LoginComponent {
 
   Verification() {
    return !!this.login.email  && !! this.login.password
+  }
+
+
+  /**
+   * @description Redirige l'utilisateur en fonction de son role
+   * @param role
+   * @returns
+   * @memberof LoginComponent
+   * @todo : faire la redirection en fonction du role
+   *
+   */
+  redirectUserByRole(role : string) {
+    switch(role) {
+      case RoleTypes.APPORTEUR :
+        location.href = "/admin/commission";
+        break;
+      case RoleTypes.ADMIN :
+        location.href = "/admin/index";
+        break;
+      case RoleTypes.MEMBER :
+        location.href = "/admin/index";
+        break;
+      case RoleTypes.CUSTOMER :
+        location.href = "/admin/index";
+        break;
+      default :
+      location.href = "/admin/index";
+        break;
+    }
   }
 
   back(){

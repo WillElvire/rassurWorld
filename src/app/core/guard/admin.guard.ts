@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate {
 
   constructor(private state : UserQuery,private router : Router) {
     this.state.isLoggedIn$.subscribe((response)=>{
-      console.log(response);
+
       if(response){
         this.isLoggedIn = true;
         return;
